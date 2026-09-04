@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useUserStore } from '../stores/userStore';
+import { ref, onMounted, computed } from 'vue';
+import { useUserStore } from '@/stores/userStore';
 
 import UserCard from './UserCard.vue';
 
@@ -8,45 +8,84 @@ const input = ref<HTMLInputElement | null>(null);
 
 const userStore = useUserStore();
 
+const users = computed(() => userStore.users?.items ?? []);
+
 onMounted(() => {
   userStore.getUsers();
 });
 
 function searchUsers() {
   const search = input.value?.value;
-
-  userStore.getUsers({
-    search,
-  });
+  userStore.getUsers({ search });
 }
 </script>
 
 <template>
-  <h1>User Manager</h1>
+  <div class="user-list">
+    <h1>User Manager</h1>
 
+    <div class="user-list__toolbar">
+      <input ref="input" type="search" placeholder="Search user..." />
+      <button @click="searchUsers">Search</button>
+    </div>
 
-  <div>
-    <input ref="input" type="search" placeholder="Search user..." />
+    <div class="user-list__grid">
+      <UserCard v-for="user in users" :key="user.id" :user="user" @delete-user="userStore.deleteUser">
+        <template #header>
+          <h2>{{ user.fullName ?? user.email }}</h2>
+        </template>
 
-    <button @click="searchUsers">Search</button>
+        <template #default="{ role }">
+          {{ role }}
+        </template>
+
+        <template #footer="{ role }">
+          <small>{{ role }}</small>
+        </template>
+      </UserCard>
+    </div>
   </div>
-
-  <UserCard v-for="user in userStore.users?.items ?? []" :key="user.id" :user="user">
-    <template #header>
-      <h2>{{ user.name }}</h2>
-    </template>
-
-    <template #default="{ role, isActive }">
-      {{ role }} -
-      {{ isActive ? 'Active' : 'Inactive' }}
-    </template>
-
-    <template #footer="{ role, isActive }">
-      <small>{{ role }}</small>
-
-      <strong v-if="isActive"> Active </strong>
-
-      <span v-else> Inactif </span>
-    </template>
-  </UserCard>
 </template>
+
+<style scoped>
+.user-list {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.user-list__toolbar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.user-list__toolbar input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-background);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.user-list__toolbar input:focus {
+  border-color: #42b883;
+}
+
+.user-list__toolbar button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 999px;
+  background-color: #42b883;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.user-list__grid {
+  display: grid;
+  gap: 1rem;
+}
+</style>

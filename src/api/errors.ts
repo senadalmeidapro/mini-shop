@@ -1,4 +1,5 @@
 import type { ApiErrorResponse } from './types';
+import type { ToastInterface } from 'vue-toastification';
 
 export class ApiError extends Error {
   public readonly statusCode: number;
@@ -68,4 +69,25 @@ export function parseApiError(payload: ApiErrorResponse): ApiError {
     default:
       return new ApiError(Array.isArray(message) ? message.join(', ') : message, statusCode);
   }
+}
+
+// ─── Store error handler ──────────────────────────────────────────────────────
+export function handleApiError(error: unknown, toast: ToastInterface, fallback: string) {
+  if (error instanceof UnauthorizedError) {
+    toast.error('Session expirée, veuillez vous reconnecter');
+  } else if (error instanceof ForbiddenError) {
+    toast.error('Accès refusé');
+  } else if (error instanceof NotFoundError) {
+    toast.error('Ressource introuvable');
+  } else if (error instanceof ValidationError) {
+    toast.error(error.fields.length > 1 ? error.fields.join(' — ') : error.message);
+  } else if (error instanceof NetworkError) {
+    toast.error('Erreur réseau — vérifiez votre connexion');
+  } else if (error instanceof ApiError) {
+    toast.error(error.message || fallback);
+  } else {
+    toast.error(fallback);
+  }
+
+  console.error(fallback, error);
 }

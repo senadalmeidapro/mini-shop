@@ -3,19 +3,22 @@ import { defineStore } from 'pinia';
 
 import type { Paginate, User } from '@/types';
 
-import { ENDPOINTS, http } from '@/api';
+import { ENDPOINTS, http, handleApiError } from '@/api';
+import { useToast } from 'vue-toastification';
 
 export const useUserStore = defineStore('users', () => {
+  const toast = useToast();
+
   const user = ref<User | null>(null);
   const users = ref<Paginate<User> | null>(null);
 
-  async function getUser(id: number) {
+  async function getUser(id: string) {
     try {
       const response = await http.get<User>(ENDPOINTS.users.detail(id));
 
       user.value = response.data;
     } catch (error) {
-      console.error('Failed to get user:', error);
+      handleApiError(error, toast, 'Impossible de charger l\'utilisateur');
     }
   }
 
@@ -33,26 +36,27 @@ export const useUserStore = defineStore('users', () => {
 
       users.value = response.data;
     } catch (error) {
-      console.error('Failed to get users:', error);
+      handleApiError(error, toast, 'Impossible de charger les utilisateurs');
     }
   }
 
-  async function postUser(data: Omit<User, 'id'>) {
+  async function postUser(data: { email: string; password: string; fullName?: string }) {
     try {
       const response = await http.post<User>(ENDPOINTS.users.create, data);
 
       users.value?.items.push(response.data);
+      toast.success('Utilisateur créé');
     } catch (error) {
-      console.error('Failed to create user:', error);
+      handleApiError(error, toast, 'Impossible de créer l\'utilisateur');
     }
   }
 
-  async function updateUser(id: number, data: Partial<Omit<User, 'id'>>) {
+  async function updateUser(id: string, data: { email?: string; password?: string; fullName?: string }) {
     try {
       const response = await http.patch<User>(ENDPOINTS.users.update(id), data);
 
       if (users.value) {
-        const index = users.value.items.findIndex((user) => user.id === id);
+        const index = users.value.items.findIndex((u) => u.id === id);
 
         if (index !== -1) {
           users.value.items[index] = response.data;
@@ -62,24 +66,28 @@ export const useUserStore = defineStore('users', () => {
       if (user.value?.id === id) {
         user.value = response.data;
       }
+
+      toast.success('Utilisateur mis à jour');
     } catch (error) {
-      console.error('Failed to update user:', error);
+      handleApiError(error, toast, 'Impossible de mettre à jour l\'utilisateur');
     }
   }
 
-  async function deleteUser(id: number) {
+  async function deleteUser(id: string) {
     try {
       await http.delete<void>(ENDPOINTS.users.delete(id));
 
       if (users.value) {
-        users.value.items = users.value.items.filter((user) => user.id !== id);
+        users.value.items = users.value.items.filter((u) => u.id !== id);
       }
 
       if (user.value?.id === id) {
         user.value = null;
       }
+
+      toast.success('Utilisateur supprimé');
     } catch (error) {
-      console.error('Failed to delete user:', error);
+      handleApiError(error, toast, 'Impossible de supprimer l\'utilisateur');
     }
   }
 

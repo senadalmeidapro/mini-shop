@@ -1,16 +1,24 @@
 <script setup lang="ts">
-import { inject } from 'vue';
+import { provide, ref, watch } from 'vue';
+import type { Order } from '@/types';
 import { ordersKey } from '../keys/order';
 
-const orders = inject(ordersKey);
+const props = defineProps<{ orders: Order[] }>();
 
-if (!orders) {
-  throw new Error('ordersKey was not provide');
-}
+const orders = ref<Order[]>([...props.orders]);
+
+watch(
+  () => props.orders,
+  (next) => {
+    orders.value = [...next];
+  },
+);
+
+provide(ordersKey, orders);
 </script>
 <template>
   <div class="model">
-    <h1>Product list</h1>
+    <h1>Order list</h1>
     <slot
       name="orders"
       v-for="(order, index) in orders"
@@ -23,3 +31,18 @@ if (!orders) {
     <slot name="length" :length="orders.length" />
   </div>
 </template>
+
+<style scoped>
+.model {
+  padding: 1.5rem;
+  background: var(--color-background-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.model h1 {
+  font-size: 1.4rem;
+  color: var(--color-heading);
+  margin-bottom: 1rem;
+}
+</style>
