@@ -1,7 +1,7 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 import { ENDPOINTS, http, handleApiError, TOKEN_STORAGE_KEYS } from '@/api';
-import type { User } from '@/types';
+import type { Role, User } from '@/types';
 import { useToast } from 'vue-toastification';
 import { useRouter } from 'vue-router';
 
@@ -11,6 +11,18 @@ export const useAuthStore = defineStore('auth', () => {
 
   const accessToken = ref<string | null>(localStorage.getItem(TOKEN_STORAGE_KEYS.ACCESS));
   const user = ref<User | null>(null);
+
+  const role = computed<Role | null>(() => {
+    const token = accessToken.value;
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]!)) as { role?: Role };
+      return payload.role ?? null;
+    } catch {
+      return null;
+    }
+  });
 
   async function register(dto: { email: string; password: string; fullName?: string }) {
     try {
@@ -62,6 +74,7 @@ export const useAuthStore = defineStore('auth', () => {
   return {
     accessToken,
     user,
+    role,
     register,
     login,
     logout,

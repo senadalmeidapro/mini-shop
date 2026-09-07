@@ -99,7 +99,9 @@ export interface Payment {
 export interface Review {
   id: string;
   userId: string;
+  user: User;
   productId: string;
+  product: Product;
   rating?: number;
   comment?: string;
   createdAt: Date;

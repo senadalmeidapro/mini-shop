@@ -14,9 +14,12 @@ async function handleLogout() {
   <nav>
     <RouterLink :to="{ name: 'Home' }">Accueil</RouterLink>
     <RouterLink :to="{ name: 'Product List' }">Produit</RouterLink>
-    <template v-if="authStore.user">
+    <template v-if="authStore.accessToken">
       <RouterLink :to="{ name: 'Order Layout' }">Mes commandes</RouterLink>
-      <span>{{ authStore.user.fullName ?? authStore.user.email }}</span>
+      <RouterLink v-if="authStore.role === 'admin'" :to="{ name: 'Admin Dashboard' }">
+        Admin
+      </RouterLink>
+      <span>{{ authStore.user?.fullName ?? authStore.user?.email }}</span>
       <button @click="handleLogout">Déconnexion</button>
     </template>
     <template v-else>
