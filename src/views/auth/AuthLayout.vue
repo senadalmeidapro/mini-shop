@@ -26,14 +26,14 @@ import { RouterView } from 'vue-router'
   padding: 2.5rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
 }
 
 .auth-layout__logo {
   text-align: center;
   font-size: 1.8rem;
-  color: #42b883;
+  color: var(--color-primary);
   margin-bottom: 1.5rem;
 }
 </style>

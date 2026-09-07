@@ -30,7 +30,7 @@ defineProps<{ totalUsers: number; activeAdmins: number }>();
   padding: 1rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .stats-panel__item span {
@@ -41,6 +41,6 @@ defineProps<{ totalUsers: number; activeAdmins: number }>();
 
 .stats-panel__item strong {
   font-size: 1.5rem;
-  color: #42b883;
+  color: var(--color-primary);
 }
 </style>

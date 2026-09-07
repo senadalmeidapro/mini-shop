@@ -1,8 +1,9 @@
-<script setup lang="ts">
-import { onMounted, computed } from 'vue';
+﻿<script setup lang="ts">
+import { onMounted, computed, ref } from 'vue';
 import { useOrderStore } from '@/stores/orderStore';
 
 const orderStore = useOrderStore();
+const loading = ref(true);
 
 const orders = computed(() => orderStore.orders);
 
@@ -12,13 +13,15 @@ async function completeOrder(id: string) {
 
 onMounted(async () => {
   await orderStore.getOrders();
+  loading.value = false;
 });
 </script>
 <template>
   <div class="orders">
     <h2>Gestion des commandes</h2>
 
-    <p v-if="orders.length === 0" class="empty">Aucune commande</p>
+    <p v-if="loading" class="loading">Chargement…</p>
+    <p v-else-if="orders.length === 0" class="empty">Aucune commande</p>
 
     <table v-else class="orders__table">
       <thead>
@@ -34,17 +37,14 @@ onMounted(async () => {
       <tbody>
         <tr v-for="order in orders" :key="order.id">
           <td class="orders__id">{{ order.id }}</td>
-          <td>{{ order.user.email }}</td>
+          <td>{{ order.user?.email ?? order.userId }}</td>
           <td>{{ order.total }} &euro;</td>
           <td>{{ order.orderItems.length }}</td>
           <td>
             <span class="badge" :class="`badge--${order.status}`">{{ order.status }}</span>
           </td>
           <td>
-            <button
-              v-if="order.status === 'pending'"
-              @click="completeOrder(order.id)"
-            >
+            <button v-if="order.status === 'pending'" @click="completeOrder(order.id)">
               Marquer complétée
             </button>
           </td>
@@ -62,6 +62,11 @@ onMounted(async () => {
 .empty {
   color: var(--color-text);
   opacity: 0.7;
+}
+
+.loading {
+  color: var(--color-text);
+  opacity: 0.6;
 }
 
 .orders__table {
@@ -91,38 +96,38 @@ onMounted(async () => {
 
 .badge {
   padding: 0.2rem 0.6rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 0.8rem;
   background: var(--color-background-mute);
 }
 
 .badge--pending {
-  background: #fff3cd;
-  color: #856404;
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
 }
 
 .badge--completed {
-  background: #d4edda;
-  color: #155724;
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
 }
 
 .badge--cancelled {
-  background: #f8d7da;
-  color: #721c24;
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
 }
 
 .orders__table button {
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 6px;
-  background-color: #42b883;
-  color: #fff;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .orders__table button:hover {
-  background-color: #35a06c;
+  background-color: var(--color-primary-hover);
 }
 </style>

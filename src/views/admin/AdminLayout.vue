@@ -17,7 +17,11 @@ import { RouterLink, RouterView } from 'vue-router';
     </header>
 
     <main class="admin__main">
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <KeepAlive>
+          <component :is="Component" />
+        </KeepAlive>
+      </RouterView>
     </main>
   </div>
 </template>
@@ -48,7 +52,7 @@ import { RouterLink, RouterView } from 'vue-router';
 .admin__nav a {
   padding: 0.5rem 1rem;
   border: 1px solid var(--color-border);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: var(--color-text);
   font-weight: 600;
   font-size: 0.9rem;
@@ -60,13 +64,13 @@ import { RouterLink, RouterView } from 'vue-router';
 }
 
 .admin__nav a:hover {
-  border-color: #42b883;
-  color: #42b883;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
-.admin__nav a.router-link-active {
-  background-color: #42b883;
-  border-color: #42b883;
-  color: #fff;
+.admin__nav a.router-link-exact-active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary-contrast);
 }
 </style>

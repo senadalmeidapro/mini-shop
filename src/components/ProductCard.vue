@@ -23,7 +23,7 @@ defineProps<{ product: Product }>();
   padding: 1.25rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   transition:
     transform 0.2s,
     box-shadow 0.2s,
@@ -32,8 +32,8 @@ defineProps<{ product: Product }>();
 
 .product-card:hover {
   transform: translateY(-4px);
-  border-color: #42b883;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
 }
 
 .product-card a {
@@ -47,7 +47,7 @@ defineProps<{ product: Product }>();
 }
 
 .product-card a:hover h5 {
-  color: #42b883;
+  color: var(--color-primary);
 }
 
 .product-card p {
@@ -59,7 +59,7 @@ defineProps<{ product: Product }>();
 
 .product-card__price {
   font-weight: 700;
-  color: #42b883;
+  color: var(--color-primary);
 }
 
 .product-card__stock {

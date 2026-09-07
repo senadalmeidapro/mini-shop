@@ -115,7 +115,7 @@ onMounted(async () => {
   margin-bottom: 1.5rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .users__form input {
@@ -123,7 +123,7 @@ onMounted(async () => {
   min-width: 160px;
   padding: 0.55rem 0.75rem;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--color-background);
   color: var(--color-text);
   outline: none;
@@ -131,7 +131,8 @@ onMounted(async () => {
 }
 
 .users__form input:focus {
-  border-color: #42b883;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-focus);
 }
 
 .users__form-actions {
@@ -144,9 +145,9 @@ onMounted(async () => {
 .users__table button {
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 6px;
-  background-color: #42b883;
-  color: #fff;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -154,20 +155,20 @@ onMounted(async () => {
 
 .users__form button:hover,
 .users__table button:hover {
-  background-color: #35a06c;
+  background-color: var(--color-primary-hover);
 }
 
 .users__form button.secondary,
 .users__table button.danger {
   background-color: transparent;
-  border: 1px solid #e03030;
-  color: #e03030;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
 }
 
 .users__form button.secondary:hover,
 .users__table button.danger:hover {
-  background-color: #e03030;
-  color: #fff;
+  background-color: var(--color-danger);
+  color: var(--color-danger-contrast);
 }
 
 .users__table {
@@ -192,7 +193,7 @@ onMounted(async () => {
 
 .users__table .badge {
   padding: 0.2rem 0.6rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--color-background-mute);
   font-size: 0.8rem;
 }

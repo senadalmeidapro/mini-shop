@@ -40,7 +40,7 @@ onMounted(async () => {
 .product-list__header input {
   padding: 0.6rem 1rem;
   border: 1px solid var(--color-border);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--color-background);
   color: var(--color-text);
   outline: none;
@@ -49,7 +49,8 @@ onMounted(async () => {
 }
 
 .product-list__header input:focus {
-  border-color: #42b883;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-focus);
 }
 
 .product-list__grid {

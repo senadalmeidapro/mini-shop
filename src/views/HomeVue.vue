@@ -34,7 +34,7 @@ const authStore = useAuthStore();
 }
 
 .home__link {
-  color: #42b883;
+  color: var(--color-primary);
   font-weight: 600;
 }
 

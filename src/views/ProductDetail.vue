@@ -76,7 +76,7 @@ watch(
 .detail__price {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #42b883;
+  color: var(--color-primary);
 }
 
 .detail__stock {
@@ -97,24 +97,25 @@ watch(
   width: 5rem;
   padding: 0.55rem;
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: var(--color-background);
   color: var(--color-text);
+  outline: none;
 }
 
 .detail__buy button {
   padding: 0.6rem 1.6rem;
   border: none;
-  border-radius: 6px;
-  background-color: #42b883;
-  color: #fff;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .detail__buy button:hover {
-  background-color: #35a06c;
+  background-color: var(--color-primary-hover);
 }
 
 .detail__loading {

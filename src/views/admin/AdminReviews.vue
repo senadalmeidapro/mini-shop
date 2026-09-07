@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 import { useReviewStore } from '@/stores/reviewStore';
 
 const reviewStore = useReviewStore();
+const loading = ref(true);
 
 const reviews = computed(() => reviewStore.reviews);
 
@@ -12,13 +13,15 @@ async function deleteReview(id: string) {
 
 onMounted(async () => {
   await reviewStore.getReviews();
+  loading.value = false;
 });
 </script>
 <template>
   <div class="reviews">
     <h2>Gestion des avis</h2>
 
-    <p v-if="reviews.length === 0" class="empty">Aucun avis</p>
+    <p v-if="loading" class="loading">Chargement…</p>
+    <p v-else-if="reviews.length === 0" class="empty">Aucun avis</p>
 
     <table v-else class="reviews__table">
       <thead>
@@ -32,8 +35,8 @@ onMounted(async () => {
       </thead>
       <tbody>
         <tr v-for="review in reviews" :key="review.id">
-          <td class="reviews__id">{{ review.product.name }}</td>
-          <td class="reviews__id">{{ review.user.email }}</td>
+          <td class="reviews__id">{{ review.product?.name ?? '—' }}</td>
+          <td class="reviews__id">{{ review.user?.email ?? '—' }}</td>
           <td>{{ review.rating ?? '—' }} / 5</td>
           <td>{{ review.comment ?? '—' }}</td>
           <td>
@@ -53,6 +56,11 @@ onMounted(async () => {
 .empty {
   color: var(--color-text);
   opacity: 0.7;
+}
+
+.loading {
+  color: var(--color-text);
+  opacity: 0.6;
 }
 
 .reviews__table {
@@ -82,10 +90,10 @@ onMounted(async () => {
 
 .reviews__table button.danger {
   padding: 0.5rem 1rem;
-  border: 1px solid #e03030;
-  border-radius: 6px;
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-sm);
   background: transparent;
-  color: #e03030;
+  color: var(--color-danger);
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -94,7 +102,7 @@ onMounted(async () => {
 }
 
 .reviews__table button.danger:hover {
-  background-color: #e03030;
-  color: #fff;
+  background-color: var(--color-danger);
+  color: var(--color-danger-contrast);
 }
 </style>

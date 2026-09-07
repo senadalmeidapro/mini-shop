@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { onMounted } from 'vue';
+﻿<script setup lang="ts">
+import { onMounted, computed } from 'vue';
 import { useCartStore } from '@/stores/cartStore';
 import { useAddressStore } from '@/stores/addressStore';
 import { usePaymentStore } from '@/stores/paymentStore';
@@ -9,7 +9,7 @@ const paymentStore = usePaymentStore();
 const addressStore = useAddressStore();
 
 const items = cartStore.totalPerItem;
-const hasAddress = addressStore.addresses.length > 0;
+const hasAddress = computed(() => addressStore.addresses.length > 0);
 
 onMounted(async () => {
   await addressStore.getAddresses();
@@ -42,9 +42,7 @@ async function pay() {
 
     <div v-for="item in items" :key="item.id" class="cart-item">
       <h5>{{ item.product.name }}</h5>
-      <div class="cart-item__price">
-        {{ item.product.price }} &euro; x {{ item.quantity }}
-      </div>
+      <div class="cart-item__price">{{ item.product.price }} &euro; x {{ item.quantity }}</div>
       <div class="cart-item__actions">
         <button @click="decrease(item.id, item.quantity)">-</button>
         <button @click="increase(item.id, item.quantity)">+</button>
@@ -77,7 +75,7 @@ async function pay() {
   margin-bottom: 0.75rem;
   background: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
 }
 
 .cart-item h5 {
@@ -93,7 +91,7 @@ async function pay() {
 
 .cart-item__total {
   font-weight: 700;
-  color: #42b883;
+  color: var(--color-primary);
 }
 
 .cart-item__actions {
@@ -105,7 +103,7 @@ async function pay() {
   width: 2rem;
   height: 2rem;
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: var(--color-background);
   color: var(--color-heading);
   font-weight: 700;
@@ -114,20 +112,20 @@ async function pay() {
 }
 
 .cart-item__actions button:hover {
-  border-color: #42b883;
+  border-color: var(--color-primary);
 }
 
-.cart-item__remove {
-  width: auto !important;
+.cart-item__actions .cart-item__remove {
+  width: auto;
   padding: 0 0.8rem;
-  border-color: #e03030 !important;
-  color: #e03030 !important;
-  font-weight: 600 !important;
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+  font-weight: 600;
 }
 
-.cart-item__remove:hover {
-  background-color: #e03030;
-  color: #fff !important;
+.cart-item__actions .cart-item__remove:hover {
+  background-color: var(--color-danger);
+  color: var(--color-danger-contrast);
 }
 
 .cart-footer {
@@ -148,9 +146,9 @@ async function pay() {
 .cart-footer__pay {
   padding: 0.6rem 1.6rem;
   border: none;
-  border-radius: 6px;
-  background-color: #42b883;
-  color: #fff;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -159,7 +157,7 @@ async function pay() {
 }
 
 .cart-footer__pay:hover:not(:disabled) {
-  background-color: #35a06c;
+  background-color: var(--color-primary-hover);
 }
 
 .cart-footer__pay:disabled {
@@ -168,6 +166,6 @@ async function pay() {
 }
 
 .cart-footer small {
-  color: #e03030;
+  color: var(--color-danger);
 }
 </style>

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 import { usePaymentStore } from '@/stores/paymentStore';
 
 const paymentStore = usePaymentStore();
+const loading = ref(true);
 
 const payments = computed(() => paymentStore.payments);
 
@@ -12,13 +13,15 @@ async function cancelPayment(id: string) {
 
 onMounted(async () => {
   await paymentStore.getPayments();
+  loading.value = false;
 });
 </script>
 <template>
   <div class="payments">
     <h2>Gestion des paiements</h2>
 
-    <p v-if="payments.length === 0" class="empty">Aucun paiement</p>
+    <p v-if="loading" class="loading">Chargement…</p>
+    <p v-else-if="payments.length === 0" class="empty">Aucun paiement</p>
 
     <table v-else class="payments__table">
       <thead>
@@ -65,6 +68,11 @@ onMounted(async () => {
   opacity: 0.7;
 }
 
+.loading {
+  color: var(--color-text);
+  opacity: 0.6;
+}
+
 .payments__table {
   width: 100%;
   border-collapse: collapse;
@@ -92,33 +100,33 @@ onMounted(async () => {
 
 .badge {
   padding: 0.2rem 0.6rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 0.8rem;
   background: var(--color-background-mute);
 }
 
 .badge--pending {
-  background: #fff3cd;
-  color: #856404;
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
 }
 
 .badge--succeeded {
-  background: #d4edda;
-  color: #155724;
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
 }
 
 .badge--failed,
 .badge--cancelled {
-  background: #f8d7da;
-  color: #721c24;
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
 }
 
 .payments__table button.danger {
   padding: 0.5rem 1rem;
-  border: 1px solid #e03030;
-  border-radius: 6px;
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-sm);
   background: transparent;
-  color: #e03030;
+  color: var(--color-danger);
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -127,7 +135,7 @@ onMounted(async () => {
 }
 
 .payments__table button.danger:hover {
-  background-color: #e03030;
-  color: #fff;
+  background-color: var(--color-danger);
+  color: var(--color-danger-contrast);
 }
 </style>

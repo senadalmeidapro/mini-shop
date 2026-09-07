@@ -22,14 +22,14 @@ defineProps<{ orders: Order[] }>();
   margin-bottom: 0.5rem;
   background: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   color: var(--color-text);
 }
 
 .order-card__last {
   margin-top: 0.25rem;
   font-size: 0.8rem;
-  color: #42b883;
+  color: var(--color-primary);
   font-weight: 600;
 }
 </style>

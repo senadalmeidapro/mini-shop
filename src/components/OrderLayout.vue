@@ -37,7 +37,7 @@ provide(ordersKey, orders);
   padding: 1.5rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .model h1 {

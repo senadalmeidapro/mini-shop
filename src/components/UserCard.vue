@@ -38,7 +38,7 @@ function deleteUser(id: string) {
   padding: 1.25rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .user-card__header {
@@ -62,17 +62,17 @@ function deleteUser(id: string) {
 }
 
 .user-card__actions a {
-  color: #42b883;
+  color: var(--color-primary);
   font-weight: 600;
   text-decoration: none;
 }
 
 .user-card__delete {
   padding: 0.4rem 0.9rem;
-  border: 1px solid #e03030;
-  border-radius: 6px;
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-sm);
   background: transparent;
-  color: #e03030;
+  color: var(--color-danger);
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -81,7 +81,7 @@ function deleteUser(id: string) {
 }
 
 .user-card__delete:hover {
-  background-color: #e03030;
-  color: #fff;
+  background-color: var(--color-danger);
+  color: var(--color-danger-contrast);
 }
 </style>

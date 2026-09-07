@@ -36,7 +36,8 @@ nav {
   gap: 1.25rem;
   flex-wrap: wrap;
   padding: 1rem 1.5rem;
-  background: var(--color-background);
+  background: color-mix(in srgb, var(--color-background) 85%, transparent);
+  backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
@@ -51,11 +52,11 @@ nav a {
 }
 
 nav a:hover {
-  color: #42b883;
+  color: var(--color-primary);
 }
 
 nav a.router-link-active {
-  color: #42b883;
+  color: var(--color-primary);
 }
 
 nav span {
@@ -66,10 +67,10 @@ nav span {
 
 nav button {
   padding: 0.45rem 1rem;
-  border: 1px solid #e03030;
-  border-radius: 999px;
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-pill);
   background: transparent;
-  color: #e03030;
+  color: var(--color-danger);
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -78,7 +79,7 @@ nav button {
 }
 
 nav button:hover {
-  background-color: #e03030;
-  color: #fff;
+  background-color: var(--color-danger);
+  color: var(--color-danger-contrast);
 }
 </style>

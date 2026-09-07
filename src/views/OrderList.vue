@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { onMounted, computed } from 'vue';
 import { useOrderStore } from '@/stores/orderStore';
 import { usePaymentStore } from '@/stores/paymentStore';
@@ -64,7 +64,7 @@ async function cancelOrder(orderId: string) {
   margin-bottom: 0.75rem;
   background: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
 }
 
 .order__info {
@@ -78,15 +78,15 @@ async function cancelOrder(orderId: string) {
 .order__status {
   font-size: 0.85rem;
   text-transform: capitalize;
-  color: #42b883;
+  color: var(--color-primary);
 }
 
 .order__cancel {
   padding: 0.4rem 0.9rem;
-  border: 1px solid #e03030;
-  border-radius: 6px;
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-sm);
   background: transparent;
-  color: #e03030;
+  color: var(--color-danger);
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -95,7 +95,7 @@ async function cancelOrder(orderId: string) {
 }
 
 .order__cancel:hover {
-  background-color: #e03030;
-  color: #fff;
+  background-color: var(--color-danger);
+  color: var(--color-danger-contrast);
 }
 </style>

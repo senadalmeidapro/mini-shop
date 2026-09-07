@@ -76,7 +76,7 @@ const emit = defineEmits<{
   flex: 1;
   padding: 0.6rem 1rem;
   border: 1px solid var(--color-border);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--color-background);
   color: var(--color-text);
   outline: none;
@@ -84,15 +84,16 @@ const emit = defineEmits<{
 }
 
 .user-manager__toolbar input:focus {
-  border-color: #42b883;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-focus);
 }
 
 .user-manager__toolbar button {
   padding: 0.6rem 1.2rem;
   border: none;
-  border-radius: 999px;
-  background-color: #42b883;
-  color: #fff;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
   font-weight: 600;
   cursor: pointer;
 }

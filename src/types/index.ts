@@ -55,6 +55,7 @@ export interface CartItem {
 export interface Order {
   id: string;
   userId: string;
+  user?: User;
   status: OrderStatus;
   total: number;
   orderItems: OrderItem[];

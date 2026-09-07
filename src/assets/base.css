@@ -1,27 +1,43 @@
-/* color palette from <https://github.com/vuejs/theme> */
+/* ==========================================================================
+   Design tokens - Mini Shop
+   Palette: brand green (#42b883), neutrals, semantic status colors.
+   Le point unique pour piloter toute la charte du front.
+   ========================================================================== */
+
 :root {
+  /* Brand / palette de base */
+  --c-green: #42b883;
+  --c-green-dark: #35a06c;
+  --c-red: #e03030;
+
+  /* Blancs & gris (light mode) */
   --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+  --vt-c-white-soft: #f8f9fa;
+  --vt-c-white-mute: #eef0f2;
 
-  --vt-c-black: #181818;
-  --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
+  /* Noirs & gris (dark mode) */
+  --vt-c-black: #16181d;
+  --vt-c-black-soft: #1f232a;
+  --vt-c-black-mute: #2a2f38;
 
-  --vt-c-indigo: #2c3e50;
+  --vt-c-indigo: #1f2937;
 
-  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+  /* Séparateurs */
+  --vt-c-divider-light-1: rgba(30, 30, 30, 0.12);
+  --vt-c-divider-light-2: rgba(30, 30, 30, 0.07);
+  --vt-c-divider-dark-1: rgba(255, 255, 255, 0.12);
+  --vt-c-divider-dark-2: rgba(255, 255, 255, 0.07);
 
+  /* Texte */
   --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-  --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  --vt-c-text-light-2: rgba(31, 41, 55, 0.62);
+  --vt-c-text-dark-1: #f3f4f6;
+  --vt-c-text-dark-2: rgba(243, 244, 246, 0.68);
 }
 
-/* semantic color variables for this project */
+/* ==========================================================================
+   Variables sémantiques (light mode)
+   ========================================================================== */
 :root {
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
@@ -32,10 +48,47 @@
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
+  --color-text-soft: var(--vt-c-text-light-2);
+
+  /* Accent (boutons primaires, liens, focus, prix) */
+  --color-primary: var(--c-green);
+  --color-primary-hover: var(--c-green-dark);
+  --color-primary-contrast: #ffffff;
+  --color-focus: rgba(66, 184, 131, 0.35);
+
+  /* Alerte / destruction */
+  --color-danger: var(--c-red);
+  --color-danger-hover: #c92a2a;
+  --color-danger-contrast: #ffffff;
+
+  /* Statuts (badges) */
+  --color-warning-bg: #fff3cd;
+  --color-warning-text: #856404;
+  --color-success-bg: #d4edda;
+  --color-success-text: #155724;
+  --color-error-bg: #f8d7da;
+  --color-error-text: #721c24;
+
+  /* Forme & ombres */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
+
+  --transition-fast: 0.15s ease;
+  --transition: 0.2s ease;
 
   --section-gap: 160px;
 }
 
+/* ==========================================================================
+   Variables sémantiques (dark mode)
+   ========================================================================== */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
@@ -46,10 +99,14 @@
     --color-border-hover: var(--vt-c-divider-dark-1);
 
     --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
+    --color-text: var(--vt-c-text-dark-1);
+    --color-text-soft: var(--vt-c-text-dark-2);
   }
 }
 
+/* ==========================================================================
+   Reset & base
+   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -63,8 +120,8 @@ body {
   color: var(--color-text);
   background: var(--color-background);
   transition:
-    color 0.5s,
-    background-color 0.5s;
+    color 0.3s,
+    background-color 0.3s;
   line-height: 1.6;
   font-family:
     Inter,

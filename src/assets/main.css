@@ -3,3 +3,8 @@
 #app {
   min-height: 100vh;
 }
+
+/* Masque de scrollbar par défaut (esthétique, non intrusif) */
+::selection {
+  background: var(--color-focus);
+}

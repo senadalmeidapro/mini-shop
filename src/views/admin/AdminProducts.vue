@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { reactive, ref, onMounted, computed } from 'vue';
 import { useProductStore } from '@/stores/productStore';
 import { useCategoryStore } from '@/stores/categoryStore';
@@ -74,7 +74,14 @@ onMounted(async () => {
     <form class="products__form" @submit.prevent="handleSubmit">
       <input v-model="form.name" type="text" placeholder="Nom" required />
       <input v-model="form.description" type="text" placeholder="Description" required />
-      <input v-model.number="form.price" type="number" min="0" step="0.01" placeholder="Prix" required />
+      <input
+        v-model.number="form.price"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Prix"
+        required
+      />
       <input v-model.number="form.stock" type="number" min="0" placeholder="Stock" required />
 
       <select v-model="form.categoryId" :required="!isEditing">
@@ -129,7 +136,7 @@ onMounted(async () => {
   margin-bottom: 1.5rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .products__form input,
@@ -138,7 +145,7 @@ onMounted(async () => {
   min-width: 140px;
   padding: 0.55rem 0.75rem;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--color-background);
   color: var(--color-text);
   outline: none;
@@ -147,7 +154,8 @@ onMounted(async () => {
 
 .products__form input:focus,
 .products__form select:focus {
-  border-color: #42b883;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-focus);
 }
 
 .products__form-actions {
@@ -160,9 +168,9 @@ onMounted(async () => {
 .products__table button {
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 6px;
-  background-color: #42b883;
-  color: #fff;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -170,20 +178,20 @@ onMounted(async () => {
 
 .products__form button:hover,
 .products__table button:hover {
-  background-color: #35a06c;
+  background-color: var(--color-primary-hover);
 }
 
 .products__form button.secondary,
 .products__table button.danger {
   background-color: transparent;
-  border: 1px solid #e03030;
-  color: #e03030;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
 }
 
 .products__form button.secondary:hover,
 .products__table button.danger:hover {
-  background-color: #e03030;
-  color: #fff;
+  background-color: var(--color-danger);
+  color: var(--color-danger-contrast);
 }
 
 .products__table {

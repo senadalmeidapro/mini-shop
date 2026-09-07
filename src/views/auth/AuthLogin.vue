@@ -77,7 +77,7 @@ async function handleSubmit() {
   width: 100%;
   padding: 0.65rem 0.75rem;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--color-background);
   color: var(--color-text);
   outline: none;
@@ -85,7 +85,8 @@ async function handleSubmit() {
 }
 
 .login__field input:focus {
-  border-color: #42b883;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-focus);
 }
 
 .login__submit {
@@ -93,9 +94,9 @@ async function handleSubmit() {
   padding: 0.7rem;
   margin-top: 0.5rem;
   border: none;
-  border-radius: 8px;
-  background-color: #42b883;
-  color: #fff;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -104,7 +105,7 @@ async function handleSubmit() {
 }
 
 .login__submit:hover:not(:disabled) {
-  background-color: #35a06c;
+  background-color: var(--color-primary-hover);
 }
 
 .login__submit:disabled {
@@ -119,7 +120,7 @@ async function handleSubmit() {
 }
 
 .login__switch a {
-  color: #42b883;
+  color: var(--color-primary);
   font-weight: 600;
 }
 </style>

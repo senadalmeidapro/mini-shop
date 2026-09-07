@@ -56,7 +56,7 @@ async function handleSubmit() {
   padding: 1.5rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .user-form h3 {
@@ -76,7 +76,7 @@ async function handleSubmit() {
 .user-form input {
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--color-background);
   color: var(--color-text);
   outline: none;
@@ -84,15 +84,16 @@ async function handleSubmit() {
 }
 
 .user-form input:focus {
-  border-color: #42b883;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-focus);
 }
 
 .user-form button {
   padding: 0.65rem;
   border: none;
-  border-radius: 8px;
-  background-color: #42b883;
-  color: #fff;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -101,7 +102,7 @@ async function handleSubmit() {
 }
 
 .user-form button:hover:not(:disabled) {
-  background-color: #35a06c;
+  background-color: var(--color-primary-hover);
 }
 
 .user-form button:disabled {

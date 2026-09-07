@@ -13,8 +13,7 @@ const tab = ref<Tab>('cart');
     <OrderNav v-model:tab="tab" />
     <div class="orders-container">
       <KeepAlive>
-        <CartList v-if="tab === 'cart'" />
-        <OrderList v-else />
+        <component :is="tab === 'cart' ? CartList : OrderList" />
       </KeepAlive>
     </div>
   </div>
@@ -25,7 +24,7 @@ const tab = ref<Tab>('cart');
   margin-top: 1.5rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
 }
 </style>

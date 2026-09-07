@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { onMounted, computed } from 'vue';
 import { useUserStore } from '@/stores/userStore';
 import { useCategoryStore } from '@/stores/categoryStore';
@@ -86,7 +86,7 @@ const stats = computed<Stat[]>(() => [
   padding: 1rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .dashboard__stat span {
@@ -106,12 +106,12 @@ const stats = computed<Stat[]>(() => [
   padding: 1rem 1.25rem;
   background: var(--color-background-soft);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   font-weight: 700;
 }
 
 .dashboard__revenue strong {
-  color: #42b883;
+  color: var(--color-primary);
   font-size: 1.3rem;
 }
 </style>

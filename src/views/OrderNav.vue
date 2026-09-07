@@ -25,7 +25,7 @@ function select(tab: 'cart' | 'orders') {
 .order-nav button {
   padding: 0.6rem 1.4rem;
   border: 1px solid var(--color-border);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--color-background);
   color: var(--color-text);
   font-weight: 600;
@@ -37,13 +37,13 @@ function select(tab: 'cart' | 'orders') {
 }
 
 .order-nav button:hover {
-  border-color: #42b883;
-  color: #42b883;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .order-nav button.active {
-  background-color: #42b883;
-  border-color: #42b883;
-  color: #fff;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary-contrast);
 }
 </style>
