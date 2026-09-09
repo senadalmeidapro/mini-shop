@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { API_CONFIG } from '@/api/config';
 import type { Product } from '@/types';
 
 defineProps<{ product: Product }>();
@@ -7,6 +8,12 @@ defineProps<{ product: Product }>();
 <template>
   <article class="product-card">
     <RouterLink :to="{ name: 'Product Details', params: { id: product.id } }">
+      <img
+        v-if="product.imageUrl"
+        class="product-card__image"
+        :src="`${API_CONFIG.baseURL}${product.imageUrl}`"
+        :alt="product.name"
+      />
       <h5>{{ product.name }}</h5>
     </RouterLink>
     <p>{{ product.description }}</p>
@@ -37,7 +44,17 @@ defineProps<{ product: Product }>();
 }
 
 .product-card a {
+  display: block;
   text-decoration: none;
+}
+
+.product-card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background: var(--color-background-mute);
+  margin-bottom: 0.75rem;
 }
 
 .product-card h5 {

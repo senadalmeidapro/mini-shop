@@ -9,8 +9,7 @@ export const API_CONFIG = {
   baseURL: getBaseURL(),
   timeout: Number(import.meta.env.VITE_API_TIMEOUT ?? 15_000),
   headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    Accept: 'application/json',
   },
 } as const;
 

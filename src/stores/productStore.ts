@@ -30,7 +30,7 @@ export const useProductStore = defineStore('products', () => {
 
   async function createProduct(
     categoryId: string,
-    data: { name: string; description: string; price: number; stock: number },
+    data: FormData,
   ) {
     try {
       const response = await http.post<Product>(ENDPOINTS.products.create(categoryId), data);
@@ -43,7 +43,7 @@ export const useProductStore = defineStore('products', () => {
 
   async function updateProduct(
     id: string,
-    data: { name?: string; description?: string; price?: number; stock?: number },
+    data: FormData,
   ) {
     try {
       const response = await http.patch<Product>(ENDPOINTS.products.update(id), data);

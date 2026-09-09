@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { API_CONFIG } from '@/api/config';
 import { useProductStore } from '@/stores/productStore';
 import { useCartStore } from '@/stores/cartStore';
 
@@ -34,6 +35,12 @@ watch(
 
 <template>
   <div v-if="productStore.product" class="detail">
+    <img
+      v-if="productStore.product.imageUrl"
+      class="detail__image"
+      :src="`${API_CONFIG.baseURL}${productStore.product.imageUrl}`"
+      :alt="productStore.product.name"
+    />
     <h1>{{ productStore.product.name }}</h1>
     <p class="detail__description">{{ productStore.product.description }}</p>
     <span class="detail__price">{{ productStore.product.price }} &euro;</span>
@@ -60,6 +67,17 @@ watch(
 .detail {
   max-width: 640px;
   margin: 0 auto;
+}
+
+.detail__image {
+  width: 100%;
+  max-width: 28rem;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-background-mute);
+  margin-bottom: 1.5rem;
 }
 
 .detail h1 {

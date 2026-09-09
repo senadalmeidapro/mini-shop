@@ -1,5 +1,6 @@
 ﻿<script setup lang="ts">
 import { reactive, ref, onMounted, computed } from 'vue';
+import { API_CONFIG } from '@/api/config';
 import { useProductStore } from '@/stores/productStore';
 import { useCategoryStore } from '@/stores/categoryStore';
 import type { Product } from '@/types';
@@ -14,6 +15,8 @@ const categoryName = (categoryId: string) =>
   categories.value.find((c) => c.id === categoryId)?.name ?? '—';
 
 const editingId = ref<string | null>(null);
+const file = ref<File | null>(null);
+
 const form = reactive({
   name: '',
   description: '',
@@ -24,6 +27,11 @@ const form = reactive({
 
 const isEditing = computed(() => editingId.value !== null);
 
+const handleFileChange = (event: Event) => {
+  const input = event.target as HTMLInputElement;
+  file.value = input.files?.[0] ?? null;
+};
+
 function resetForm() {
   editingId.value = null;
   form.name = '';
@@ -31,6 +39,7 @@ function resetForm() {
   form.price = 0;
   form.stock = 0;
   form.categoryId = '';
+  file.value = null;
 }
 
 function startEdit(product: Product) {
@@ -40,15 +49,27 @@ function startEdit(product: Product) {
   form.price = product.price;
   form.stock = product.stock;
   form.categoryId = product.categoryId;
+  file.value = null;
 }
 
 async function handleSubmit() {
-  const data = {
-    name: form.name,
-    description: form.description,
-    price: form.price,
-    stock: form.stock,
-  };
+  const data = new FormData();
+
+  data.append('name', form.name);
+  data.append('description', form.description);
+  data.append('price', String(form.price));
+  data.append('stock', String(form.stock));
+
+  if (file.value) {
+    data.append('file', file.value);
+  }
+
+  console.log('FILE:', file.value);
+  console.log('FORM DATA:');
+
+  for (const [key, value] of data.entries()) {
+    console.log(key, value);
+  }
 
   if (isEditing.value) {
     await productStore.updateProduct(editingId.value!, data);
@@ -73,6 +94,12 @@ onMounted(async () => {
 
     <form class="products__form" @submit.prevent="handleSubmit">
       <input v-model="form.name" type="text" placeholder="Nom" required />
+      <input
+        class="products__form-file"
+        type="file"
+        accept="image/jpeg,image/png,image/webp"
+        @change="handleFileChange"
+      />
       <input v-model="form.description" type="text" placeholder="Description" required />
       <input
         v-model.number="form.price"
@@ -100,6 +127,7 @@ onMounted(async () => {
     <table class="products__table">
       <thead>
         <tr>
+          <th>Image</th>
           <th>Nom</th>
           <th>Catégorie</th>
           <th>Prix</th>
@@ -109,6 +137,15 @@ onMounted(async () => {
       </thead>
       <tbody>
         <tr v-for="product in products" :key="product.id">
+          <td>
+            <img
+              v-if="product.imageUrl"
+              class="products__table-img"
+              :src="`${API_CONFIG.baseURL}${product.imageUrl}`"
+              :alt="product.name"
+            />
+            <span v-else></span>
+          </td>
           <td>{{ product.name }}</td>
           <td>{{ categoryName(product.categoryId) }}</td>
           <td>{{ product.price }} &euro;</td>
@@ -150,6 +187,12 @@ onMounted(async () => {
   color: var(--color-text);
   outline: none;
   transition: border-color 0.2s;
+}
+
+.products__form input[type='file'] {
+  flex: 0 1 auto;
+  min-width: 0;
+  padding: 0.4rem 0.5rem;
 }
 
 .products__form input:focus,
@@ -212,5 +255,14 @@ onMounted(async () => {
   letter-spacing: 0.03em;
   color: var(--color-text);
   opacity: 0.7;
+}
+
+.products__table-img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-background-mute);
 }
 </style>
