@@ -8,7 +8,7 @@ defineProps<{ orders: Order[] }>();
   <OrderLayout :orders="orders">
     <template #orders="{ order, index, isLast }">
       <div :id="`order-${index}`" class="order-card">
-        Order #{{ order.id }} — {{ order.total }} &euro; — status: {{ order.status }}
+        Order #{{ order.id }} — {{ order.total }} FCFA — status: {{ order.status }}
         <div v-show="isLast" class="order-card__last">Is the last</div>
       </div>
     </template>

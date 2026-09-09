@@ -38,7 +38,7 @@ onMounted(async () => {
         <tr v-for="order in orders" :key="order.id">
           <td class="orders__id">{{ order.id }}</td>
           <td>{{ order.user?.email ?? order.userId }}</td>
-          <td>{{ order.total }} &euro;</td>
+          <td>{{ order.total }} FCFA</td>
           <td>{{ order.orderItems.length }}</td>
           <td>
             <span class="badge" :class="`badge--${order.status}`">{{ order.status }}</span>

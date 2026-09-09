@@ -43,7 +43,7 @@ watch(
     />
     <h1>{{ productStore.product.name }}</h1>
     <p class="detail__description">{{ productStore.product.description }}</p>
-    <span class="detail__price">{{ productStore.product.price }} &euro;</span>
+    <span class="detail__price">{{ productStore.product.price }} FCFA</span>
     <small class="detail__stock">Stock : {{ productStore.product.stock }}</small>
 
     <div class="detail__buy">

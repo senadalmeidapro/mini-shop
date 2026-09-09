@@ -148,7 +148,7 @@ onMounted(async () => {
           </td>
           <td>{{ product.name }}</td>
           <td>{{ categoryName(product.categoryId) }}</td>
-          <td>{{ product.price }} &euro;</td>
+          <td>{{ product.price }} FCFA</td>
           <td>{{ product.stock }}</td>
           <td>
             <button @click="startEdit(product)">Modifier</button>

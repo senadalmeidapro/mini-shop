@@ -37,7 +37,7 @@ async function cancelOrder(orderId: string) {
       <div class="order__info">
         <strong>Commande #{{ order.id }}</strong>
         <span>{{ order.orderItems.length }} article(s)</span>
-        <span>Total: {{ order.total }} &euro;</span>
+        <span>Total: {{ order.total }} FCFA</span>
         <span class="order__status">Status: {{ order.status }}</span>
       </div>
 

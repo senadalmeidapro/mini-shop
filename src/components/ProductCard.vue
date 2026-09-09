@@ -17,7 +17,7 @@ defineProps<{ product: Product }>();
       <h5>{{ product.name }}</h5>
     </RouterLink>
     <p>{{ product.description }}</p>
-    <span class="product-card__price">{{ product.price }} &euro;</span>
+    <span class="product-card__price">{{ product.price }} FCFA</span>
     <small class="product-card__stock">Stock : {{ product.stock }}</small>
   </article>
 </template>

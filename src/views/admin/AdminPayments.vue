@@ -38,7 +38,7 @@ onMounted(async () => {
         <tr v-for="payment in payments" :key="payment.id">
           <td class="payments__id">{{ payment.id }}</td>
           <td class="payments__id">{{ payment.orderId }}</td>
-          <td>{{ payment.amount }} &euro;</td>
+          <td>{{ payment.amount }} FCFA</td>
           <td>{{ payment.method }}</td>
           <td>
             <span class="badge" :class="`badge--${payment.status}`">{{ payment.status }}</span>

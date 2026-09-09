@@ -42,17 +42,17 @@ async function pay() {
 
     <div v-for="item in items" :key="item.id" class="cart-item">
       <h5>{{ item.product.name }}</h5>
-      <div class="cart-item__price">{{ item.product.price }} &euro; x {{ item.quantity }}</div>
+      <div class="cart-item__price">{{ item.product.price }} FCFA x {{ item.quantity }}</div>
       <div class="cart-item__actions">
         <button @click="decrease(item.id, item.quantity)">-</button>
         <button @click="increase(item.id, item.quantity)">+</button>
         <button class="cart-item__remove" @click="remove(item.id)">Retirer</button>
       </div>
-      <div class="cart-item__total">Total: {{ item.total }} &euro;</div>
+      <div class="cart-item__total">Total: {{ item.total }} FCFA</div>
     </div>
 
     <div v-if="items.length > 0" class="cart-footer">
-      <span class="cart-footer__total">Total: {{ cartStore.total }} &euro;</span>
+      <span class="cart-footer__total">Total: {{ cartStore.total }} FCFA</span>
       <button class="cart-footer__pay" :disabled="!hasAddress" @click="pay">Payer</button>
       <small v-if="!hasAddress">Ajoutez une adresse avant de payer</small>
     </div>

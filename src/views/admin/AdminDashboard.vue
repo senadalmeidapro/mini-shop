@@ -62,7 +62,7 @@ const stats = computed<Stat[]>(() => [
 
     <div class="dashboard__revenue">
       <span>Revenus (paiements réussis)</span>
-      <strong>{{ totalRevenue }} &euro;</strong>
+      <strong>{{ totalRevenue }} FCFA</strong>
     </div>
   </div>
 </template>
