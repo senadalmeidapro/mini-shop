@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/authStore';
 
 const authStore = useAuthStore();
+const route = useRoute();
 const router = useRouter();
 
 const form = reactive({
@@ -18,7 +19,13 @@ async function handleSubmit() {
 
   try {
     await authStore.login(form);
-    router.push({ name: 'Home' });
+
+    const redirect = route.query.redirect;
+    if (typeof redirect === 'string' && redirect.startsWith('/')) {
+      router.push(redirect);
+    } else {
+      router.push({ name: 'Home' });
+    }
   } finally {
     loading.value = false;
   }

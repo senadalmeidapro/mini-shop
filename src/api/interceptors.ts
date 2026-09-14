@@ -48,7 +48,10 @@ apiClient.interceptors.response.use(
 
     const { status, data } = error.response;
 
-    if (status === 401 && !originalRequest._retry) {
+    // Les requ\u00eates d'authentification ne déclenchent jamais un refresh
+    const isAuthRequest = originalRequest.url?.includes('/auth/');
+
+    if (status === 401 && !originalRequest._retry && !isAuthRequest) {
       if (isRefreshing) {
         return new Promise<void>((resolve, reject) => {
           failedQueue.push({ resolve, reject });
@@ -90,6 +93,9 @@ apiClient.interceptors.response.use(
         // Clear tokens on failure so user is prompted to login again
         localStorage.removeItem(TOKEN_STORAGE_KEYS.ACCESS);
         localStorage.removeItem(TOKEN_STORAGE_KEYS.REFRESH);
+
+        // Force redirect to login page
+        window.dispatchEvent(new Event('auth:expired'));
 
         return Promise.reject(new UnauthorizedError('Session expirée'));
       } finally {

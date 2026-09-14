@@ -71,6 +71,21 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  function forceLogout() {
+    accessToken.value = null;
+    user.value = null;
+    localStorage.removeItem(TOKEN_STORAGE_KEYS.ACCESS);
+    localStorage.removeItem(TOKEN_STORAGE_KEYS.REFRESH);
+
+    toast.warning('Session expirée, veuillez vous reconnecter.');
+
+    const current = router.currentRoute.value;
+    const redirect: Record<string, string> =
+      current.meta.requiresAuth || current.meta.requiresAdmin ? { redirect: current.fullPath } : {};
+
+    router.push({ name: 'Login', query: redirect });
+  }
+
   return {
     accessToken,
     user,
@@ -78,5 +93,6 @@ export const useAuthStore = defineStore('auth', () => {
     register,
     login,
     logout,
+    forceLogout,
   };
 });
