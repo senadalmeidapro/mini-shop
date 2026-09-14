@@ -91,3 +91,8 @@ export function handleApiError(error: unknown, toast: ToastInterface, fallback: 
 
   console.error(fallback, error);
 }
+
+// ─── Silent error logger (lectures / polling) ────────────────────────────────
+export function logApiError(error: unknown, context: string) {
+  console.error(context, error);
+}

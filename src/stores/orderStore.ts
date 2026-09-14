@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { ENDPOINTS, http, handleApiError } from '@/api';
+import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Order } from '@/types';
 import { useToast } from 'vue-toastification';
 
@@ -15,7 +15,7 @@ export const useOrderStore = defineStore('orders', () => {
       const response = await http.get<Order[]>(ENDPOINTS.orders.list);
       orders.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger les commandes');
+      logApiError(error, 'Impossible de charger les commandes');
     }
   }
 
@@ -24,7 +24,7 @@ export const useOrderStore = defineStore('orders', () => {
       const response = await http.get<Order>(ENDPOINTS.orders.detail(id));
       order.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger la commande');
+      logApiError(error, 'Impossible de charger la commande');
     }
   }
 
@@ -54,8 +54,6 @@ export const useOrderStore = defineStore('orders', () => {
       if (order.value?.id === id) {
         order.value = response.data;
       }
-
-      toast.success('Commande mise à jour');
     } catch (error) {
       handleApiError(error, toast, 'Impossible de mettre à jour la commande');
     }

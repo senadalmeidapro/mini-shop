@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { ENDPOINTS, http, handleApiError } from '@/api';
+import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Payment, PaymentMethod, PaymentStatus } from '@/types';
 import { useToast } from 'vue-toastification';
 
@@ -15,7 +15,7 @@ export const usePaymentStore = defineStore('payments', () => {
       const response = await http.get<Payment[]>(ENDPOINTS.payments.list);
       payments.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger les paiements');
+      logApiError(error, 'Impossible de charger les paiements');
     }
   }
 
@@ -24,13 +24,17 @@ export const usePaymentStore = defineStore('payments', () => {
       const response = await http.get<Payment>(ENDPOINTS.payments.detail(id));
       payment.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger le paiement');
+      logApiError(error, 'Impossible de charger le paiement');
     }
   }
 
   async function createPayment(
     cartId: string,
-    data: { status?: Exclude<PaymentStatus, 'cancelled'>; method: PaymentMethod },
+    data: {
+      status?: Exclude<PaymentStatus, 'cancelled'>;
+      method: PaymentMethod;
+      shippingAddress?: import('@/types').ShippingAddress;
+    },
   ) {
     try {
       const response = await http.post<Payment>(ENDPOINTS.payments.create(cartId), data);
@@ -43,7 +47,11 @@ export const usePaymentStore = defineStore('payments', () => {
 
   async function updatePayment(
     id: string,
-    data: { status?: Exclude<PaymentStatus, 'cancelled'>; method: PaymentMethod },
+    data: {
+      status?: Exclude<PaymentStatus, 'cancelled'>;
+      method: PaymentMethod;
+      shippingAddress?: import('@/types').ShippingAddress;
+    },
   ) {
     try {
       const response = await http.patch<Payment>(ENDPOINTS.payments.update(id), data);
@@ -56,8 +64,6 @@ export const usePaymentStore = defineStore('payments', () => {
       if (payment.value?.id === id) {
         payment.value = response.data;
       }
-
-      toast.success('Paiement mis à jour');
     } catch (error) {
       handleApiError(error, toast, 'Impossible de mettre à jour le paiement');
     }

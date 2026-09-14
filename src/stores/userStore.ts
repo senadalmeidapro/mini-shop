@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 
 import type { Paginate, User } from '@/types';
 
-import { ENDPOINTS, http, handleApiError } from '@/api';
+import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import { useToast } from 'vue-toastification';
 
 export const useUserStore = defineStore('users', () => {
@@ -18,7 +18,7 @@ export const useUserStore = defineStore('users', () => {
 
       user.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger l\'utilisateur');
+      logApiError(error, "Impossible de charger l'utilisateur");
     }
   }
 
@@ -36,7 +36,7 @@ export const useUserStore = defineStore('users', () => {
 
       users.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger les utilisateurs');
+      logApiError(error, 'Impossible de charger les utilisateurs');
     }
   }
 
@@ -66,10 +66,8 @@ export const useUserStore = defineStore('users', () => {
       if (user.value?.id === id) {
         user.value = response.data;
       }
-
-      toast.success('Utilisateur mis à jour');
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de mettre à jour l\'utilisateur');
+      handleApiError(error, toast, "Impossible de mettre à jour l'utilisateur");
     }
   }
 

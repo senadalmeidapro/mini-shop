@@ -21,4 +21,15 @@ window.addEventListener('auth:expired', () => {
   useAuthStore(pinia).forceLogout();
 });
 
+// Quand le token est rafraîchi avec succès, on synchronise le store
+window.addEventListener('auth:refreshed', (event) => {
+  const store = useAuthStore(pinia);
+  const { accessToken, refreshToken } = (event as CustomEvent<{
+    accessToken: string;
+    refreshToken: string;
+  }>).detail;
+  store.accessToken = accessToken;
+  store.refreshToken = refreshToken;
+});
+
 app.mount('#app');

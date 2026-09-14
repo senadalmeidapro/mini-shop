@@ -7,18 +7,36 @@ defineProps<{ product: Product }>();
 </script>
 <template>
   <article class="product-card">
-    <RouterLink :to="{ name: 'Product Details', params: { id: product.id } }">
+    <RouterLink class="product-card__top" :to="{ name: 'Product Details', params: { id: product.id } }">
       <img
         v-if="product.imageUrl"
         class="product-card__image"
         :src="`${API_CONFIG.baseURL}${product.imageUrl}`"
         :alt="product.name"
       />
-      <h5>{{ product.name }}</h5>
+      <div class="product-card__shine" aria-hidden="true" />
+      <span class="product-card__peek">Voir le produit</span>
     </RouterLink>
-    <p>{{ product.description }}</p>
-    <span class="product-card__price">{{ product.price }} FCFA</span>
-    <small class="product-card__stock">Stock : {{ product.stock }}</small>
+
+    <div class="product-card__body">
+      <RouterLink class="product-card__name" :to="{ name: 'Product Details', params: { id: product.id } }">
+        {{ product.name }}
+      </RouterLink>
+      <p class="product-card__desc">{{ product.description }}</p>
+
+      <div class="product-card__footer">
+        <span class="product-card__price">{{ product.price }} FCFA</span>
+        <span
+          class="product-card__stock"
+          :class="{
+            'product-card__stock--low': product.stock < 5 && product.stock > 0,
+            'product-card__stock--out': product.stock === 0,
+          }"
+        >
+          Stock : {{ product.stock }}
+        </span>
+      </div>
+    </div>
   </article>
 </template>
 
@@ -26,61 +44,142 @@ defineProps<{ product: Product }>();
 .product-card {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.25rem;
-  background: var(--color-background-soft);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
+  background: var(--color-background);
+  overflow: hidden;
   transition:
-    transform 0.2s,
-    box-shadow 0.2s,
-    border-color 0.2s;
+    transform var(--duration) var(--ease-out),
+    box-shadow var(--duration),
+    border-color var(--duration);
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   border-color: var(--color-primary);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-glow);
 }
 
-.product-card a {
+/* ── Image zone ────────────────────────────────────────────── */
+.product-card__top {
+  position: relative;
   display: block;
-  text-decoration: none;
+  overflow: hidden;
 }
 
 .product-card__image {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: var(--radius-md);
+  display: block;
   background: var(--color-background-mute);
-  margin-bottom: 0.75rem;
+  transition: transform 0.6s var(--ease-out);
 }
 
-.product-card h5 {
+.product-card:hover .product-card__image {
+  transform: scale(1.08);
+}
+
+.product-card__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 75%
+  );
+  opacity: 0;
+  transform: translateX(-120%) skewX(-18deg);
+  pointer-events: none;
+}
+
+.product-card:hover .product-card__shine {
+  opacity: 1;
+  animation: shine-sweep 0.9s var(--ease-out) both;
+}
+
+.product-card__peek {
+  position: absolute;
+  bottom: 0.7rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-background);
   color: var(--color-heading);
-  font-size: 1.1rem;
-  transition: color 0.2s;
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--duration),
+    transform var(--duration) var(--ease-out);
 }
 
-.product-card a:hover h5 {
+.product-card:hover .product-card__peek {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Body ──────────────────────────────────────────────────── */
+.product-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.15rem 1.15rem;
+}
+
+.product-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  text-decoration: none;
+  transition: color var(--duration);
+}
+
+.product-card__name:hover {
   color: var(--color-primary);
 }
 
-.product-card p {
+.product-card__desc {
   flex: 1;
-  color: var(--color-text);
-  opacity: 0.8;
-  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  font-size: 0.88rem;
+  color: var(--color-text-soft);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding-top: 0.8rem;
 }
 
 .product-card__price {
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1rem;
   color: var(--color-primary);
 }
 
 .product-card__stock {
-  color: var(--color-text);
-  opacity: 0.7;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-soft);
+}
+
+.product-card__stock--low {
+  color: var(--c-gold);
+}
+
+.product-card__stock--out {
+  color: var(--c-red);
 }
 </style>

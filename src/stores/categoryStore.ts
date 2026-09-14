@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { ENDPOINTS, http, handleApiError } from '@/api';
+import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Category } from '@/types';
 import { useToast } from 'vue-toastification';
 
@@ -15,7 +15,7 @@ export const useCategoryStore = defineStore('categories', () => {
       const response = await http.get<Category[]>(ENDPOINTS.categories.list);
       categories.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger les catégories');
+      logApiError(error, 'Impossible de charger les catégories');
     }
   }
 
@@ -24,7 +24,7 @@ export const useCategoryStore = defineStore('categories', () => {
       const response = await http.get<Category>(ENDPOINTS.categories.detail(id));
       category.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger la catégorie');
+      logApiError(error, 'Impossible de charger la catégorie');
     }
   }
 
@@ -50,8 +50,6 @@ export const useCategoryStore = defineStore('categories', () => {
       if (category.value?.id === id) {
         category.value = response.data;
       }
-
-      toast.success('Catégorie mise à jour');
     } catch (error) {
       handleApiError(error, toast, 'Impossible de mettre à jour la catégorie');
     }

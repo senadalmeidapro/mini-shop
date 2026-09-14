@@ -1,7 +1,7 @@
 /**
  * endpoints.ts
  * Source unique de vérité pour tous les chemins d'API.
- * Modifier ici se répercute partout.
+ * Doit refléter exactement les routes implémentées côté backend (mini-shop-api).
  */
 export const ENDPOINTS = {
   app: {
@@ -9,9 +9,12 @@ export const ENDPOINTS = {
   },
   auth: {
     register: '/auth/register',
+    verifyEmail: '/auth/verify-email',
     login: '/auth/login',
-    logout: '/auth/logout',
     refresh: '/auth/refresh',
+    logout: '/auth/logout',
+    resetPasswordRequest: '/auth/reset-password-request',
+    resetPassword: '/auth/reset-password',
   },
   users: {
     list: '/users',
@@ -19,13 +22,7 @@ export const ENDPOINTS = {
     detail: (id: string) => `/users/${id}`,
     update: (id: string) => `/users/${id}`,
     delete: (id: string) => `/users/${id}`,
-  },
-  addresses: {
-    list: '/addresses',
-    create: '/addresses',
-    detail: (id: string) => `/addresses/${id}`,
-    update: (id: string) => `/addresses/${id}`,
-    delete: (id: string) => `/addresses/${id}`,
+    address: '/users/address',
   },
   categories: {
     list: '/categories',
@@ -39,7 +36,16 @@ export const ENDPOINTS = {
     create: (categoryId: string) => `/products/${categoryId}`,
     detail: (id: string) => `/products/${id}`,
     update: (id: string) => `/products/${id}`,
+    adjustStock: (id: string) => `/products/${id}/stock`,
     delete: (id: string) => `/products/${id}`,
+  },
+  shops: {
+    me: '/shops/me',
+    list: '/shops',
+    create: '/shops',
+    detail: (id: string) => `/shops/${id}`,
+    update: (id: string) => `/shops/${id}`,
+    delete: (id: string) => `/shops/${id}`,
   },
   cart: {
     list: '/cart',
@@ -52,6 +58,7 @@ export const ENDPOINTS = {
     list: '/orders',
     create: '/orders',
     detail: (id: string) => `/orders/${id}`,
+    invoice: (id: string) => `/orders/${id}/invoice`,
     update: (id: string) => `/orders/${id}`,
   },
   payments: {
@@ -67,5 +74,15 @@ export const ENDPOINTS = {
     detail: (id: string) => `/reviews/${id}`,
     update: (id: string) => `/reviews/${id}`,
     delete: (id: string) => `/reviews/${id}`,
+  },
+  notifications: {
+    list: '/notifications',
+    unreadCount: '/notifications/unread-count',
+    readAll: '/notifications/read-all',
+    read: (id: string) => `/notifications/${id}/read`,
+  },
+  dashboards: {
+    admin: '/admin/dashboard',
+    supplier: '/supplier/dashboard',
   },
 } as const;

@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { ENDPOINTS, http, handleApiError } from '@/api';
+import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Product } from '@/types';
 import { useToast } from 'vue-toastification';
 
@@ -15,7 +15,7 @@ export const useProductStore = defineStore('products', () => {
       const response = await http.get<Product[]>(ENDPOINTS.products.list);
       products.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger les produits');
+      logApiError(error, 'Impossible de charger les produits');
     }
   }
 
@@ -24,7 +24,7 @@ export const useProductStore = defineStore('products', () => {
       const response = await http.get<Product>(ENDPOINTS.products.detail(id));
       product.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger le produit');
+      logApiError(error, 'Impossible de charger le produit');
     }
   }
 
@@ -56,8 +56,6 @@ export const useProductStore = defineStore('products', () => {
       if (product.value?.id === id) {
         product.value = response.data;
       }
-
-      toast.success('Produit mis à jour');
     } catch (error) {
       handleApiError(error, toast, 'Impossible de mettre à jour le produit');
     }

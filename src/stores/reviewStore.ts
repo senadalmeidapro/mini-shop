@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { ENDPOINTS, http, handleApiError } from '@/api';
+import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Review } from '@/types';
 import { useToast } from 'vue-toastification';
 
@@ -15,7 +15,7 @@ export const useReviewStore = defineStore('reviews', () => {
       const response = await http.get<Review[]>(ENDPOINTS.reviews.list);
       reviews.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger les avis');
+      logApiError(error, 'Impossible de charger les avis');
     }
   }
 
@@ -24,7 +24,7 @@ export const useReviewStore = defineStore('reviews', () => {
       const response = await http.get<Review>(ENDPOINTS.reviews.detail(id));
       review.value = response.data;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger l\'avis');
+      logApiError(error, "Impossible de charger l'avis");
     }
   }
 
@@ -50,10 +50,8 @@ export const useReviewStore = defineStore('reviews', () => {
       if (review.value?.id === id) {
         review.value = response.data;
       }
-
-      toast.success('Avis mis à jour');
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de mettre à jour l\'avis');
+      handleApiError(error, toast, "Impossible de mettre à jour l'avis");
     }
   }
 

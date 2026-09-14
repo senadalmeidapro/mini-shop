@@ -4,12 +4,18 @@ import type { RouteLocationRaw } from 'vue-router';
 import AuthLayout from '@/views/auth/AuthLayout.vue';
 import AuthLogin from '@/views/auth/AuthLogin.vue';
 import AuthRegister from '@/views/auth/AuthRegister.vue';
+import ResetPasswordRequest from '@/views/auth/ResetPasswordRequest.vue';
+import ResetPassword from '@/views/auth/ResetPassword.vue';
+import VerifyEmail from '@/views/auth/VerifyEmail.vue';
 import LayoutVue from '@/views/LayoutVue.vue';
 import HomeVue from '@/views/HomeVue.vue';
 import ProduitList from '@/views/ProduitList.vue';
 import ProductDetail from '@/views/ProductDetail.vue';
 import AboutVue from '@/views/AboutVue.vue';
 import ContactVue from '@/views/ContactVue.vue';
+import ShopList from '@/views/ShopList.vue';
+import ShopDetail from '@/views/ShopDetail.vue';
+import Notifications from '@/views/Notifications.vue';
 import ProfilVue from '@/views/setting/ProfilVue.vue';
 import OrderLayout from '@/views/OrderLayout.vue';
 
@@ -24,6 +30,7 @@ import AdminReviews from '@/views/admin/AdminReviews.vue';
 
 import { TOKEN_STORAGE_KEYS } from '@/api';
 import type { Role } from '@/types';
+import { useAuthStore } from '@/stores/authStore';
 
 function isTokenExpired(token: string): boolean {
   try {
@@ -58,6 +65,16 @@ const router = createRouter({
           component: ProductDetail,
         },
         {
+          path: 'shops',
+          name: 'Shops',
+          component: ShopList,
+        },
+        {
+          path: 'shops/:id',
+          name: 'Shop Detail',
+          component: ShopDetail,
+        },
+        {
           path: 'about',
           name: 'About',
           component: AboutVue,
@@ -71,6 +88,12 @@ const router = createRouter({
           path: 'profile',
           name: 'Profile',
           component: ProfilVue,
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'notifications',
+          name: 'Notifications',
+          component: Notifications,
           meta: { requiresAuth: true },
         },
         {
@@ -137,6 +160,21 @@ const router = createRouter({
           name: 'Register',
           component: AuthRegister,
         },
+        {
+          path: 'reset-password-request',
+          name: 'ResetPasswordRequest',
+          component: ResetPasswordRequest,
+        },
+        {
+          path: 'reset-password/:token',
+          name: 'ResetPassword',
+          component: ResetPassword,
+        },
+        {
+          path: 'verify-email',
+          name: 'VerifyEmail',
+          component: VerifyEmail,
+        },
       ],
     },
     {
@@ -158,12 +196,15 @@ function getRoleFromToken(token: string | null): Role | null {
 }
 
 router.beforeEach((to) => {
-  let token = localStorage.getItem(TOKEN_STORAGE_KEYS.ACCESS);
+  const authStore = useAuthStore();
+  let token = authStore.accessToken;
 
-  // Token présent mais expiré : on le purge et on force le login
+  // Token présent mais expiré : on le purge des deux côtés
   if (token && isTokenExpired(token)) {
     localStorage.removeItem(TOKEN_STORAGE_KEYS.ACCESS);
     localStorage.removeItem(TOKEN_STORAGE_KEYS.REFRESH);
+    authStore.accessToken = null;
+    authStore.refreshToken = null;
     token = null;
   }
 

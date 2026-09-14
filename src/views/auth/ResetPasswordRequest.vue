@@ -1,0 +1,197 @@
+<script setup lang="ts">
+import { reactive, ref } from 'vue';
+import { useAuthStore } from '@/stores/authStore';
+
+const authStore = useAuthStore();
+
+const email = ref('');
+const sent = ref(false);
+const loading = ref(false);
+
+async function handleSubmit() {
+  if (!email.value) return;
+  loading.value = true;
+
+  try {
+    await authStore.requestPasswordReset(email.value);
+    sent.value = true;
+  } finally {
+    loading.value = false;
+  }
+}
+</script>
+
+<template>
+  <div class="reset">
+    <h2 class="reset__title reveal reveal--d2">Mot de passe oublié</h2>
+
+    <template v-if="!sent">
+      <p class="reset__hint reveal reveal--d3">
+        Saisissez votre email : nous vous envoyons un lien pour réinitialiser votre mot de
+        passe.
+      </p>
+
+      <form class="reset__form" @submit.prevent="handleSubmit">
+        <div class="reset__field reveal reveal--d4">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            v-model="email"
+            type="email"
+            autocomplete="email"
+            placeholder="example@email.com"
+            required
+          />
+        </div>
+
+        <button class="reset__submit reveal reveal--d5" type="submit" :disabled="loading">
+          <span v-if="loading" class="reset__spinner"></span>
+          {{ loading ? 'Envoi...' : 'Envoyer le lien' }}
+        </button>
+      </form>
+    </template>
+
+    <template v-else>
+      <div class="reset__done reveal reveal--d3">
+        <span class="reset__done-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </span>
+        Si un compte correspond à cet email, un lien de réinitialisation vient
+        d'être envoyé. Vérifiez votre boîte.
+      </div>
+    </template>
+  </div>
+</template>
+
+<style scoped>
+.reset__title {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-bottom: 1rem;
+}
+
+.reset__hint {
+  text-align: center;
+  color: var(--color-text-soft);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.reset__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reset__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.reset__field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.reset__field input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-background);
+  color: var(--color-text);
+  font-size: 0.95rem;
+  outline: none;
+  transition:
+    border-color var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.reset__field input:hover {
+  border-color: var(--color-border-hover);
+}
+
+.reset__field input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 var(--ring-width) var(--color-focus);
+}
+
+.reset__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-brand);
+  color: var(--color-primary-contrast);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out),
+    opacity var(--duration-fast);
+}
+
+.reset__submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.reset__submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.reset__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reset__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.reset__done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  color: var(--color-text);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.reset__done-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  color: var(--color-primary-contrast);
+  box-shadow: var(--shadow-glow);
+}
+</style>

@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
-import { ENDPOINTS, http, handleApiError } from '@/api';
+import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Cart, CartItem } from '@/types';
 import { useToast } from 'vue-toastification';
 
@@ -22,7 +22,7 @@ export const useCartStore = defineStore('cart', () => {
       cart.value = response.data;
       items.value = response.data.cartItems;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de charger le panier');
+      logApiError(error, 'Impossible de charger le panier');
     }
   }
 
@@ -49,7 +49,7 @@ export const useCartStore = defineStore('cart', () => {
         cart.value = response.data;
       }
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de mettre à jour le panier');
+      logApiError(error, 'Impossible de mettre à jour le panier');
     }
   }
 

@@ -1,51 +1,60 @@
 /* ==========================================================================
    Design tokens - Mini Shop
    Palette: brand green (#42b883), neutrals, semantic status colors.
-   Le point unique pour piloter toute la charte du front.
+   Source unique de la charte du front (production grade).
    ========================================================================== */
 
 :root {
-  /* Brand / palette de base */
+  /* ── Brand / palette de base ─────────────────────────────── */
   --c-green: #42b883;
   --c-green-dark: #35a06c;
+  --c-green-strong: #2f9768;
+  --c-teal: #22c6a6;
   --c-red: #e03030;
+  --c-gold: #f2a818;
+  --c-blue: #5380f7;
 
-  /* Blancs & gris (light mode) */
+  /* ── Blancs & gris (light mode) ──────────────────────────── */
   --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f9fa;
-  --vt-c-white-mute: #eef0f2;
+  --vt-c-white-soft: #f7f9f8;
+  --vt-c-white-mute: #eef1ef;
 
-  /* Noirs & gris (dark mode) */
-  --vt-c-black: #16181d;
-  --vt-c-black-soft: #1f232a;
-  --vt-c-black-mute: #2a2f38;
+  /* ── Noirs & gris (dark mode) ────────────────────────────── */
+  --vt-c-black: #13161b;
+  --vt-c-black-soft: #1c2127;
+  --vt-c-black-mute: #262d35;
 
-  --vt-c-indigo: #1f2937;
+  --vt-c-indigo: #1c2b37;
 
-  /* Séparateurs */
-  --vt-c-divider-light-1: rgba(30, 30, 30, 0.12);
-  --vt-c-divider-light-2: rgba(30, 30, 30, 0.07);
-  --vt-c-divider-dark-1: rgba(255, 255, 255, 0.12);
-  --vt-c-divider-dark-2: rgba(255, 255, 255, 0.07);
+  /* ── Séparateurs ─────────────────────────────────────────── */
+  --vt-c-divider-light-1: rgba(22, 40, 32, 0.14);
+  --vt-c-divider-light-2: rgba(22, 40, 32, 0.08);
+  --vt-c-divider-dark-1: rgba(255, 255, 255, 0.14);
+  --vt-c-divider-dark-2: rgba(255, 255, 255, 0.08);
 
-  /* Texte */
+  /* ── Texte ───────────────────────────────────────────────── */
   --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(31, 41, 55, 0.62);
-  --vt-c-text-dark-1: #f3f4f6;
-  --vt-c-text-dark-2: rgba(243, 244, 246, 0.68);
+  --vt-c-text-light-2: rgba(28, 43, 55, 0.66);
+  --vt-c-text-dark-1: #f2f5f4;
+  --vt-c-text-dark-2: rgba(242, 245, 244, 0.68);
 }
 
 /* ==========================================================================
    Variables sémantiques (light mode)
    ========================================================================== */
 :root {
+  /* Surfaces */
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
+  --color-surface: var(--vt-c-white-soft);
+  --color-surface-hover: var(--vt-c-white-mute);
 
+  /* Bordures */
   --color-border: var(--vt-c-divider-light-2);
   --color-border-hover: var(--vt-c-divider-light-1);
 
+  /* Texte */
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
   --color-text-soft: var(--vt-c-text-light-2);
@@ -54,36 +63,63 @@
   --color-primary: var(--c-green);
   --color-primary-hover: var(--c-green-dark);
   --color-primary-contrast: #ffffff;
-  --color-focus: rgba(66, 184, 131, 0.35);
+  --color-primary-soft: rgba(66, 184, 131, 0.12);
+  --color-primary-glow: rgba(66, 184, 131, 0.45);
+  --color-focus: rgba(66, 184, 131, 0.32);
+
+  /* Dégradés de marque */
+  --gradient-brand: linear-gradient(135deg, #42b883 0%, #22c6a6 100%);
+  --gradient-brand-strong: linear-gradient(135deg, #2f9768 0%, #17a98f 100%);
+  --gradient-hero: radial-gradient(
+      80% 60% at 18% 8%,
+      rgba(66, 184, 131, 0.22) 0%,
+      transparent 55%
+    ),
+    radial-gradient(60% 55% at 85% 18%, rgba(34, 198, 166, 0.18) 0%, transparent 55%),
+    radial-gradient(65% 60% at 55% 95%, rgba(83, 128, 247, 0.1) 0%, transparent 55%);
+  --gradient-text: linear-gradient(120deg, #2f9768, #22c6a6);
 
   /* Alerte / destruction */
   --color-danger: var(--c-red);
   --color-danger-hover: #c92a2a;
   --color-danger-contrast: #ffffff;
+  --color-danger-soft: rgba(224, 48, 48, 0.1);
 
   /* Statuts (badges) */
   --color-warning-bg: #fff3cd;
-  --color-warning-text: #856404;
-  --color-success-bg: #d4edda;
-  --color-success-text: #155724;
-  --color-error-bg: #f8d7da;
-  --color-error-text: #721c24;
+  --color-warning-text: #8a6204;
+  --color-success-bg: #d7f0e3;
+  --color-success-text: #14532d;
+  --color-error-bg: #fbe0e0;
+  --color-error-text: #7f1d1d;
 
   /* Forme & ombres */
+  --radius-xs: 4px;
   --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
   --radius-pill: 999px;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
+  --shadow-xs: 0 1px 2px rgba(16, 34, 27, 0.06);
+  --shadow-sm: 0 2px 6px rgba(16, 34, 27, 0.07);
+  --shadow-md: 0 10px 24px rgba(16, 34, 27, 0.1);
+  --shadow-lg: 0 16px 40px rgba(16, 34, 27, 0.12);
+  --shadow-xl: 0 24px 64px rgba(16, 34, 27, 0.16);
+  --shadow-glow: 0 10px 34px var(--color-primary-glow);
 
-  --transition-fast: 0.15s ease;
-  --transition: 0.2s ease;
+  /* Focus */
+  --ring-width: 3px;
+  --ring-offset: 2px;
 
-  --section-gap: 160px;
+  /* Motion */
+  --duration-fast: 0.16s;
+  --duration: 0.26s;
+  --duration-slow: 0.5s;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --section-gap: 120px;
 }
 
 /* ==========================================================================
@@ -94,6 +130,8 @@
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
     --color-background-mute: var(--vt-c-black-mute);
+    --color-surface: var(--vt-c-black-soft);
+    --color-surface-hover: var(--vt-c-black-mute);
 
     --color-border: var(--vt-c-divider-dark-2);
     --color-border-hover: var(--vt-c-divider-dark-1);
@@ -101,6 +139,22 @@
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-1);
     --color-text-soft: var(--vt-c-text-dark-2);
+
+    --color-primary-soft: rgba(66, 184, 131, 0.16);
+    --color-focus: rgba(66, 184, 131, 0.38);
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 26px 70px rgba(0, 0, 0, 0.55);
+
+    --color-success-bg: rgba(66, 184, 131, 0.16);
+    --color-success-text: #7fe0b4;
+    --color-warning-bg: rgba(242, 168, 24, 0.16);
+    --color-warning-text: #f7cf7a;
+    --color-error-bg: rgba(224, 48, 48, 0.16);
+    --color-error-text: #f5a2a2;
   }
 }
 
@@ -115,10 +169,16 @@
   font-weight: normal;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
+  background-image: var(--gradient-hero);
+  background-attachment: fixed;
   transition:
     color 0.3s,
     background-color 0.3s;
@@ -140,4 +200,55 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Focus visible (accessibilité) ─────────────────────────── */
+:focus-visible {
+  outline: var(--ring-width) solid var(--color-focus);
+  outline-offset: var(--ring-offset);
+}
+
+/* ── Scrolling doux sur l'ensemble du document ─────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-hover) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-hover);
+  border-radius: var(--radius-pill);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+  background-clip: padding-box;
+  border: 3px solid transparent;
+}
+
+/* ── Réduction des animations (accessibilité) ──────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

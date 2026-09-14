@@ -48,7 +48,7 @@ apiClient.interceptors.response.use(
 
     const { status, data } = error.response;
 
-    // Les requ\u00eates d'authentification ne déclenchent jamais un refresh
+    // Les requètes d'authentification ne déclenchent jamais un refresh
     const isAuthRequest = originalRequest.url?.includes('/auth/');
 
     if (status === 401 && !originalRequest._retry && !isAuthRequest) {
@@ -75,7 +75,7 @@ apiClient.interceptors.response.use(
           refreshToken: string;
         }>(
           `${API_CONFIG.baseURL}/auth/refresh`,
-          { token: refreshToken },
+          { refreshToken },
           { withCredentials: true },
         );
 
@@ -84,6 +84,13 @@ apiClient.interceptors.response.use(
         // Save new tokens
         localStorage.setItem(TOKEN_STORAGE_KEYS.ACCESS, accessToken);
         localStorage.setItem(TOKEN_STORAGE_KEYS.REFRESH, newRefreshToken);
+
+        // Synchronise l'état réactif du store de session
+        window.dispatchEvent(
+          new CustomEvent('auth:refreshed', {
+            detail: { accessToken, refreshToken: newRefreshToken },
+          }),
+        );
 
         processQueue(null);
         return apiClient(originalRequest);
