@@ -4,6 +4,7 @@ import { ENDPOINTS, http, handleApiError, TOKEN_STORAGE_KEYS } from '@/api';
 import type { Role, User } from '@/types';
 import { useToast } from 'vue-toastification';
 import router from '@/router';
+import { resetUserData, syncOnLogin } from '@/utils/sync';
 
 export const useAuthStore = defineStore('auth', () => {
   const toast = useToast();
@@ -57,6 +58,9 @@ export const useAuthStore = defineStore('auth', () => {
       localStorage.setItem(TOKEN_STORAGE_KEYS.REFRESH, data.refreshToken);
       user.value = data.user;
 
+      // Charge le panier actif et les notifications de cet utilisateur
+      await syncOnLogin();
+
       toast.success('Connexion réussie');
     } catch (error) {
       handleApiError(error, toast, 'Identifiants incorrects');
@@ -72,6 +76,7 @@ async function logout() {
       user.value = null;
       localStorage.removeItem(TOKEN_STORAGE_KEYS.ACCESS);
       localStorage.removeItem(TOKEN_STORAGE_KEYS.REFRESH);
+      resetUserData();
 
       toast.success('Déconnexion réussie');
     } catch (error) {
@@ -119,8 +124,9 @@ async function logout() {
     user.value = null;
     localStorage.removeItem(TOKEN_STORAGE_KEYS.ACCESS);
     localStorage.removeItem(TOKEN_STORAGE_KEYS.REFRESH);
+    resetUserData();
 
-    // On est sur une page publique : on nettoie la session sans interrompre la navigation
+    // Sur une page publique : session nettoyée sans interrompre la navigation
     if (!requiresAuth) {
       return;
     }

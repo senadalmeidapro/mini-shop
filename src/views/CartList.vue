@@ -1,14 +1,16 @@
 ﻿<script setup lang="ts">
-import { computed } from 'vue';
+import { ref } from 'vue';
 import { useCartStore } from '@/stores/cartStore';
 import { usePaymentStore } from '@/stores/paymentStore';
 import { useAuthStore } from '@/stores/authStore';
+import { syncAfterCheckout } from '@/utils/sync';
 
 const cartStore = useCartStore();
 const paymentStore = usePaymentStore();
 const authStore = useAuthStore();
 
 const items = cartStore.totalPerItem;
+const paying = ref(false);
 
 function increase(itemId: string, quantity: number) {
   cartStore.updateItem(itemId, quantity + 1);
@@ -23,15 +25,25 @@ function remove(itemId: string) {
 }
 
 async function pay() {
-  if (!cartStore.cart?.id) return;
+  if (!cartStore.cart?.id || paying.value) return;
+  const cartId = cartStore.cart.id;
 
-  await paymentStore.createPayment(cartStore.cart.id, {
-    method: 'card',
-    shippingAddress: {
-      fullName: authStore.user?.fullName ?? 'Client',
-    },
-  });
-  cartStore.clearCart();
+  paying.value = true;
+  try {
+    const ok = await paymentStore.createPayment(cartId, {
+      method: 'card',
+      shippingAddress: {
+        fullName: authStore.user?.fullName ?? 'Client',
+      },
+    });
+
+    if (ok) {
+      // Le panier est vidé côté serveur : on synchronise stock, commandes, paiements
+      await syncAfterCheckout();
+    }
+  } finally {
+    paying.value = false;
+  }
 }
 </script>
 <template>
@@ -192,20 +204,23 @@ async function pay() {
           </svg>
           Paiement sécurisé
         </span>
-        <button class="cart-footer__pay" @click="pay">
-          Payer
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
+        <button class="cart-footer__pay" :disabled="paying" @click="pay">
+          <span v-if="paying" class="cart-footer__spinner" aria-hidden="true" />
+          <template v-else>
+            Payer
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </template>
         </button>
       </div>
     </div>
@@ -555,6 +570,21 @@ async function pay() {
 .cart-footer__pay svg {
   width: 16px;
   height: 16px;
+}
+
+.cart-footer__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .cart-footer__pay:hover:not(:disabled) {

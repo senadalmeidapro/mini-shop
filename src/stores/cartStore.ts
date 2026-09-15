@@ -26,40 +26,49 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
+  // Charge le panier actif de l'utilisateur connecté (aucun panier = panier vide)
+  async function getMyCart() {
+    try {
+      const response = await http.get<Cart | null>(ENDPOINTS.cart.mine);
+      cart.value = response.data;
+      items.value = response.data?.cartItems ?? [];
+    } catch (error) {
+      logApiError(error, 'Impossible de charger le panier');
+    }
+  }
+
   async function addItem(productId: string, quantity: number) {
     try {
-      const response = await http.post<CartItem>(ENDPOINTS.cart.addItem(productId), { quantity });
-      items.value.push(response.data);
+      await http.post<CartItem>(ENDPOINTS.cart.addItem(productId), { quantity });
+      await getMyCart();
       toast.success('Produit ajouté au panier');
+      return true;
     } catch (error) {
       handleApiError(error, toast, "Impossible d'ajouter le produit");
+      return false;
     }
   }
 
   async function updateItem(id: string, quantity: number) {
     try {
-      const response = await http.patch<Cart>(ENDPOINTS.cart.updateItem(id), { quantity });
-
-      const index = items.value.findIndex((item) => item.id === id);
-      if (index !== -1) {
-        items.value[index]!.quantity = quantity;
-      }
-
-      if (cart.value) {
-        cart.value = response.data;
-      }
+      await http.patch<Cart>(ENDPOINTS.cart.updateItem(id), { quantity });
+      await getMyCart();
+      return true;
     } catch (error) {
       logApiError(error, 'Impossible de mettre à jour le panier');
+      return false;
     }
   }
 
   async function removeItem(id: string) {
     try {
       await http.delete<void>(ENDPOINTS.cart.removeItem(id));
-      items.value = items.value.filter((item) => item.id !== id);
+      await getMyCart();
       toast.success('Produit retiré du panier');
+      return true;
     } catch (error) {
       handleApiError(error, toast, 'Impossible de retirer le produit');
+      return false;
     }
   }
 
@@ -75,6 +84,7 @@ export const useCartStore = defineStore('cart', () => {
     total,
     itemCount,
     getCart,
+    getMyCart,
     addItem,
     updateItem,
     removeItem,

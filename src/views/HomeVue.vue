@@ -6,6 +6,7 @@ import { useProductStore } from '@/stores/productStore';
 import { useCartStore } from '@/stores/cartStore';
 import { API_CONFIG } from '@/api/config';
 import { useToast } from 'vue-toastification';
+import { syncAfterCartChange } from '@/utils/sync';
 import type { Product } from '@/types';
 
 const router = useRouter();
@@ -42,8 +43,10 @@ async function addToCart(product: Product) {
   }
   cartLoading.value[product.id] = true;
   try {
-    await cartStore.addItem(product.id, 1);
-    toast.success(`« ${product.name} » ajouté au panier !`);
+    const ok = await cartStore.addItem(product.id, 1);
+    if (ok) {
+      await syncAfterCartChange();
+    }
   } catch {
     // intercpteur gère 401/403
   } finally {

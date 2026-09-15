@@ -15,7 +15,7 @@ const form = reactive({
 const loading = ref(false);
 
 async function handleSubmit() {
-  const token = route.params.token;
+  const token = route.query.token;
 
   if (!token || typeof token !== 'string') return;
 

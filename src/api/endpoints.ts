@@ -33,6 +33,7 @@ export const ENDPOINTS = {
   },
   products: {
     list: '/products',
+    mine: '/products/me',
     create: (categoryId: string) => `/products/${categoryId}`,
     detail: (id: string) => `/products/${id}`,
     update: (id: string) => `/products/${id}`,
@@ -49,6 +50,7 @@ export const ENDPOINTS = {
   },
   cart: {
     list: '/cart',
+    mine: '/cart/mine',
     addItem: (productId: string) => `/cart/${productId}`,
     detail: (id: string) => `/cart/${id}`,
     updateItem: (id: string) => `/cart/${id}`,
@@ -56,7 +58,6 @@ export const ENDPOINTS = {
   },
   orders: {
     list: '/orders',
-    create: '/orders',
     detail: (id: string) => `/orders/${id}`,
     invoice: (id: string) => `/orders/${id}/invoice`,
     update: (id: string) => `/orders/${id}`,

@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/authStore';
 import { useNotificationStore } from '@/stores/notificationStore';
+import { useCartStore } from '@/stores/cartStore';
+import { useSupplierStore } from '@/stores/supplierStore';
 
 const authStore = useAuthStore();
 const notificationStore = useNotificationStore();
+const cartStore = useCartStore();
+const supplierStore = useSupplierStore();
 const router = useRouter();
 
 const menuOpen = ref(false);
+
+let refreshTimer: number | undefined;
+let onWindowFocus: () => void;
 
 const publicLinks = [
   { label: 'Accueil', to: { name: 'Home' } },
@@ -18,10 +25,29 @@ const publicLinks = [
   { label: 'Contact', to: { name: 'Contact' } },
 ];
 
+// Rafraîchissement silencieux des compteurs (notifications + panier)
+function refreshCounters() {
+  if (!authStore.accessToken) return;
+  void notificationStore.refreshUnreadCount();
+  void cartStore.getMyCart();
+}
+
 onMounted(async () => {
   if (authStore.accessToken) {
-    await notificationStore.refreshUnreadCount();
+    await Promise.all([
+      notificationStore.refreshUnreadCount(),
+      cartStore.getMyCart(),
+      supplierStore.checkMyShop(),
+    ]);
   }
+  refreshTimer = window.setInterval(refreshCounters, 30000);
+  onWindowFocus = () => refreshCounters();
+  window.addEventListener('focus', onWindowFocus);
+});
+
+onUnmounted(() => {
+  if (refreshTimer) window.clearInterval(refreshTimer);
+  window.removeEventListener('focus', onWindowFocus);
 });
 
 async function handleLogout() {
@@ -68,6 +94,17 @@ async function handleLogout() {
             {{ notificationStore.unreadCount > 9 ? '9+' : notificationStore.unreadCount }}
           </span>
         </RouterLink>
+        <RouterLink class="nav__icon" :to="{ name: 'Order Layout' }" title="Mon panier">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="8" cy="21" r="1" />
+            <circle cx="19" cy="21" r="1" />
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+            <path d="M11 11l2 2 3-3" />
+          </svg>
+          <span v-if="cartStore.itemCount > 0" class="nav__badge">
+            {{ cartStore.itemCount > 9 ? '9+' : cartStore.itemCount }}
+          </span>
+        </RouterLink>
         <RouterLink class="nav__cta" :to="{ name: 'Order Layout' }">Mes commandes</RouterLink>
         <RouterLink
           v-if="authStore.role === 'admin'"
@@ -75,6 +112,13 @@ async function handleLogout() {
           :to="{ name: 'Admin Dashboard' }"
         >
           Admin
+        </RouterLink>
+        <RouterLink
+          v-if="supplierStore.hasShop || authStore.role === 'admin'"
+          class="nav__cta nav__cta--ghost"
+          :to="{ name: 'Supplier Dashboard' }"
+        >
+          Fournisseur
         </RouterLink>
         <span class="nav__user">{{ authStore.user?.fullName ?? authStore.user?.email }}</span>
         <button class="nav__logout" @click="handleLogout">Déconnexion</button>

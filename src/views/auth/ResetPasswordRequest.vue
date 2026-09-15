@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 import { useAuthStore } from '@/stores/authStore';
 
 const authStore = useAuthStore();
@@ -60,6 +60,13 @@ async function handleSubmit() {
         d'être envoyé. Vérifiez votre boîte.
       </div>
     </template>
+
+    <p class="register__switch reveal reveal--d6">
+      <RouterLink class="register__link" :to="{ name: 'Login' }">
+        Se connecter
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </RouterLink>
+    </p>
   </div>
 </template>
 
@@ -193,5 +200,33 @@ async function handleSubmit() {
   background: var(--gradient-brand);
   color: var(--color-primary-contrast);
   box-shadow: var(--shadow-glow);
+}
+.register__switch {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--color-text-soft);
+}
+
+.register__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--duration-fast);
+}
+
+.register__link svg {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.register__link:hover {
+  color: var(--color-primary-hover);
+}
+
+.register__link:hover svg {
+  transform: translateX(3px);
 }
 </style>

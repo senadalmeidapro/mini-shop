@@ -28,9 +28,15 @@ import AdminOrders from '@/views/admin/AdminOrders.vue';
 import AdminPayments from '@/views/admin/AdminPayments.vue';
 import AdminReviews from '@/views/admin/AdminReviews.vue';
 
+import SupplierLayout from '@/views/supplier/SupplierLayout.vue';
+import SupplierDashboard from '@/views/supplier/SupplierDashboard.vue';
+import SupplierProducts from '@/views/supplier/SupplierProducts.vue';
+import SupplierOrders from '@/views/supplier/SupplierOrders.vue';
+
 import { TOKEN_STORAGE_KEYS } from '@/api';
 import type { Role } from '@/types';
 import { useAuthStore } from '@/stores/authStore';
+import { useSupplierStore } from '@/stores/supplierStore';
 
 function isTokenExpired(token: string): boolean {
   try {
@@ -144,6 +150,28 @@ const router = createRouter({
             },
           ],
         },
+        {
+          path: 'supplier',
+          component: SupplierLayout,
+          meta: { requiresAuth: true, requiresSupplier: true },
+          children: [
+            {
+              path: '',
+              name: 'Supplier Dashboard',
+              component: SupplierDashboard,
+            },
+            {
+              path: 'products',
+              name: 'Supplier Products',
+              component: SupplierProducts,
+            },
+            {
+              path: 'orders',
+              name: 'Supplier Orders',
+              component: SupplierOrders,
+            },
+          ],
+        },
       ],
     },
     {
@@ -166,7 +194,7 @@ const router = createRouter({
           component: ResetPasswordRequest,
         },
         {
-          path: 'reset-password/:token',
+          path: 'reset-password',
           name: 'ResetPassword',
           component: ResetPassword,
         },
@@ -195,7 +223,7 @@ function getRoleFromToken(token: string | null): Role | null {
   }
 }
 
-router.beforeEach((to) => {
+router.beforeEach(async (to) => {
   const authStore = useAuthStore();
   let token = authStore.accessToken;
 
@@ -219,6 +247,18 @@ router.beforeEach((to) => {
       return { name: 'Login', query: { redirect: to.fullPath } };
     }
     return { name: 'Home' } as RouteLocationRaw;
+  }
+
+  if (to.meta.requiresSupplier) {
+    if (role !== 'admin') {
+      const supplierStore = useSupplierStore();
+      if (!supplierStore.isLoaded) {
+        await supplierStore.checkMyShop();
+      }
+      if (!supplierStore.hasShop) {
+        return { name: 'Home' };
+      }
+    }
   }
 
   if ((to.name === 'Login' || to.name === 'Register') && token) {

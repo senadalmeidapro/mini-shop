@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { useAuthStore } from '@/stores/authStore';
 
 const route = useRoute();
-const router = useRouter();
 const authStore = useAuthStore();
 
 const status = ref<'loading' | 'error' | 'success'>('loading');

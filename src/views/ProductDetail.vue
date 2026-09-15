@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router';
 import { API_CONFIG } from '@/api/config';
 import { useProductStore } from '@/stores/productStore';
 import { useCartStore } from '@/stores/cartStore';
+import { syncAfterCartChange } from '@/utils/sync';
 
 const route = useRoute();
 const productStore = useProductStore();
@@ -16,7 +17,11 @@ async function loadProduct(id: string) {
 }
 
 async function addProduct() {
-  await cartStore.addItem(route.params.id as string, quantity.value);
+  const ok = await cartStore.addItem(route.params.id as string, quantity.value);
+  if (ok) {
+    // Le stock réservé a changé côté serveur : on rafraîchit la fiche + le catalogue
+    await syncAfterCartChange();
+  }
 }
 
 onMounted(() => {

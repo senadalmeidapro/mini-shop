@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { useCartStore } from '@/stores/cartStore';
+
 defineProps<{ tab: 'cart' | 'orders' }>();
+
+const cartStore = useCartStore();
 
 const emit = defineEmits<{
   'update:tab': [tab: 'cart' | 'orders'];
@@ -33,6 +37,7 @@ function select(tab: 'cart' | 'orders') {
         <path d="M16 10a4 4 0 0 1-8 0" />
       </svg>
       Mon panier
+      <span v-if="cartStore.itemCount > 0" class="order-nav__chip">{{ cartStore.itemCount }}</span>
     </button>
 
     <button
@@ -113,6 +118,27 @@ function select(tab: 'cart' | 'orders') {
 .order-nav__btn--active svg,
 .order-nav__btn--active:hover svg {
   color: var(--color-primary-contrast);
+}
+
+.order-nav__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.3rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.order-nav__btn--active .order-nav__chip,
+.order-nav__btn--active:hover .order-nav__chip {
+  background: var(--color-primary-contrast);
+  color: var(--color-primary);
 }
 
 /* ══════════════════ RESPONSIVE ══════════════════ */

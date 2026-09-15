@@ -40,8 +40,10 @@ export const usePaymentStore = defineStore('payments', () => {
       const response = await http.post<Payment>(ENDPOINTS.payments.create(cartId), data);
       payments.value.push(response.data);
       toast.success('Paiement créé avec succès');
+      return true;
     } catch (error) {
       handleApiError(error, toast, 'Impossible de créer le paiement');
+      return false;
     }
   }
 
@@ -79,8 +81,10 @@ export const usePaymentStore = defineStore('payments', () => {
       }
 
       toast.success('Paiement annulé');
+      return true;
     } catch (error) {
       handleApiError(error, toast, 'Impossible d\'annuler le paiement');
+      return false;
     }
   }
 

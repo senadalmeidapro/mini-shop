@@ -4,6 +4,7 @@ import { useOrderStore } from '@/stores/orderStore';
 import { usePaymentStore } from '@/stores/paymentStore';
 import { API_CONFIG } from '@/api/config';
 import { ENDPOINTS } from '@/api';
+import { syncAfterCancel } from '@/utils/sync';
 
 const orderStore = useOrderStore();
 const paymentStore = usePaymentStore();
@@ -42,7 +43,11 @@ async function cancelOrder(orderId: string) {
   const paymentId = paymentByOrder.value.get(orderId);
   if (!paymentId) return;
 
-  await paymentStore.cancelPayment(paymentId);
+  const ok = await paymentStore.cancelPayment(paymentId);
+  if (ok) {
+    // Le stock des produits est recrédité : on resynchronise tout
+    await syncAfterCancel();
+  }
 }
 </script>
 <template>

@@ -2,6 +2,8 @@
 import { onMounted, computed } from 'vue';
 import { useNotificationStore } from '@/stores/notificationStore';
 
+defineOptions({ name: 'NotificationsPage' });
+
 const notificationStore = useNotificationStore();
 
 const notifications = computed(() => notificationStore.notifications);
