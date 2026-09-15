@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
-import type { Payment, PaymentMethod, PaymentStatus } from '@/types';
+import type { Paginate, Payment, PaymentMethod, PaymentStatus } from '@/types';
 import { useToast } from 'vue-toastification';
 
 export const usePaymentStore = defineStore('payments', () => {
@@ -12,8 +12,10 @@ export const usePaymentStore = defineStore('payments', () => {
 
   async function getPayments() {
     try {
-      const response = await http.get<Payment[]>(ENDPOINTS.payments.list);
-      payments.value = response.data;
+      const response = await http.get<Paginate<Payment>>(ENDPOINTS.payments.list, {
+        params: { page: 1, limit: 100 },
+      });
+      payments.value = response.data.items;
     } catch (error) {
       logApiError(error, 'Impossible de charger les paiements');
     }

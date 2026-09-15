@@ -2,6 +2,7 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Notification } from '@/types';
+import type { Paginate } from '@/types';
 import { useToast } from 'vue-toastification';
 
 export const useNotificationStore = defineStore('notifications', () => {
@@ -12,8 +13,10 @@ export const useNotificationStore = defineStore('notifications', () => {
 
   async function getNotifications() {
     try {
-      const response = await http.get<Notification[]>(ENDPOINTS.notifications.list);
-      notifications.value = response.data;
+      const response = await http.get<Paginate<Notification>>(ENDPOINTS.notifications.list, {
+        params: { page: 1, limit: 50 },
+      });
+      notifications.value = response.data.items;
       await refreshUnreadCount();
     } catch (error) {
       logApiError(error, 'Impossible de charger les notifications');

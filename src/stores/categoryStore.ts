@@ -2,6 +2,7 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Category } from '@/types';
+import type { Paginate } from '@/types';
 import { useToast } from 'vue-toastification';
 
 export const useCategoryStore = defineStore('categories', () => {
@@ -12,8 +13,10 @@ export const useCategoryStore = defineStore('categories', () => {
 
   async function getCategories() {
     try {
-      const response = await http.get<Category[]>(ENDPOINTS.categories.list);
-      categories.value = response.data;
+      const response = await http.get<Paginate<Category>>(ENDPOINTS.categories.list, {
+        params: { page: 1, limit: 100 },
+      });
+      categories.value = response.data.items;
     } catch (error) {
       logApiError(error, 'Impossible de charger les catégories');
     }

@@ -2,6 +2,7 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Shop, ShopDetail } from '@/types';
+import type { Paginate } from '@/types';
 import { useToast } from 'vue-toastification';
 
 export const useShopStore = defineStore('shops', () => {
@@ -13,8 +14,10 @@ export const useShopStore = defineStore('shops', () => {
 
   async function getShops() {
     try {
-      const response = await http.get<Shop[]>(ENDPOINTS.shops.list);
-      shops.value = response.data;
+      const response = await http.get<Paginate<Shop>>(ENDPOINTS.shops.list, {
+        params: { page: 1, limit: 100 },
+      });
+      shops.value = response.data.items;
     } catch (error) {
       logApiError(error, 'Impossible de charger les boutiques');
     }

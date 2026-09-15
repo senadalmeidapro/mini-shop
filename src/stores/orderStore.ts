@@ -2,6 +2,7 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Order, OrderStatus } from '@/types';
+import type { Paginate } from '@/types';
 import { useToast } from 'vue-toastification';
 
 export const useOrderStore = defineStore('orders', () => {
@@ -12,8 +13,10 @@ export const useOrderStore = defineStore('orders', () => {
 
   async function getOrders() {
     try {
-      const response = await http.get<Order[]>(ENDPOINTS.orders.list);
-      orders.value = response.data;
+      const response = await http.get<Paginate<Order>>(ENDPOINTS.orders.list, {
+        params: { page: 1, limit: 100 },
+      });
+      orders.value = response.data.items;
     } catch (error) {
       logApiError(error, 'Impossible de charger les commandes');
     }

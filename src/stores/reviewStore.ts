@@ -2,6 +2,7 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Review } from '@/types';
+import type { Paginate } from '@/types';
 import { useToast } from 'vue-toastification';
 
 export const useReviewStore = defineStore('reviews', () => {
@@ -12,8 +13,10 @@ export const useReviewStore = defineStore('reviews', () => {
 
   async function getReviews() {
     try {
-      const response = await http.get<Review[]>(ENDPOINTS.reviews.list);
-      reviews.value = response.data;
+      const response = await http.get<Paginate<Review>>(ENDPOINTS.reviews.list, {
+        params: { page: 1, limit: 100 },
+      });
+      reviews.value = response.data.items;
     } catch (error) {
       logApiError(error, 'Impossible de charger les avis');
     }

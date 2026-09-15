@@ -7,8 +7,8 @@ const loading = ref(true);
 
 const orders = computed(() => orderStore.orders);
 
-async function completeOrder(id: string) {
-  await orderStore.updateOrder(id, { status: 'completed' });
+async function confirmOrder(id: string) {
+  await orderStore.updateOrder(id, { status: 'confirmed' });
 }
 
 onMounted(async () => {
@@ -59,10 +59,10 @@ onMounted(async () => {
               <button
                 v-if="order.status === 'pending'"
                 class="btn btn--primary btn--sm"
-                @click="completeOrder(order.id)"
+                @click="confirmOrder(order.id)"
               >
                 <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg>
-                Marquer complétée
+                Confirmer
               </button>
             </td>
           </tr>
@@ -199,6 +199,21 @@ onMounted(async () => {
 .badge--pending {
   background: var(--color-warning-bg);
   color: var(--color-warning-text);
+}
+
+.badge--confirmed {
+  background: var(--color-info-bg, #dbeafe);
+  color: var(--color-info-text, #1e40af);
+}
+
+.badge--shipped {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.badge--delivered {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
 }
 
 .badge--completed {
