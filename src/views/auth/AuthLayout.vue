@@ -47,14 +47,14 @@ import { RouterView } from 'vue-router'
   top: -60px;
   left: -80px;
   background: var(--c-green);
-  animation: blob-drift 18s var(--ease-smooth) infinite;
+  animation: none;
 }
 
 .auth-layout__blob--b {
   bottom: -70px;
   right: -60px;
   background: var(--c-teal);
-  animation: blob-drift 22s var(--ease-smooth) infinite reverse;
+  animation: none;
 }
 
 .auth-layout__card {

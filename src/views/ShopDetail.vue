@@ -93,7 +93,7 @@ onMounted(async () => {
   border-radius: 50%;
   filter: blur(60px);
   opacity: 0.3;
-  animation: blob-drift 12s var(--ease-smooth) infinite;
+  animation: none;
 }
 
 .shop-detail__blob--1 {

@@ -96,7 +96,7 @@ defineProps<{ product: Product }>();
 
 .product-card:hover .product-card__shine {
   opacity: 1;
-  animation: shine-sweep 0.9s var(--ease-out) both;
+  animation: none;
 }
 
 .product-card__peek {

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useAuthStore } from '@/stores/authStore';
+import { roleLabel } from '@/utils/roles';
 
 const authStore = useAuthStore();
 
@@ -43,7 +44,7 @@ const initials = computed(() => {
         </span>
         <div class="profile__info">
           <span class="profile__info-label">Rôle</span>
-          <span class="profile__info-value">{{ authStore.user.role }}</span>
+          <span class="profile__info-value">{{ roleLabel(authStore.user.role) }}</span>
         </div>
       </div>
     </template>

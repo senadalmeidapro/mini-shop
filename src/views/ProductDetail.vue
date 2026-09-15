@@ -212,7 +212,7 @@ watch(
 }
 
 .detail__media:hover .detail__shine {
-  animation: shine-sweep 1.1s var(--ease-out) both;
+  animation: none;
 }
 
 .detail__badge {

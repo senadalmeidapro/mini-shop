@@ -7,7 +7,7 @@ import { RouterLink, RouterView } from 'vue-router';
       <div class="admin__brand">
         <span class="admin__logo">
           <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
-            <rect width="32" height="32" rx="8" fill="url(#adminGrad)" />
+            <rect width="32" height="32" rx="8" fill="#176b52" />
             <path d="M9 16.5L14 21.5L23 12.5" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
             <defs>
               <linearGradient id="adminGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
@@ -74,8 +74,7 @@ import { RouterLink, RouterView } from 'vue-router';
 .admin__header {
   margin-bottom: 2rem;
   padding-bottom: 1.25rem;
-  border-bottom: 2px solid transparent;
-  border-image: var(--gradient-brand) 1;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .admin__brand {
@@ -126,7 +125,7 @@ import { RouterLink, RouterView } from 'vue-router';
   flex-wrap: wrap;
   padding: 0.4rem;
   background: var(--color-background-soft);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
 }
 
@@ -135,7 +134,7 @@ import { RouterLink, RouterView } from 'vue-router';
   align-items: center;
   gap: 0.4rem;
   padding: 0.45rem 0.9rem;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   color: var(--color-text-soft);
   font-weight: 600;
   font-size: 0.85rem;
@@ -163,10 +162,9 @@ import { RouterLink, RouterView } from 'vue-router';
 }
 
 .admin__nav-link.router-link-exact-active {
-  background: var(--gradient-brand);
+  background: var(--color-primary);
   color: var(--color-primary-contrast);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-1px);
+  box-shadow: none;
 }
 
 .admin__nav-link.router-link-exact-active svg {

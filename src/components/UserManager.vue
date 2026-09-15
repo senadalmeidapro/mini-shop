@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import type { User } from '@/types';
+import { roleLabel } from '@/utils/roles';
 
 import UserCard from './UserCard.vue';
 
@@ -50,10 +51,10 @@ const emit = defineEmits<{
           <h2>{{ user.fullName ?? user.email }}</h2>
         </template>
         <template #default="{ role }">
-          {{ role }}
+          {{ roleLabel(role) }}
         </template>
         <template #footer="{ role }">
-          <small>{{ role }}</small>
+          <small>{{ roleLabel(role) }}</small>
         </template>
       </UserCard>
     </div>

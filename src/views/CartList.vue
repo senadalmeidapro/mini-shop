@@ -325,7 +325,7 @@ async function pay() {
   border-radius: 50%;
   background: var(--color-primary-soft);
   color: var(--color-primary);
-  animation: float-y 4s var(--ease-out) infinite;
+  animation: none;
 }
 
 /* ══════════════════ ARTICLE ══════════════════ */

@@ -293,7 +293,7 @@ async function addToCart(product: Product) {
   border-radius: 50%;
   filter: blur(90px);
   opacity: 0.55;
-  animation: blob-drift 14s var(--ease-out) infinite;
+  animation: none;
 }
 
 .hero__blob--1 {
@@ -606,7 +606,7 @@ async function addToCart(product: Product) {
 
 .product-card:hover .product-card__shine {
   opacity: 1;
-  animation: shine-sweep 0.9s var(--ease-out) both;
+  animation: none;
 }
 
 .product-card__peek {

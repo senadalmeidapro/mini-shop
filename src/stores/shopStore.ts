@@ -4,6 +4,7 @@ import { ENDPOINTS, http, handleApiError, logApiError } from '@/api';
 import type { Shop, ShopDetail } from '@/types';
 import type { Paginate } from '@/types';
 import { useToast } from 'vue-toastification';
+import { useAuthStore } from '@/stores/authStore';
 
 export const useShopStore = defineStore('shops', () => {
   const toast = useToast();
@@ -45,6 +46,12 @@ export const useShopStore = defineStore('shops', () => {
     try {
       const response = await http.post<Shop>(ENDPOINTS.shops.create, data);
       myShop.value = response.data;
+
+      const authStore = useAuthStore();
+      if (authStore.user) {
+        authStore.user.role = 'supplier';
+      }
+
       toast.success('Boutique créée avec succès');
     } catch (error) {
       handleApiError(error, toast, 'Impossible de créer la boutique');
@@ -74,6 +81,11 @@ export const useShopStore = defineStore('shops', () => {
 
       if (myShop.value?.id === id) {
         myShop.value = null;
+
+        const authStore = useAuthStore();
+        if (authStore.user && authStore.user.role === 'supplier') {
+          authStore.user.role = 'user';
+        }
       }
 
       shops.value = shops.value.filter((s) => s.id !== id);

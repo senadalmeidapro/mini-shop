@@ -1,9 +1,48 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import { useSupplierStore } from '@/stores/supplierStore';
+import { useShopStore } from '@/stores/shopStore';
 
 const supplierStore = useSupplierStore();
+const shopStore = useShopStore();
+
+const creatingShop = ref(false);
+const shopForm = reactive({
+  name: '',
+  slug: '',
+  description: '',
+});
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+}
+
+function autofillSlug() {
+  if (!shopForm.slug) {
+    shopForm.slug = slugify(shopForm.name);
+  }
+}
+
+async function createShop() {
+  creatingShop.value = true;
+  await shopStore.createShop({
+    name: shopForm.name,
+    slug: shopForm.slug || slugify(shopForm.name),
+    description: shopForm.description || undefined,
+  });
+  creatingShop.value = false;
+
+  if (shopStore.myShop) {
+    await supplierStore.getDashboard();
+  }
+}
 
 onMounted(() => {
   supplierStore.getDashboard();
@@ -73,9 +112,28 @@ function statusClass(status: string) {
         </svg>
       </span>
       <h3>Vous n'avez pas encore de boutique</h3>
-      <p>Créez une boutique pour accéder à votre tableau de bord fournisseur.</p>
-      <RouterLink class="sd__empty-btn" :to="{ name: 'Shops' }">
-        Voir les boutiques
+      <p>Créez votre boutique pour devenir fournisseur et accéder au tableau de bord.</p>
+
+      <form class="sd__create-form" @submit.prevent="createShop">
+        <input
+          v-model="shopForm.name"
+          type="text"
+          placeholder="Nom de la boutique"
+          required
+          @input="autofillSlug"
+        />
+        <div class="sd__create-slug">
+          <span>/</span>
+          <input v-model="shopForm.slug" type="text" placeholder="slug-unique" required />
+        </div>
+        <input v-model="shopForm.description" type="text" placeholder="Description (optionnel)" />
+        <button type="submit" class="sd__create-btn" :disabled="creatingShop">
+          {{ creatingShop ? 'Création…' : 'Créer ma boutique' }}
+        </button>
+      </form>
+
+      <RouterLink class="sd__empty-link" :to="{ name: 'Shops' }">
+        Ou parcourir les boutiques existantes
       </RouterLink>
     </div>
 
@@ -301,7 +359,7 @@ function statusClass(status: string) {
   border-radius: 50%;
   background: var(--color-primary-soft);
   color: var(--color-primary);
-  animation: float-y 4s var(--ease-out) infinite;
+  animation: none;
 }
 
 .sd__empty h3 {
@@ -316,23 +374,94 @@ function statusClass(status: string) {
   line-height: 1.55;
 }
 
-.sd__empty-btn {
-  display: inline-flex;
-  padding: 0.55rem 1.4rem;
-  margin-top: 0.5rem;
+.sd__create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 340px;
+  margin-top: 0.75rem;
+}
+
+.sd__create-slug {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-background);
+}
+
+.sd__create-slug > span {
+  color: var(--color-text-soft);
+  font-weight: 700;
+}
+
+.sd__create-form input {
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-background);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  outline: none;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.sd__create-form input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-focus);
+}
+
+.sd__create-slug input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0.6rem 0;
+}
+
+.sd__create-slug input:focus {
+  box-shadow: none;
+}
+
+.sd__create-btn {
+  padding: 0.6rem 1.4rem;
+  border: none;
   border-radius: var(--radius-pill);
   background: var(--gradient-brand);
   color: #fff;
   font-weight: 700;
   font-size: 0.88rem;
-  text-decoration: none;
+  cursor: pointer;
   box-shadow: var(--shadow-glow);
-  transition: transform var(--duration) var(--ease-out), box-shadow var(--duration);
+  transition:
+    transform var(--duration) var(--ease-out),
+    box-shadow var(--duration);
 }
 
-.sd__empty-btn:hover {
+.sd__create-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 14px 30px var(--color-primary-glow);
+}
+
+.sd__create-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sd__empty-link {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sd__empty-link:hover {
+  text-decoration: underline;
 }
 
 /* ══════════════════ HEADER ══════════════════ */

@@ -6,25 +6,25 @@
 
 :root {
   /* ── Brand / palette de base ─────────────────────────────── */
-  --c-green: #42b883;
-  --c-green-dark: #35a06c;
-  --c-green-strong: #2f9768;
-  --c-teal: #22c6a6;
-  --c-red: #e03030;
-  --c-gold: #f2a818;
-  --c-blue: #5380f7;
+  --c-green: #176b52;
+  --c-green-dark: #125540;
+  --c-green-strong: #0f4938;
+  --c-teal: #268879;
+  --c-red: #c2413e;
+  --c-gold: #a16207;
+  --c-blue: #3567a8;
 
   /* ── Blancs & gris (light mode) ──────────────────────────── */
   --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f7f9f8;
-  --vt-c-white-mute: #eef1ef;
+  --vt-c-white-soft: #f8fafc;
+  --vt-c-white-mute: #f1f5f9;
 
   /* ── Noirs & gris (dark mode) ────────────────────────────── */
   --vt-c-black: #13161b;
   --vt-c-black-soft: #1c2127;
   --vt-c-black-mute: #262d35;
 
-  --vt-c-indigo: #1c2b37;
+  --vt-c-indigo: #0f172a;
 
   /* ── Séparateurs ─────────────────────────────────────────── */
   --vt-c-divider-light-1: rgba(22, 40, 32, 0.14);
@@ -34,7 +34,7 @@
 
   /* ── Texte ───────────────────────────────────────────────── */
   --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(28, 43, 55, 0.66);
+  --vt-c-text-light-2: #64748b;
   --vt-c-text-dark-1: #f2f5f4;
   --vt-c-text-dark-2: rgba(242, 245, 244, 0.68);
 }
@@ -63,21 +63,15 @@
   --color-primary: var(--c-green);
   --color-primary-hover: var(--c-green-dark);
   --color-primary-contrast: #ffffff;
-  --color-primary-soft: rgba(66, 184, 131, 0.12);
-  --color-primary-glow: rgba(66, 184, 131, 0.45);
-  --color-focus: rgba(66, 184, 131, 0.32);
+  --color-primary-soft: rgba(23, 107, 82, 0.1);
+  --color-primary-glow: rgba(23, 107, 82, 0.14);
+  --color-focus: rgba(23, 107, 82, 0.28);
 
   /* Dégradés de marque */
-  --gradient-brand: linear-gradient(135deg, #42b883 0%, #22c6a6 100%);
-  --gradient-brand-strong: linear-gradient(135deg, #2f9768 0%, #17a98f 100%);
-  --gradient-hero: radial-gradient(
-      80% 60% at 18% 8%,
-      rgba(66, 184, 131, 0.22) 0%,
-      transparent 55%
-    ),
-    radial-gradient(60% 55% at 85% 18%, rgba(34, 198, 166, 0.18) 0%, transparent 55%),
-    radial-gradient(65% 60% at 55% 95%, rgba(83, 128, 247, 0.1) 0%, transparent 55%);
-  --gradient-text: linear-gradient(120deg, #2f9768, #22c6a6);
+  --gradient-brand: var(--c-green);
+  --gradient-brand-strong: var(--c-green-dark);
+  --gradient-hero: none;
+  --gradient-text: var(--c-green);
 
   /* Alerte / destruction */
   --color-danger: var(--c-red);
@@ -94,32 +88,32 @@
   --color-error-text: #7f1d1d;
 
   /* Forme & ombres */
-  --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
   --radius-pill: 999px;
 
-  --shadow-xs: 0 1px 2px rgba(16, 34, 27, 0.06);
-  --shadow-sm: 0 2px 6px rgba(16, 34, 27, 0.07);
-  --shadow-md: 0 10px 24px rgba(16, 34, 27, 0.1);
-  --shadow-lg: 0 16px 40px rgba(16, 34, 27, 0.12);
-  --shadow-xl: 0 24px 64px rgba(16, 34, 27, 0.16);
-  --shadow-glow: 0 10px 34px var(--color-primary-glow);
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.07);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 10px 24px rgba(15, 23, 42, 0.1);
+  --shadow-xl: 0 16px 36px rgba(15, 23, 42, 0.12);
+  --shadow-glow: var(--shadow-md);
 
   /* Focus */
   --ring-width: 3px;
   --ring-offset: 2px;
 
   /* Motion */
-  --duration-fast: 0.16s;
-  --duration: 0.26s;
-  --duration-slow: 0.5s;
+  --duration-fast: 0.12s;
+  --duration: 0.18s;
+  --duration-slow: 0.28s;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
 
-  --section-gap: 120px;
+  --section-gap: 80px;
 }
 
 /* ==========================================================================
@@ -177,8 +171,7 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
-  background-image: var(--gradient-hero);
-  background-attachment: fixed;
+  background-image: none;
   transition:
     color 0.3s,
     background-color 0.3s;
@@ -196,7 +189,7 @@ body {
     'Droid Sans',
     'Helvetica Neue',
     sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

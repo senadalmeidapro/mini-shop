@@ -153,7 +153,7 @@ const router = createRouter({
         {
           path: 'supplier',
           component: SupplierLayout,
-          meta: { requiresAuth: true, requiresSupplier: true },
+          meta: { requiresAuth: true },
           children: [
             {
               path: '',
@@ -164,11 +164,13 @@ const router = createRouter({
               path: 'products',
               name: 'Supplier Products',
               component: SupplierProducts,
+              meta: { requiresSupplier: true },
             },
             {
               path: 'orders',
               name: 'Supplier Orders',
               component: SupplierOrders,
+              meta: { requiresSupplier: true },
             },
           ],
         },
@@ -250,13 +252,14 @@ router.beforeEach(async (to) => {
   }
 
   if (to.meta.requiresSupplier) {
+    // Admin et fournisseur (rôle ou boutique) sont autorisés
     if (role !== 'admin') {
       const supplierStore = useSupplierStore();
       if (!supplierStore.isLoaded) {
         await supplierStore.checkMyShop();
       }
-      if (!supplierStore.hasShop) {
-        return { name: 'Home' };
+      if (!supplierStore.hasShop && role !== 'supplier') {
+        return { name: 'Supplier Dashboard' };
       }
     }
   }

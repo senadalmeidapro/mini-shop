@@ -19,7 +19,7 @@ onMounted(() => {
       <div class="supplier__brand">
         <span class="supplier__logo">
           <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
-            <rect width="32" height="32" rx="8" fill="url(#supplierGrad)" />
+            <rect width="32" height="32" rx="8" fill="#176b52" />
             <path d="M8 12C8 10.8954 8.89543 10 10 10H22C23.1046 10 24 10.8954 24 12V22C24 23.1046 23.1046 24 22 24H10C8.89543 24 8 23.1046 8 22V12Z" stroke="#fff" stroke-width="1.8" />
             <path d="M12 10V8.5C12 7.67157 12.6716 7 13.5 7H18.5C19.3284 7 20 7.67157 20 8.5V10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" />
             <path d="M8 16H24" stroke="#fff" stroke-width="1.8" />
@@ -101,8 +101,7 @@ onMounted(() => {
 .supplier__header {
   margin-bottom: 2rem;
   padding-bottom: 1.25rem;
-  border-bottom: 2px solid transparent;
-  border-image: linear-gradient(90deg, var(--c-blue), var(--c-teal)) 1;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .supplier__brand {
@@ -152,7 +151,7 @@ onMounted(() => {
   flex-wrap: wrap;
   padding: 0.4rem;
   background: var(--color-background-soft);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
 }
 
@@ -161,7 +160,7 @@ onMounted(() => {
   align-items: center;
   gap: 0.4rem;
   padding: 0.45rem 0.9rem;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   color: var(--color-text-soft);
   font-weight: 600;
   font-size: 0.85rem;
@@ -189,10 +188,9 @@ onMounted(() => {
 }
 
 .supplier__nav-link.router-link-exact-active {
-  background: linear-gradient(135deg, var(--c-blue), var(--c-teal));
-  color: #fff;
-  box-shadow: 0 10px 34px rgba(83, 128, 247, 0.3);
-  transform: translateY(-1px);
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  box-shadow: none;
 }
 
 .supplier__nav-link.router-link-exact-active svg {

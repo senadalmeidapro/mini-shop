@@ -129,10 +129,10 @@ const stats = [
   width: 520px;
   height: 520px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%);
+  background: transparent;
   opacity: 0.35;
   pointer-events: none;
-  animation: float-y 7s var(--ease-smooth) infinite;
+  animation: none;
 }
 
 .about-hero__title {
@@ -362,7 +362,7 @@ const stats = [
     transparent 70%
   );
   transform: translateX(-120%) skewX(-18deg);
-  animation: shine-sweep 5s var(--ease-out) infinite;
+  animation: none;
   pointer-events: none;
 }
 

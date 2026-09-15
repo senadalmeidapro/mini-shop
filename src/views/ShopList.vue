@@ -95,10 +95,10 @@ onMounted(async () => {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%);
+  background: transparent;
   opacity: 0.35;
   pointer-events: none;
-  animation: float-y 6s var(--ease-smooth) infinite;
+  animation: none;
 }
 
 .shop-list__hero h1 {
@@ -265,7 +265,7 @@ onMounted(async () => {
 
 .shop-card:hover .shop-card__shine {
   opacity: 1;
-  animation: shine-sweep 0.9s var(--ease-out) both;
+  animation: none;
 }
 
 /* ── Empty state ──────────────────────────────────────────── */

@@ -196,14 +196,7 @@ onMounted(async () => {
   isolation: isolate;
   overflow: hidden;
   padding: 2.25rem 2rem;
-  background:
-    radial-gradient(80% 120% at 10% 0%, var(--color-primary-soft) 0%, transparent 60%),
-    radial-gradient(
-      60% 120% at 95% 15%,
-      color-mix(in srgb, var(--c-teal) 16%, transparent) 0%,
-      transparent 60%
-    ),
-    linear-gradient(180deg, var(--color-background-soft), var(--color-background));
+  background: var(--color-background-soft);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
@@ -216,7 +209,7 @@ onMounted(async () => {
   left: 2rem;
   right: 2rem;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  background: var(--color-border);
   opacity: 0.6;
 }
 
@@ -402,7 +395,7 @@ onMounted(async () => {
   border-radius: var(--radius-pill);
   background: var(--color-primary-soft);
   color: var(--color-primary);
-  animation: float-y 4s var(--ease-out) infinite;
+  animation: none;
 }
 
 .product-list__empty-title {

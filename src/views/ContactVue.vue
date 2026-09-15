@@ -162,10 +162,10 @@ function handleSubmit() {
   width: 520px;
   height: 520px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%);
+  background: transparent;
   opacity: 0.35;
   pointer-events: none;
-  animation: float-y 7s var(--ease-smooth) infinite;
+  animation: none;
 }
 
 .contact-hero__title {

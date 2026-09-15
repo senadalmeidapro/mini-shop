@@ -342,7 +342,8 @@ onMounted(async () => {
 .products__table-img {
   width: 44px;
   height: 44px;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 2px;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   background: var(--color-background-mute);

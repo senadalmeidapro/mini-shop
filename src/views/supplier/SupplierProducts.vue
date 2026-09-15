@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted, computed } from 'vue';
+import { API_CONFIG } from '@/api/config';
 import { useSupplierStore } from '@/stores/supplierStore';
 import { useCategoryStore } from '@/stores/categoryStore';
 import type { Product } from '@/types';
@@ -181,7 +182,7 @@ onMounted(async () => {
         <div class="sp__card-img">
           <img
             v-if="product.imageUrl"
-            :src="product.imageUrl"
+            :src="`${API_CONFIG.baseURL}${product.imageUrl}`"
             :alt="product.name"
           />
           <span v-else class="sp__card-img-fallback">

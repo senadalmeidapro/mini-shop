@@ -130,8 +130,587 @@
    Texte en dégradé
    ========================================================================== */
 .grad-text {
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-heading);
+}
+
+/* Shared product surfaces: restrained motion and neutral elevation. */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .features__card:hover,
+  .product-card:hover,
+  .dashboard__stat:hover,
+  .sd__kpi:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+    border-color: var(--color-border-hover);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: fade-in 0.18s ease-out both;
+  }
+}
+
+/* Product-wide visual language for every view and reusable component. */
+[class*="__shine"],
+[class*="__blob"],
+[class*="__glow"],
+[class*="__decoration"],
+[class*="__empty-icon"] {
+  display: none !important;
+  animation: none !important;
+}
+
+[class*="__cta"]:not([class*="--ghost"]),
+[class*="__submit"],
+[class*="__btn--primary"],
+[class*="__button--primary"] {
+  background: var(--color-primary) !important;
+  box-shadow: none !important;
+  border-radius: var(--radius-md) !important;
+}
+
+[class*="__cta"]:not([class*="--ghost"]):hover,
+[class*="__submit"]:hover,
+[class*="__btn--primary"]:hover,
+[class*="__button--primary"]:hover {
+  background: var(--color-primary-hover) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transform: translateY(-1px) !important;
+}
+
+[class*="__badge"],
+[class*="__chip"],
+[class*="__status"],
+[class*="__tag"] {
+  border-radius: var(--radius-sm) !important;
+}
+
+[class*="__card"]:hover,
+[class*="-card"]:hover,
+[class*="__kpi"]:hover,
+[class*="__stat"]:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-sm) !important;
+  border-color: var(--color-border-hover) !important;
+}
+
+/* Keep data-heavy screens quiet: rows should react through color only. */
+tr:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Forms: clear labels, predictable controls and accessible focus states. */
+form input:not([type='file']):not([type='checkbox']):not([type='radio']),
+form select,
+form textarea,
+.user-manager__toolbar input,
+.user-list__toolbar input {
+  min-height: 2.65rem;
+  width: 100%;
+  padding: 0.62rem 0.78rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-background);
+  color: var(--color-text);
+  font: inherit;
+  line-height: 1.4;
+  box-shadow: none;
+  transition: border-color var(--duration), box-shadow var(--duration), background-color var(--duration);
+}
+
+form textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: var(--color-text-soft);
+  opacity: 0.8;
+}
+
+form input:not([type='file']):focus,
+form select:focus,
+form textarea:focus,
+.user-manager__toolbar input:focus,
+.user-list__toolbar input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+form input:disabled,
+form select:disabled,
+form textarea:disabled,
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--color-heading);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+button.btn,
+button[class*="__btn"],
+button[class*="__submit"],
+button[class*="__add-btn"],
+.user-manager__toolbar button,
+.user-list__toolbar button {
+  min-height: 2.55rem;
+  padding: 0.58rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background-color var(--duration), border-color var(--duration), color var(--duration), box-shadow var(--duration);
+}
+
+button.btn--primary,
+button[class*="__btn--primary"],
+button[class*="__submit"],
+button[class*="__add-btn"] {
+  background: var(--color-primary) !important;
+  color: var(--color-primary-contrast) !important;
+}
+
+button.btn--primary:hover,
+button[class*="__btn--primary"]:hover,
+button[class*="__submit"]:hover,
+button[class*="__add-btn"]:hover {
+  background: var(--color-primary-hover) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+button.btn--ghost,
+button[class*="__btn--ghost"] {
+  border-color: var(--color-border) !important;
+  background: var(--color-background) !important;
+  color: var(--color-text) !important;
+}
+
+button.btn--ghost:hover,
+button[class*="__btn--ghost"]:hover {
+  border-color: var(--color-primary) !important;
+  background: var(--color-primary-soft) !important;
+  color: var(--color-primary) !important;
+}
+
+button.btn--danger,
+button[class*="__btn--danger"] {
+  background: var(--color-danger) !important;
+  color: var(--color-danger-contrast) !important;
+}
+
+button.btn--danger:hover,
+button[class*="__btn--danger"]:hover {
+  background: var(--color-danger-hover) !important;
+}
+
+button.btn--sm,
+button[class*="__action"] {
+  min-height: 2.15rem;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.76rem;
+}
+
+/* CRUD tables: stronger headers, quieter rows, and usable overflow on mobile. */
+[class*="__table-wrap"] {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-background);
+  box-shadow: var(--shadow-xs);
+}
+
+table[class*="__table"] {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+
+table[class*="__table"] th {
+  padding: 0.72rem 0.9rem;
+  background: var(--color-background-soft);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-soft);
+  font-size: 0.69rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+table[class*="__table"] td {
+  padding: 0.78rem 0.9rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-heading);
+  vertical-align: middle;
+}
+
+table[class*="__table"] tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+table[class*="__table"] tbody tr:hover {
+  background: var(--color-primary-soft) !important;
+}
+
+[class*="__actions"] {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* CRUD editing panels are visually separated from the data list. */
+.users__form,
+.products__form,
+.categories__form,
+.sp__form,
+.sd__create-form {
+  padding: 1.15rem 1.25rem !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  background: var(--color-background) !important;
+  box-shadow: var(--shadow-xs) !important;
+}
+
+.users__form-actions,
+.products__form-actions,
+.categories__form-actions,
+.sp__form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.25rem;
+}
+
+.users__header,
+.products__header,
+.categories__header,
+.reviews__header,
+.payments__header,
+.orders__header,
+.sp__header,
+.so__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.users__header h2,
+.products__header h2,
+.categories__header h2,
+.reviews__header h2,
+.payments__header h2,
+.orders__header h2,
+.sp__header h2,
+.so__header h2 {
+  margin-bottom: 0.2rem;
+  color: var(--color-heading);
+  font-size: 1.35rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.nav__right {
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nav__link.router-link-active {
+  font-weight: 700;
+}
+
+@media (max-width: 860px) {
+  .nav__right {
+    max-width: calc(100vw - 5rem);
+    justify-content: flex-end;
+  }
+
+  .nav__right .nav__cta {
+    padding-inline: 0.7rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .layout__main {
+    padding-inline: 1rem;
+  }
+
+  .nav {
+    padding-inline: 1rem;
+  }
+
+  .nav__right .nav__cta--ghost,
+  .nav__right .nav__user {
+    display: none;
+  }
+
+  .users__form-actions,
+  .products__form-actions,
+  .categories__form-actions,
+  .sp__form-actions {
+    justify-content: stretch;
+  }
+
+  .users__form-actions > button,
+  .products__form-actions > button,
+  .categories__form-actions > button,
+  .sp__form-actions > button {
+    flex: 1;
+  }
+}
+
+/* Tablet and phone ergonomics. */
+@media (max-width: 900px) {
+  .container,
+  .admin,
+  .supplier {
+    max-width: 100%;
+  }
+
+  .admin,
+  .supplier {
+    padding-inline: 0.25rem;
+  }
+
+  .admin__header,
+  .supplier__header {
+    margin-bottom: 1.25rem;
+  }
+
+  .admin__nav,
+  .supplier__nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-radius: var(--radius-lg);
+  }
+
+  .admin__nav-link,
+  .supplier__nav-link {
+    justify-content: center;
+    min-height: 2.7rem;
+    padding-inline: 0.55rem;
+  }
+
+  .admin__nav-link span,
+  .supplier__nav-link span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding-inline: 1rem;
+  }
+
+  .admin,
+  .supplier {
+    padding-inline: 0;
+  }
+
+  .admin__brand-text h1,
+  .supplier__brand-text h1 {
+    font-size: 1.25rem;
+  }
+
+  .admin__nav,
+  .supplier__nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.25rem;
+    padding: 0.3rem;
+  }
+
+  .admin__nav-link,
+  .supplier__nav-link {
+    min-height: 2.8rem;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.7rem;
+  }
+
+  .admin__nav-link span,
+  .supplier__nav-link span {
+    display: block;
+    max-width: 100%;
+  }
+
+  .features__grid,
+  .home__grid,
+  .dashboard__stats,
+  .sd__kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem;
+  }
+
+  .home__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .features__card,
+  .dashboard__stat,
+  .sd__kpi {
+    padding: 0.9rem;
+  }
+
+  .product-card__body {
+    padding-inline: 0.8rem;
+  }
+
+  .product-card__btn {
+    min-height: 2.7rem;
+    margin: 0 0.8rem 0.8rem;
+  }
+
+  .users__form,
+  .products__form,
+  .categories__form,
+  .sp__form,
+  .sd__create-form {
+    padding: 1rem !important;
+  }
+
+  .users__form,
+  .products__form,
+  .categories__form,
+  .sp__form,
+  .sp__form-grid,
+  .products__form-grid,
+  .categories__form-grid,
+  .sd__create-form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .users__form-actions,
+  .products__form-actions,
+  .categories__form-actions,
+  .sp__form-actions {
+    width: 100%;
+  }
+
+  .users__form-actions > button,
+  .products__form-actions > button,
+  .categories__form-actions > button,
+  .sp__form-actions > button {
+    min-height: 2.75rem;
+  }
+
+  [class*="__table-wrap"] {
+    margin-inline: -0.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  table[class*="__table"] {
+    min-width: 560px;
+  }
+}
+
+@media (max-width: 420px) {
+  .home__grid,
+  .features__grid,
+  .dashboard__stats,
+  .sd__kpis {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero__actions,
+  .section__header,
+  .users__header,
+  .products__header,
+  .categories__header,
+  .reviews__header,
+  .payments__header,
+  .orders__header,
+  .sp__header,
+  .so__header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero__btn,
+  .section__link,
+  .sp__add-btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .nav__brand {
+    max-width: calc(100vw - 4.5rem);
+  }
+
+  .nav__wordmark {
+    font-size: 1rem;
+  }
+
+  .nav__right {
+    width: 100%;
+    justify-content: flex-end;
+    order: 3;
+  }
+
+  .nav__right .nav__cta:not(.nav__cta--ghost) {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
+
+  button.btn,
+  button[class*="__btn"],
+  button[class*="__submit"],
+  button[class*="__add-btn"] {
+    min-height: 2.75rem;
+  }
+}
+
+/* Decorative effects are intentionally quiet in the application shell. */
+.hero__blob,
+.auth-layout__blob,
+.shop-detail__blob,
+.detail__blob,
+.about-cta__blob,
+.product-card__shine {
+  display: none !important;
+}
+
+.product-card:hover,
+.features__card:hover,
+.dashboard__stat:hover,
+.sd__kpi:hover,
+.about-story__card:hover,
+.value-card:hover,
+.stat-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-sm) !important;
+  border-color: var(--color-border-hover) !important;
+}
+
+.nav__badge,
+.sd__notif-dot,
+.product-card__stock--low {
+  animation: none !important;
 }

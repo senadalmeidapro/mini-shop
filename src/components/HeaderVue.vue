@@ -83,7 +83,7 @@ async function handleLogout() {
       </RouterLink>
     </div>
 
-    <div class="nav__right">
+    <div class="nav__right" :class="{ 'nav__right--mobile-open': menuOpen }">
       <template v-if="authStore.accessToken">
         <RouterLink class="nav__icon" :to="{ name: 'Notifications' }" title="Notifications">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -114,7 +114,6 @@ async function handleLogout() {
           Admin
         </RouterLink>
         <RouterLink
-          v-if="supplierStore.hasShop || authStore.role === 'admin'"
           class="nav__cta nav__cta--ghost"
           :to="{ name: 'Supplier Dashboard' }"
         >
@@ -174,11 +173,9 @@ async function handleLogout() {
   z-index: 40;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 0.85rem 1.5rem;
-  background: color-mix(in srgb, var(--color-background) 78%, transparent);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  gap: 1.75rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--color-background);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -195,20 +192,16 @@ async function handleLogout() {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: var(--radius-md);
-  background: var(--gradient-brand);
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
   color: #fff;
-  box-shadow: var(--shadow-glow);
-  transition:
-    transform 0.35s var(--ease-out),
-    box-shadow 0.35s var(--ease-out);
+  transition: background-color var(--duration);
 }
 
 .nav__brand:hover .nav__logo {
-  transform: translateY(-2px) rotate(-6deg);
-  box-shadow: 0 14px 34px var(--color-primary-glow);
+  background: var(--color-primary-hover);
 }
 
 .nav__wordmark {
@@ -246,7 +239,7 @@ async function handleLogout() {
   bottom: -4px;
   height: 2px;
   border-radius: var(--radius-pill);
-  background: var(--gradient-brand);
+  background: var(--color-primary);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--duration) var(--ease-out);
@@ -266,7 +259,8 @@ async function handleLogout() {
 .nav__right {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   margin-left: auto;
 }
 
@@ -322,22 +316,18 @@ async function handleLogout() {
 }
 
 .nav__cta {
-  padding: 0.5rem 1.2rem;
-  border-radius: var(--radius-pill);
-  background: var(--gradient-brand);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
   color: #fff;
   font-weight: 700;
   font-size: 0.88rem;
   text-decoration: none;
-  box-shadow: var(--shadow-glow);
-  transition:
-    transform var(--duration) var(--ease-out),
-    box-shadow var(--duration);
+  transition: background-color var(--duration);
 }
 
 .nav__cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 30px var(--color-primary-glow);
+  background: var(--color-primary-hover);
 }
 
 .nav__cta--ghost {
@@ -355,11 +345,11 @@ async function handleLogout() {
 
 .nav__logout {
   padding: 0.45rem 0.95rem;
-  border: 1px solid var(--color-danger);
-  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
   background: transparent;
-  color: var(--color-danger);
-  font-weight: 700;
+  color: var(--color-text-soft);
+  font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
   transition:
@@ -369,9 +359,8 @@ async function handleLogout() {
 }
 
 .nav__logout:hover {
-  background-color: var(--color-danger);
-  color: var(--color-danger-contrast);
-  transform: translateY(-1px);
+  background-color: var(--color-danger-soft);
+  color: var(--color-danger);
 }
 
 /* ── Burger (mobile) ───────────────────────────────────────── */
@@ -393,9 +382,11 @@ async function handleLogout() {
   display: none;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   .nav {
     flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.7rem 1rem;
   }
 
   .nav__burger {
@@ -404,16 +395,13 @@ async function handleLogout() {
 
   .nav__links {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    order: 3;
+    width: 100%;
     flex-direction: column;
     gap: 0.15rem;
     padding: 0.75rem 1.25rem 1.1rem;
     background: var(--color-background);
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: var(--shadow-lg);
+    border-top: 1px solid var(--color-border);
   }
 
   .nav__links--open {
@@ -431,15 +419,37 @@ async function handleLogout() {
   }
 
   .nav__right {
-    gap: 0.6rem;
-  }
-
-  .nav__user {
     display: none;
+    order: 4;
+    width: 100%;
+    margin-left: 0;
+    padding: 0.75rem 1.25rem 0.9rem;
+    gap: 0.55rem;
+    justify-content: flex-start;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-background-soft);
   }
 
-  .nav__cta--ghost {
+  .nav__right--mobile-open {
+    display: flex;
+    animation: fade-in var(--duration) var(--ease-out) both;
+  }
+
+  .nav__right--mobile-open .nav__cta--ghost,
+  .nav__right--mobile-open .nav__user {
     display: inline-flex;
+  }
+
+  .nav__right--mobile-open .nav__user {
+    max-width: 100%;
+    flex: 1 1 100%;
+    padding-top: 0.25rem;
+    color: var(--color-text-soft);
+    font-size: 0.8rem;
+  }
+
+  .nav__right--mobile-open .nav__logout {
+    margin-left: auto;
   }
 }
 </style>

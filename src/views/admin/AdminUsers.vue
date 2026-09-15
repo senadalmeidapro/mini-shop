@@ -2,6 +2,7 @@
 import { reactive, ref, onMounted, computed } from 'vue';
 import { useUserStore } from '@/stores/userStore';
 import type { User } from '@/types';
+import { roleLabel } from '@/utils/roles';
 
 const userStore = useUserStore();
 
@@ -97,7 +98,7 @@ onMounted(async () => {
             <td class="users__name">{{ user.fullName ?? '—' }}</td>
             <td>{{ user.email }}</td>
             <td>
-              <span class="badge" :class="`badge--${user.role}`">{{ user.role }}</span>
+              <span class="badge" :class="`badge--${user.role}`">{{ roleLabel(user.role) }}</span>
             </td>
             <td>
               <div class="users__actions">
@@ -242,6 +243,11 @@ onMounted(async () => {
 .badge--admin {
   background: var(--color-primary-soft);
   color: var(--color-primary);
+}
+
+.badge--supplier {
+  background: var(--color-warning-soft, var(--color-background-mute));
+  color: var(--color-warning, var(--color-text));
 }
 
 .badge--user {

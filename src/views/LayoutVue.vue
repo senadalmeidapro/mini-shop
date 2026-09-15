@@ -44,11 +44,11 @@ import FooterVue from '@/components/FooterVue.vue';
 
 .page-enter-from {
   opacity: 0;
-  transform: translateY(14px) scale(0.99);
+  transform: translateY(6px);
 }
 
 .page-leave-to {
   opacity: 0;
-  transform: translateY(-8px) scale(0.995);
+  transform: translateY(-4px);
 }
 </style>
