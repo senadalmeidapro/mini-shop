@@ -27,9 +27,7 @@ export const useNotificationStore = defineStore('notifications', () => {
     try {
       const response = await http.get<number>(ENDPOINTS.notifications.unreadCount);
       unreadCount.value = response.data;
-    } catch {
-      
-    }
+    } catch {}
   }
 
   async function markAsRead(id: string) {

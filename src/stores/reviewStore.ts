@@ -37,7 +37,7 @@ export const useReviewStore = defineStore('reviews', () => {
       reviews.value.push(response.data);
       toast.success('Avis créé avec succès');
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de créer l\'avis');
+      handleApiError(error, toast, "Impossible de créer l'avis");
     }
   }
 
@@ -69,7 +69,7 @@ export const useReviewStore = defineStore('reviews', () => {
 
       toast.success('Avis supprimé');
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de supprimer l\'avis');
+      handleApiError(error, toast, "Impossible de supprimer l'avis");
     }
   }
 

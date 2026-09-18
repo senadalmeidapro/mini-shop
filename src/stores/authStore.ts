@@ -66,7 +66,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-async function logout() {
+  async function logout() {
     try {
       await http.post(ENDPOINTS.auth.logout);
 

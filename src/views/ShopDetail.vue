@@ -32,16 +32,44 @@ onMounted(async () => {
           <p v-if="shop.description" class="shop-detail__desc">{{ shop.description }}</p>
           <div class="shop-detail__meta">
             <span class="shop-detail__meta-pill">
-              <svg class="shop-detail__meta-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M3 18c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <svg
+                class="shop-detail__meta-icon"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5" />
+                <path
+                  d="M3 18c0-3.87 3.13-7 7-7s7 3.13 7 7"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
               </svg>
               Tenue par <strong>{{ shop.owner.fullName ?? shop.owner.email }}</strong>
             </span>
             <span v-if="products.length" class="shop-detail__meta-pill">
-              <svg class="shop-detail__meta-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M7 7h6M7 10h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <svg
+                class="shop-detail__meta-icon"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <rect
+                  x="3"
+                  y="3"
+                  width="14"
+                  height="14"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M7 7h6M7 10h4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
               </svg>
               {{ products.length }} produits
             </span>
@@ -58,8 +86,13 @@ onMounted(async () => {
 
       <section v-else class="shop-detail__empty reveal">
         <svg class="shop-detail__empty-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-          <rect x="8" y="8" width="32" height="32" rx="4" stroke="currentColor" stroke-width="2"/>
-          <path d="M18 20h12M18 26h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect x="8" y="8" width="32" height="32" rx="4" stroke="currentColor" stroke-width="2" />
+          <path
+            d="M18 20h12M18 26h8"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
         </svg>
         Aucun produit dans cette boutique pour le moment.
       </section>
@@ -73,7 +106,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-
 .shop-detail__header {
   position: relative;
   padding: 5rem 1.5rem 3.5rem;
@@ -130,7 +162,10 @@ onMounted(async () => {
   color: var(--color-primary-contrast);
   font-size: 2rem;
   font-weight: 800;
-  box-shadow: var(--shadow-md), 0 0 0 4px var(--color-background), 0 0 0 6px var(--color-primary-soft);
+  box-shadow:
+    var(--shadow-md),
+    0 0 0 4px var(--color-background),
+    0 0 0 6px var(--color-primary-soft);
 }
 
 .shop-detail__header h1 {
@@ -234,7 +269,9 @@ onMounted(async () => {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 600px) {

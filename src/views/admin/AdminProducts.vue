@@ -128,10 +128,16 @@ onMounted(async () => {
 
       <div class="products__form-actions">
         <button type="submit" class="btn btn--primary">
-          <svg v-if="!isEditing" viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"/></svg>
+          <svg v-if="!isEditing" viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+            <path
+              d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"
+            />
+          </svg>
           {{ isEditing ? 'Mettre à jour' : 'Créer' }}
         </button>
-        <button v-if="isEditing" type="button" class="btn btn--ghost" @click="resetForm">Annuler</button>
+        <button v-if="isEditing" type="button" class="btn btn--ghost" @click="resetForm">
+          Annuler
+        </button>
       </div>
     </form>
 
@@ -158,14 +164,29 @@ onMounted(async () => {
                 :alt="product.name"
               />
               <span v-else class="products__no-img">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="3" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="m21 15-5-5L5 21" />
+                </svg>
               </span>
             </td>
             <td class="products__name">{{ product.name }}</td>
             <td>{{ categoryName(product.categoryId) }}</td>
             <td class="products__price">{{ product.price }} FCFA</td>
             <td>
-              <span class="products__stock-badge" :class="{ 'products__stock-badge--out': product.stock === 0 }">{{ product.stock }}</span>
+              <span
+                class="products__stock-badge"
+                :class="{ 'products__stock-badge--out': product.stock === 0 }"
+                >{{ product.stock }}</span
+              >
             </td>
             <td>
               <div class="products__stock-adjust">
@@ -187,11 +208,21 @@ onMounted(async () => {
             <td>
               <div class="products__actions">
                 <button class="btn btn--primary btn--sm" @click="startEdit(product)">
-                  <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor"><path d="M2.695 14.763l-1.262 3.154a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.885L17.5 5.5a2.121 2.121 0 0 0-3-3L3.58 13.42a4 4 0 0 0-.885 1.343Z"/></svg>
+                  <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                    <path
+                      d="M2.695 14.763l-1.262 3.154a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.885L17.5 5.5a2.121 2.121 0 0 0-3-3L3.58 13.42a4 4 0 0 0-.885 1.343Z"
+                    />
+                  </svg>
                   Modifier
                 </button>
                 <button class="btn btn--danger btn--sm" @click="handleDelete(product.id)">
-                  <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor"><path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.519.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clip-rule="evenodd"/></svg>
+                  <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                    <path
+                      fill-rule="evenodd"
+                      d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.519.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
                   Supprimer
                 </button>
               </div>

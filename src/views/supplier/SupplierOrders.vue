@@ -89,7 +89,11 @@ function formatPrice(val: number) {
 }
 
 function formatDate(date: string | Date) {
-  return new Date(date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+  return new Date(date).toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
 }
 
 function canCancel(status: string) {
@@ -109,19 +113,31 @@ onMounted(async () => {
       <p class="so__sub">Suivez et gérez l'avancement des commandes</p>
     </div>
 
-    
     <p v-if="loading" class="so__state">
       <span class="so__spinner" />
       Chargement…
     </p>
 
-    
     <p v-else-if="!orders.length" class="so__state so__state--empty">
-      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+      <svg
+        viewBox="0 0 24 24"
+        width="32"
+        height="32"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+        />
+        <path d="m3.3 7 8.7 5 8.7-5" />
+        <path d="M12 22V12" />
+      </svg>
       Aucune commande pour le moment.
     </p>
 
-    
     <div v-else class="so__table-wrap reveal reveal--d1">
       <table class="so__table">
         <thead>
@@ -155,8 +171,10 @@ onMounted(async () => {
               </span>
             </td>
             <td>
-              <div v-if="order.status !== 'cancelled' && order.status !== 'completed'" class="so__actions">
-                
+              <div
+                v-if="order.status !== 'cancelled' && order.status !== 'completed'"
+                class="so__actions"
+              >
                 <input
                   v-if="order.status === 'confirmed'"
                   v-model="trackingInputs[order.id]"
@@ -381,7 +399,10 @@ onMounted(async () => {
   font-weight: 700;
   font-size: 0.76rem;
   cursor: pointer;
-  transition: background var(--duration-fast), color var(--duration-fast), transform var(--duration-fast);
+  transition:
+    background var(--duration-fast),
+    color var(--duration-fast),
+    transform var(--duration-fast);
 }
 
 .so__btn--primary {

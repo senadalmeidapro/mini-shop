@@ -59,7 +59,16 @@ async function handleLogout() {
   <nav class="nav">
     <RouterLink class="nav__brand" :to="{ name: 'Home' }" aria-label="Mini Shop — Accueil">
       <span class="nav__logo" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
           <path d="M3 6h18" />
           <path d="M16 10a4 4 0 0 1-8 0" />
@@ -85,7 +94,17 @@ async function handleLogout() {
     <div class="nav__right" :class="{ 'nav__right--mobile-open': menuOpen }">
       <template v-if="authStore.accessToken">
         <RouterLink class="nav__icon" :to="{ name: 'Notifications' }" title="Notifications">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
             <path d="M13.73 21a2 2 0 0 1-3.46 0" />
           </svg>
@@ -94,10 +113,22 @@ async function handleLogout() {
           </span>
         </RouterLink>
         <RouterLink class="nav__icon" :to="{ name: 'Order Layout' }" title="Mon panier">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <circle cx="8" cy="21" r="1" />
             <circle cx="19" cy="21" r="1" />
-            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+            <path
+              d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+            />
             <path d="M11 11l2 2 3-3" />
           </svg>
           <span v-if="cartStore.itemCount > 0" class="nav__badge">
@@ -112,10 +143,7 @@ async function handleLogout() {
         >
           Admin
         </RouterLink>
-        <RouterLink
-          class="nav__cta nav__cta--ghost"
-          :to="{ name: 'Supplier Dashboard' }"
-        >
+        <RouterLink class="nav__cta nav__cta--ghost" :to="{ name: 'Supplier Dashboard' }">
           Fournisseur
         </RouterLink>
         <span class="nav__user">{{ authStore.user?.fullName ?? authStore.user?.email }}</span>

@@ -15,7 +15,9 @@ const productStore = useProductStore();
 const cartStore = useCartStore();
 const toast = useToast();
 
-const featuredProducts = computed(() => productStore.products.filter((p) => p.stock > 0).slice(0, 8));
+const featuredProducts = computed(() =>
+  productStore.products.filter((p) => p.stock > 0).slice(0, 8),
+);
 
 const cartLoading = ref<Record<string, boolean>>({});
 const productsLoading = ref(false);
@@ -48,7 +50,6 @@ async function addToCart(product: Product) {
       await syncAfterCartChange();
     }
   } catch {
-    
   } finally {
     cartLoading.value[product.id] = false;
   }
@@ -57,10 +58,7 @@ async function addToCart(product: Product) {
 
 <template>
   <div class="home">
-    
     <section class="hero" :class="{ 'hero--loading': productsLoading }">
-      
-
       <div class="hero__content">
         <span class="hero__badge reveal">Nouveau</span>
 
@@ -75,17 +73,11 @@ async function addToCart(product: Product) {
         </p>
 
         <div class="hero__actions reveal reveal--d3">
-          <RouterLink
-            class="hero__btn hero__btn--primary"
-            :to="{ name: 'Product List' }"
-          >
+          <RouterLink class="hero__btn hero__btn--primary" :to="{ name: 'Product List' }">
             Voir les produits
           </RouterLink>
 
-          <RouterLink
-            class="hero__btn hero__btn--outline"
-            :to="{ name: 'Register' }"
-          >
+          <RouterLink class="hero__btn hero__btn--outline" :to="{ name: 'Register' }">
             Créer un compte
           </RouterLink>
         </div>
@@ -109,12 +101,20 @@ async function addToCart(product: Product) {
       </div>
     </section>
 
-    
     <section class="features reveal">
       <div class="features__grid">
         <div class="features__card reveal reveal--d1">
           <span class="features__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5V22" />
               <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5" />
               <path d="M3 13h18l-3-4H6L3 13Z" />
@@ -122,23 +122,45 @@ async function addToCart(product: Product) {
             </svg>
           </span>
           <h3 class="features__title">Livraison rapide</h3>
-          <p class="features__text">Expédition sous 24h pour tous les produits disponibles en stock.</p>
+          <p class="features__text">
+            Expédition sous 24h pour tous les produits disponibles en stock.
+          </p>
         </div>
 
         <div class="features__card reveal reveal--d2">
           <span class="features__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
               <path d="m9 12 2 2 4-4" />
             </svg>
           </span>
           <h3 class="features__title">Paiement sécurisé</h3>
-          <p class="features__text">Transactions chiffrées et protégées pour une tranquillité totale.</p>
+          <p class="features__text">
+            Transactions chiffrées et protégées pour une tranquillité totale.
+          </p>
         </div>
 
         <div class="features__card reveal reveal--d3">
           <span class="features__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d="M11 18h2" />
               <rect x="4" y="4" width="16" height="14" rx="2" />
               <path d="M4 14h16" />
@@ -146,18 +168,29 @@ async function addToCart(product: Product) {
             </svg>
           </span>
           <h3 class="features__title">Support 7j/7</h3>
-          <p class="features__text">Une équipe à votre écoute pour répondre à toutes vos questions.</p>
+          <p class="features__text">
+            Une équipe à votre écoute pour répondre à toutes vos questions.
+          </p>
         </div>
       </div>
     </section>
 
-    
     <section class="section">
       <div class="section__header reveal">
         <h2 class="section__title">Découvrez nos produits</h2>
         <RouterLink class="section__link" :to="{ name: 'Product List' }">
           Tout voir
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            width="15"
+            height="15"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <path d="m9 18 6-6-6-6" />
           </svg>
         </RouterLink>
@@ -195,7 +228,10 @@ async function addToCart(product: Product) {
             </div>
 
             <div class="product-card__body">
-              <RouterLink class="product-card__name" :to="{ name: 'Product Details', params: { id: product.id } }">
+              <RouterLink
+                class="product-card__name"
+                :to="{ name: 'Product Details', params: { id: product.id } }"
+              >
                 {{ product.name }}
               </RouterLink>
               <p class="product-card__desc">{{ product.description }}</p>
@@ -220,10 +256,22 @@ async function addToCart(product: Product) {
               @click.stop="addToCart(product)"
             >
               <span v-if="!cartLoading[product.id]">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="15"
+                  height="15"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
                   <circle cx="8" cy="21" r="1" />
                   <circle cx="19" cy="21" r="1" />
-                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                  <path
+                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                  />
                 </svg>
                 Ajouter
               </span>
@@ -238,22 +286,18 @@ async function addToCart(product: Product) {
       </p>
     </section>
 
-    
     <section class="cta reveal">
       <div class="cta__bg" aria-hidden="true" />
       <h2 class="cta__title">Prêt à commencer&nbsp;?</h2>
       <p class="cta__text">
         Créez votre compte en quelques secondes et accédez à un catalogue unique.
       </p>
-      <RouterLink class="cta__btn" :to="{ name: 'Register' }">
-        Créer un compte
-      </RouterLink>
+      <RouterLink class="cta__btn" :to="{ name: 'Register' }"> Créer un compte </RouterLink>
     </section>
   </div>
 </template>
 
 <style scoped>
-
 .home {
   display: flex;
   flex-direction: column;

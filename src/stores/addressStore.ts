@@ -9,13 +9,18 @@ export const useAddressStore = defineStore('addresses', () => {
 
   const addresses = ref<Address[]>([]);
 
-  async function createAddress(data: { street?: string; city: string; country: string; zip?: string }) {
+  async function createAddress(data: {
+    street?: string;
+    city: string;
+    country: string;
+    zip?: string;
+  }) {
     try {
       const response = await http.post<Address>(ENDPOINTS.users.address, data);
       addresses.value.push(response.data);
       toast.success('Adresse enregistrée avec succès');
     } catch (error) {
-      handleApiError(error, toast, 'Impossible d\'enregistrer l\'adresse');
+      handleApiError(error, toast, "Impossible d'enregistrer l'adresse");
     }
   }
 

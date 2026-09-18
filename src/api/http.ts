@@ -1,4 +1,3 @@
-
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import './interceptors';

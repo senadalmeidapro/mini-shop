@@ -35,13 +35,10 @@ onMounted(async () => {
 </script>
 <template>
   <div class="product-list">
-    
     <section class="product-list__hero reveal">
       <span class="product-list__badge">Catalogue</span>
 
-      <h1 class="product-list__title">
-        Nos <span class="grad-text">produits</span>
-      </h1>
+      <h1 class="product-list__title">Nos <span class="grad-text">produits</span></h1>
 
       <p class="product-list__subtitle">
         Découvrez notre sélection et trouvez le produit qu'il vous faut.
@@ -72,7 +69,6 @@ onMounted(async () => {
       </div>
     </section>
 
-    
     <div class="product-list__toolbar reveal reveal--d1">
       <label class="product-list__field">
         <svg
@@ -132,7 +128,6 @@ onMounted(async () => {
       </label>
     </div>
 
-    
     <div v-if="filteredProducts.length" class="product-list__grid">
       <div
         v-for="(product, index) in filteredProducts"
@@ -164,9 +159,7 @@ onMounted(async () => {
       </span>
       <strong class="product-list__empty-title">
         {{
-          searchQuery || selectedCategoryId
-            ? 'Aucun résultat trouvé'
-            : 'Boutique en préparation'
+          searchQuery || selectedCategoryId ? 'Aucun résultat trouvé' : 'Boutique en préparation'
         }}
       </strong>
       <span class="product-list__empty-text">
@@ -181,7 +174,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-
 .product-list {
   display: flex;
   flex-direction: column;

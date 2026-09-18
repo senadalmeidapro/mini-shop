@@ -104,22 +104,21 @@ onMounted(async () => {
     <div class="sp__header reveal">
       <div>
         <h2>Mes produits</h2>
-        <p class="sp__sub">{{ products.length }} produit{{ products.length > 1 ? 's' : '' }} dans votre boutique</p>
+        <p class="sp__sub">
+          {{ products.length }} produit{{ products.length > 1 ? 's' : '' }} dans votre boutique
+        </p>
       </div>
       <button class="sp__add-btn" @click="openCreate">
         <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
-          <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+          <path
+            d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"
+          />
         </svg>
         Ajouter un produit
       </button>
     </div>
 
-    
-    <form
-      v-if="showForm"
-      class="sp__form reveal reveal--d1"
-      @submit.prevent="handleSubmit"
-    >
+    <form v-if="showForm" class="sp__form reveal reveal--d1" @submit.prevent="handleSubmit">
       <h3 class="sp__form-title">{{ isEditing ? 'Modifier le produit' : 'Nouveau produit' }}</h3>
       <div class="sp__form-grid">
         <div class="sp__form-field">
@@ -163,22 +162,39 @@ onMounted(async () => {
       </div>
     </form>
 
-    
     <p v-if="supplierStore.productsLoading" class="sp__state">
       <span class="sp__spinner" />
       Chargement…
     </p>
 
-    
     <p v-else-if="!products.length && !showForm" class="sp__state sp__state--empty">
-      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+      <svg
+        viewBox="0 0 24 24"
+        width="32"
+        height="32"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m7.5 4.27 9 5.15" />
+        <path
+          d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+        />
+        <path d="m3.3 7 8.7 5 8.7-5" />
+        <path d="M12 22V12" />
+      </svg>
       Aucun produit. Commencez par en ajouter un !
     </p>
 
-    
     <div v-else class="sp__grid">
-      <div v-for="(product, i) in products" :key="product.id" class="sp__card reveal" :class="`reveal--d${(i % 6) + 1}`">
-        
+      <div
+        v-for="(product, i) in products"
+        :key="product.id"
+        class="sp__card reveal"
+        :class="`reveal--d${(i % 6) + 1}`"
+      >
         <div class="sp__card-img">
           <img
             v-if="product.imageUrl"
@@ -186,17 +202,35 @@ onMounted(async () => {
             :alt="product.name"
           />
           <span v-else class="sp__card-img-fallback">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+            <svg
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+              <circle cx="9" cy="9" r="2" />
+              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+            </svg>
           </span>
         </div>
 
-        
         <div class="sp__card-body">
           <div class="sp__card-top">
             <span class="sp__card-cat">{{ categoryName(product.categoryId) }}</span>
             <span
               class="sp__card-stock"
-              :class="product.stock === 0 ? 'sp__card-stock--out' : product.stock <= (product.lowStockThreshold ?? 5) ? 'sp__card-stock--low' : 'sp__card-stock--ok'"
+              :class="
+                product.stock === 0
+                  ? 'sp__card-stock--out'
+                  : product.stock <= (product.lowStockThreshold ?? 5)
+                    ? 'sp__card-stock--low'
+                    : 'sp__card-stock--ok'
+              "
             >
               {{ product.stock }} en stock
             </span>
@@ -206,17 +240,29 @@ onMounted(async () => {
           <strong class="sp__card-price">{{ formatPrice(product.price) }} FCFA</strong>
         </div>
 
-        
         <div class="sp__card-actions">
           <button class="sp__action sp__action--edit" title="Modifier" @click="startEdit(product)">
-            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path d="M2.695 14.763l-1.262 3.154a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.885L17.5 5.5a2.121 2.121 0 0 0-3-3L3.58 13.42a4 4 0 0 0-.885 1.343Z"/></svg>
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+              <path
+                d="M2.695 14.763l-1.262 3.154a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.885L17.5 5.5a2.121 2.121 0 0 0-3-3L3.58 13.42a4 4 0 0 0-.885 1.343Z"
+              />
+            </svg>
           </button>
-          <button class="sp__action sp__action--delete" title="Supprimer" @click="confirmDelete(product.id)">
-            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clip-rule="evenodd"/></svg>
+          <button
+            class="sp__action sp__action--delete"
+            title="Supprimer"
+            @click="confirmDelete(product.id)"
+          >
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z"
+                clip-rule="evenodd"
+              />
+            </svg>
           </button>
         </div>
 
-        
         <div v-if="deleteId === product.id" class="sp__confirm">
           <p>Supprimer « {{ product.name }} » ?</p>
           <div class="sp__confirm-btns">
@@ -269,7 +315,9 @@ onMounted(async () => {
   font-size: 0.88rem;
   cursor: pointer;
   box-shadow: var(--shadow-glow);
-  transition: transform var(--duration) var(--ease-out), box-shadow var(--duration);
+  transition:
+    transform var(--duration) var(--ease-out),
+    box-shadow var(--duration);
 }
 
 .sp__add-btn:hover {
@@ -354,7 +402,10 @@ onMounted(async () => {
   border: 1px solid var(--color-border);
   background: var(--color-background);
   color: var(--color-heading);
-  transition: background var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast);
+  transition:
+    background var(--duration-fast),
+    color var(--duration-fast),
+    border-color var(--duration-fast);
 }
 
 .sp__btn--primary {

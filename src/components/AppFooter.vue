@@ -24,7 +24,16 @@ const accountLinks = [
       <div class="footer__brand">
         <RouterLink class="footer__logo" :to="{ name: 'Home' }" aria-label="Mini Shop — Accueil">
           <span class="footer__logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
               <path d="M3 6h18" />
               <path d="M16 10a4 4 0 0 1-8 0" />
@@ -39,11 +48,20 @@ const accountLinks = [
         <div class="footer__social">
           <a href="#" class="footer__social-link" aria-label="Facebook">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M13.5 21v-7h2.6l.4-3h-3V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8v3h2.7v7h2.8Z" />
+              <path
+                d="M13.5 21v-7h2.6l.4-3h-3V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8v3h2.7v7h2.8Z"
+              />
             </svg>
           </a>
           <a href="#" class="footer__social-link" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8">
+            <svg
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
               <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
               <circle cx="12" cy="12" r="3.8" />
               <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
@@ -51,12 +69,16 @@ const accountLinks = [
           </a>
           <a href="#" class="footer__social-link" aria-label="X (Twitter)">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M17.9 3H20.7L14.3 10.3 21.8 21h-5.9l-4.6-6-5.3 6H3.2l6.9-7.9L3 3h6l4.2 5.5L17.9 3Zm-1 16.2h1.6L7.3 4.7H5.6L16.9 19.2Z" />
+              <path
+                d="M17.9 3H20.7L14.3 10.3 21.8 21h-5.9l-4.6-6-5.3 6H3.2l6.9-7.9L3 3h6l4.2 5.5L17.9 3Zm-1 16.2h1.6L7.3 4.7H5.6L16.9 19.2Z"
+              />
             </svg>
           </a>
           <a href="#" class="footer__social-link" aria-label="YouTube">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M22.5 7.2a2.6 2.6 0 0 0-1.8-1.9C19 4.8 12 4.8 12 4.8s-7 0-8.7.5A2.6 2.6 0 0 0 1.5 7.2 27.6 27.6 0 0 0 1 12c0 1.6.2 3.2.5 4.8a2.6 2.6 0 0 0 1.8 1.9c1.7.5 8.7.5 8.7.5s7 0 8.7-.5a2.6 2.6 0 0 0 1.8-1.9c.3-1.6.5-3.2.5-4.8s-.2-3.2-.5-4.8ZM9.8 15.3V8.7l6 3.3-6 3.3Z" />
+              <path
+                d="M22.5 7.2a2.6 2.6 0 0 0-1.8-1.9C19 4.8 12 4.8 12 4.8s-7 0-8.7.5A2.6 2.6 0 0 0 1.5 7.2 27.6 27.6 0 0 0 1 12c0 1.6.2 3.2.5 4.8a2.6 2.6 0 0 0 1.8 1.9c1.7.5 8.7.5 8.7.5s7 0 8.7-.5a2.6 2.6 0 0 0 1.8-1.9c.3-1.6.5-3.2.5-4.8s-.2-3.2-.5-4.8ZM9.8 15.3V8.7l6 3.3-6 3.3Z"
+              />
             </svg>
           </a>
         </div>
@@ -89,7 +111,16 @@ const accountLinks = [
         <form class="footer__newsletter" @submit.prevent>
           <input class="footer__newsletter-input" type="email" placeholder="Votre e-mail" />
           <button class="footer__newsletter-btn" type="submit" aria-label="S'abonner">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d="m5 12 14-7-4.5 14L12 13l-7-1Z" />
               <path d="M12 13 19 5" />
             </svg>
@@ -272,7 +303,9 @@ const accountLinks = [
   background: var(--color-background);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
-  transition: border-color var(--duration), box-shadow var(--duration);
+  transition:
+    border-color var(--duration),
+    box-shadow var(--duration);
 }
 
 .footer__newsletter-input:focus {

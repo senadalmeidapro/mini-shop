@@ -1,7 +1,4 @@
-
-
 :root {
-  
   --c-green: #176b52;
   --c-green-dark: #125540;
   --c-green-strong: #0f4938;
@@ -32,7 +29,6 @@
 }
 
 :root {
-  
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);

@@ -30,23 +30,64 @@ onMounted(async () => {
       Vérification en cours...
     </div>
 
-    <div v-else-if="status === 'success'" class="verify__status verify__status--success reveal reveal--d3">
+    <div
+      v-else-if="status === 'success'"
+      class="verify__status verify__status--success reveal reveal--d3"
+    >
       <span class="verify__badge verify__badge--success">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
       </span>
       Votre email a été vérifié avec succès. Vous pouvez maintenant vous connecter.
     </div>
 
     <div v-else class="verify__status verify__status--error reveal reveal--d3">
       <span class="verify__badge verify__badge--error">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <line x1="15" x2="9" y1="9" y2="15" />
+          <line x1="9" x2="15" y1="9" y2="15" />
+        </svg>
       </span>
       Le lien de vérification est invalide ou expiré.
     </div>
 
     <RouterLink class="verify__btn reveal reveal--d4" :to="{ name: 'Login' }">
       Aller à la connexion
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m9 18 6-6-6-6" />
+      </svg>
     </RouterLink>
   </div>
 </template>
@@ -119,7 +160,9 @@ onMounted(async () => {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .verify__btn {

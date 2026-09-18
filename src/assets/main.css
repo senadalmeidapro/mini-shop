@@ -143,44 +143,44 @@ a {
   }
 }
 
-[class*="__shine"],
-[class*="__blob"],
-[class*="__glow"],
-[class*="__decoration"],
-[class*="__empty-icon"] {
+[class*='__shine'],
+[class*='__blob'],
+[class*='__glow'],
+[class*='__decoration'],
+[class*='__empty-icon'] {
   display: none !important;
   animation: none !important;
 }
 
-[class*="__cta"]:not([class*="--ghost"]),
-[class*="__submit"],
-[class*="__btn--primary"],
-[class*="__button--primary"] {
+[class*='__cta']:not([class*='--ghost']),
+[class*='__submit'],
+[class*='__btn--primary'],
+[class*='__button--primary'] {
   background: var(--color-primary) !important;
   box-shadow: none !important;
   border-radius: var(--radius-md) !important;
 }
 
-[class*="__cta"]:not([class*="--ghost"]):hover,
-[class*="__submit"]:hover,
-[class*="__btn--primary"]:hover,
-[class*="__button--primary"]:hover {
+[class*='__cta']:not([class*='--ghost']):hover,
+[class*='__submit']:hover,
+[class*='__btn--primary']:hover,
+[class*='__button--primary']:hover {
   background: var(--color-primary-hover) !important;
   box-shadow: var(--shadow-sm) !important;
   transform: translateY(-1px) !important;
 }
 
-[class*="__badge"],
-[class*="__chip"],
-[class*="__status"],
-[class*="__tag"] {
+[class*='__badge'],
+[class*='__chip'],
+[class*='__status'],
+[class*='__tag'] {
   border-radius: var(--radius-sm) !important;
 }
 
-[class*="__card"]:hover,
-[class*="-card"]:hover,
-[class*="__kpi"]:hover,
-[class*="__stat"]:hover {
+[class*='__card']:hover,
+[class*='-card']:hover,
+[class*='__kpi']:hover,
+[class*='__stat']:hover {
   transform: translateY(-1px) !important;
   box-shadow: var(--shadow-sm) !important;
   border-color: var(--color-border-hover) !important;
@@ -206,7 +206,10 @@ form textarea,
   font: inherit;
   line-height: 1.4;
   box-shadow: none;
-  transition: border-color var(--duration), box-shadow var(--duration), background-color var(--duration);
+  transition:
+    border-color var(--duration),
+    box-shadow var(--duration),
+    background-color var(--duration);
 }
 
 form textarea {
@@ -247,9 +250,9 @@ form label {
 }
 
 button.btn,
-button[class*="__btn"],
-button[class*="__submit"],
-button[class*="__add-btn"],
+button[class*='__btn'],
+button[class*='__submit'],
+button[class*='__add-btn'],
 .user-manager__toolbar button,
 .user-list__toolbar button {
   min-height: 2.55rem;
@@ -261,58 +264,62 @@ button[class*="__add-btn"],
   font-weight: 700;
   cursor: pointer;
   box-shadow: none;
-  transition: background-color var(--duration), border-color var(--duration), color var(--duration), box-shadow var(--duration);
+  transition:
+    background-color var(--duration),
+    border-color var(--duration),
+    color var(--duration),
+    box-shadow var(--duration);
 }
 
 button.btn--primary,
-button[class*="__btn--primary"],
-button[class*="__submit"],
-button[class*="__add-btn"] {
+button[class*='__btn--primary'],
+button[class*='__submit'],
+button[class*='__add-btn'] {
   background: var(--color-primary) !important;
   color: var(--color-primary-contrast) !important;
 }
 
 button.btn--primary:hover,
-button[class*="__btn--primary"]:hover,
-button[class*="__submit"]:hover,
-button[class*="__add-btn"]:hover {
+button[class*='__btn--primary']:hover,
+button[class*='__submit']:hover,
+button[class*='__add-btn']:hover {
   background: var(--color-primary-hover) !important;
   box-shadow: var(--shadow-sm) !important;
 }
 
 button.btn--ghost,
-button[class*="__btn--ghost"] {
+button[class*='__btn--ghost'] {
   border-color: var(--color-border) !important;
   background: var(--color-background) !important;
   color: var(--color-text) !important;
 }
 
 button.btn--ghost:hover,
-button[class*="__btn--ghost"]:hover {
+button[class*='__btn--ghost']:hover {
   border-color: var(--color-primary) !important;
   background: var(--color-primary-soft) !important;
   color: var(--color-primary) !important;
 }
 
 button.btn--danger,
-button[class*="__btn--danger"] {
+button[class*='__btn--danger'] {
   background: var(--color-danger) !important;
   color: var(--color-danger-contrast) !important;
 }
 
 button.btn--danger:hover,
-button[class*="__btn--danger"]:hover {
+button[class*='__btn--danger']:hover {
   background: var(--color-danger-hover) !important;
 }
 
 button.btn--sm,
-button[class*="__action"] {
+button[class*='__action'] {
   min-height: 2.15rem;
   padding: 0.4rem 0.65rem;
   font-size: 0.76rem;
 }
 
-[class*="__table-wrap"] {
+[class*='__table-wrap'] {
   overflow-x: auto;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -320,14 +327,14 @@ button[class*="__action"] {
   box-shadow: var(--shadow-xs);
 }
 
-table[class*="__table"] {
+table[class*='__table'] {
   width: 100%;
   min-width: 620px;
   border-collapse: collapse;
   font-size: 0.84rem;
 }
 
-table[class*="__table"] th {
+table[class*='__table'] th {
   padding: 0.72rem 0.9rem;
   background: var(--color-background-soft);
   border-bottom: 1px solid var(--color-border);
@@ -340,22 +347,22 @@ table[class*="__table"] th {
   white-space: nowrap;
 }
 
-table[class*="__table"] td {
+table[class*='__table'] td {
   padding: 0.78rem 0.9rem;
   border-bottom: 1px solid var(--color-border);
   color: var(--color-heading);
   vertical-align: middle;
 }
 
-table[class*="__table"] tbody tr:last-child td {
+table[class*='__table'] tbody tr:last-child td {
   border-bottom: 0;
 }
 
-table[class*="__table"] tbody tr:hover {
+table[class*='__table'] tbody tr:hover {
   background: var(--color-primary-soft) !important;
 }
 
-[class*="__actions"] {
+[class*='__actions'] {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -601,12 +608,12 @@ table[class*="__table"] tbody tr:hover {
     min-height: 2.75rem;
   }
 
-  [class*="__table-wrap"] {
+  [class*='__table-wrap'] {
     margin-inline: -0.25rem;
     border-radius: var(--radius-md);
   }
 
-  table[class*="__table"] {
+  table[class*='__table'] {
     min-width: 560px;
   }
 }
@@ -661,9 +668,9 @@ table[class*="__table"] tbody tr:hover {
   }
 
   button.btn,
-  button[class*="__btn"],
-  button[class*="__submit"],
-  button[class*="__add-btn"] {
+  button[class*='__btn'],
+  button[class*='__submit'],
+  button[class*='__add-btn'] {
     min-height: 2.75rem;
   }
 }

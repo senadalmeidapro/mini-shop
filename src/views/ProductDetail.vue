@@ -19,7 +19,6 @@ async function loadProduct(id: string) {
 async function addProduct() {
   const ok = await cartStore.addItem(route.params.id as string, quantity.value);
   if (ok) {
-    
     await syncAfterCartChange();
   }
 }
@@ -40,7 +39,6 @@ watch(
 
 <template>
   <div v-if="productStore.product" class="detail">
-    
     <div class="detail__visual reveal">
       <div
         class="detail__media"
@@ -87,7 +85,6 @@ watch(
       <div class="detail__blob" aria-hidden="true" />
     </div>
 
-    
     <div class="detail__content reveal reveal--d1">
       <span class="detail__eyebrow">Détail produit</span>
       <h1 class="detail__title">{{ productStore.product.name }}</h1>
@@ -125,7 +122,9 @@ watch(
           >
             <circle cx="8" cy="21" r="1" />
             <circle cx="19" cy="21" r="1" />
-            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+            <path
+              d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+            />
           </svg>
           Commander
         </button>
@@ -133,7 +132,6 @@ watch(
     </div>
   </div>
 
-  
   <div v-else class="detail__loading">
     <span class="detail__spinner" aria-hidden="true" />
     <span>Chargement...</span>
@@ -141,7 +139,6 @@ watch(
 </template>
 
 <style scoped>
-
 .detail {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);

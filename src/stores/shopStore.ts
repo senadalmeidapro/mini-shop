@@ -58,7 +58,10 @@ export const useShopStore = defineStore('shops', () => {
     }
   }
 
-  async function updateShop(id: string, data: Partial<{ name: string; slug: string; description?: string; isActive?: boolean }>) {
+  async function updateShop(
+    id: string,
+    data: Partial<{ name: string; slug: string; description?: string; isActive?: boolean }>,
+  ) {
     try {
       const response = await http.patch<Shop>(ENDPOINTS.shops.update(id), data);
 

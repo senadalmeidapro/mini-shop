@@ -30,7 +30,20 @@ const initials = computed(() => {
 
       <div class="profile__card reveal reveal--d3">
         <span class="profile__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect width="20" height="16" x="2" y="4" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
         </span>
         <div class="profile__info">
           <span class="profile__info-label">Email</span>
@@ -40,7 +53,20 @@ const initials = computed(() => {
 
       <div class="profile__card reveal reveal--d4">
         <span class="profile__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
         </span>
         <div class="profile__info">
           <span class="profile__info-label">Rôle</span>
@@ -49,7 +75,9 @@ const initials = computed(() => {
       </div>
     </template>
 
-    <p v-else class="profile__empty reveal reveal--d2">Vous devez être connecté pour voir votre profil.</p>
+    <p v-else class="profile__empty reveal reveal--d2">
+      Vous devez être connecté pour voir votre profil.
+    </p>
   </div>
 </template>
 

@@ -25,7 +25,9 @@ onMounted(async () => {
     <div class="notifications__header">
       <div class="notifications__title-wrap">
         <h1>Notifications</h1>
-        <span v-if="notifications.length" class="notifications__count">{{ notifications.length }}</span>
+        <span v-if="notifications.length" class="notifications__count">{{
+          notifications.length
+        }}</span>
       </div>
       <button
         v-if="notifications.length"
@@ -34,7 +36,13 @@ onMounted(async () => {
         @click="notificationStore.markAllAsRead"
       >
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M4 9l4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path
+            d="M4 9l4 4 8-8"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
         Tout marquer comme lu
       </button>
@@ -50,8 +58,18 @@ onMounted(async () => {
         <span class="notification__dot" aria-hidden="true"></span>
         <div class="notification__badge" aria-hidden="true">
           <svg viewBox="0 0 20 20" fill="none">
-            <path d="M10 3a7 7 0 014.9 11.9c.14.84-.43 1.6-1.4 1.6H6.5c-.97 0-1.54-.76-1.4-1.6A7 7 0 0110 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M8.5 16.5a1.5 1.5 0 003 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path
+              d="M10 3a7 7 0 014.9 11.9c.14.84-.43 1.6-1.4 1.6H6.5c-.97 0-1.54-.76-1.4-1.6A7 7 0 0110 3z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M8.5 16.5a1.5 1.5 0 003 0"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
           </svg>
         </div>
         <div class="notification__body">
@@ -75,9 +93,14 @@ onMounted(async () => {
 
     <div v-else class="notifications__empty">
       <svg class="notifications__empty-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/>
-        <path d="M15.5 26c1.2-4 4.4-6 8.5-6s7.3 2 8.5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M24 14v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2" />
+        <path
+          d="M15.5 26c1.2-4 4.4-6 8.5-6s7.3 2 8.5 6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path d="M24 14v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
       </svg>
       Aucune notification pour le moment.
     </div>
@@ -85,7 +108,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-
 .notifications__header {
   display: flex;
   align-items: center;

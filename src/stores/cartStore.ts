@@ -11,7 +11,9 @@ export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>([]);
 
   const itemCount = computed(() => items.value.reduce((sum, item) => sum + item.quantity, 0));
-  const totalPerItem = computed(()=> items.value.map((item)=>({...item, total: item.quantity * item.product.price})))
+  const totalPerItem = computed(() =>
+    items.value.map((item) => ({ ...item, total: item.quantity * item.product.price })),
+  );
   const total = computed(() =>
     items.value.reduce((sum, item) => sum + item.quantity * item.product.price, 0),
   );

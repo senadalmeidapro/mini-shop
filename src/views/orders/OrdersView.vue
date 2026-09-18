@@ -10,7 +10,6 @@ const tab = ref<Tab>('cart');
 </script>
 <template>
   <div class="orders-layout">
-    
     <header class="orders-layout__header reveal">
       <div class="orders-layout__glow" aria-hidden="true" />
 
@@ -32,19 +31,15 @@ const tab = ref<Tab>('cart');
       </span>
 
       <div class="orders-layout__heading">
-        <h1 class="orders-layout__title">
-          Mes <span class="grad-text">achats</span>
-        </h1>
+        <h1 class="orders-layout__title">Mes <span class="grad-text">achats</span></h1>
         <p class="orders-layout__subtitle">
           Gérez votre panier et suivez vos commandes en toute simplicité.
         </p>
       </div>
     </header>
 
-    
     <OrdersNav v-model:tab="tab" />
 
-    
     <div class="orders-container reveal reveal--d1">
       <KeepAlive>
         <component :is="tab === 'cart' ? CartList : OrderList" />
@@ -54,7 +49,6 @@ const tab = ref<Tab>('cart');
 </template>
 
 <style scoped>
-
 .orders-layout {
   display: flex;
   flex-direction: column;

@@ -53,7 +53,6 @@ export function setupRouterGuards(router: Router): void {
     }
 
     if (to.meta.requiresSupplier) {
-      
       if (role !== 'admin') {
         const supplierStore = useSupplierStore();
         if (!supplierStore.isLoaded) {

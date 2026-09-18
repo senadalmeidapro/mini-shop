@@ -95,18 +95,22 @@ function statusClass(status: string) {
 </script>
 <template>
   <div class="sd">
-    
     <div v-if="supplierStore.loading" class="sd__loader">
       <span class="sd__spinner" />
     </div>
 
-    
-    <div
-      v-else-if="!supplierStore.hasShop"
-      class="sd__empty"
-    >
+    <div v-else-if="!supplierStore.hasShop" class="sd__empty">
       <span class="sd__empty-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          viewBox="0 0 24 24"
+          width="36"
+          height="36"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
           <path d="M9 22V12h6v10" />
         </svg>
@@ -137,14 +141,12 @@ function statusClass(status: string) {
       </RouterLink>
     </div>
 
-    
     <template v-else-if="supplierStore.dashboard">
       <div class="sd__header reveal">
         <h2>Tableau de bord</h2>
         <p class="sd__sub">Vue d'ensemble de votre boutique</p>
       </div>
 
-      
       <div class="sd__shop reveal reveal--d1">
         <span class="sd__shop-avatar" aria-hidden="true">
           {{ supplierStore.dashboard.shop.name.charAt(0).toUpperCase() }}
@@ -155,21 +157,42 @@ function statusClass(status: string) {
         </div>
         <span
           class="sd__shop-status"
-          :class="supplierStore.dashboard.shop.isActive ? 'sd__shop-status--active' : 'sd__shop-status--inactive'"
+          :class="
+            supplierStore.dashboard.shop.isActive
+              ? 'sd__shop-status--active'
+              : 'sd__shop-status--inactive'
+          "
         >
           {{ supplierStore.dashboard.shop.isActive ? 'Active' : 'Inactive' }}
         </span>
         <div class="sd__shop-revenue">
           <span class="sd__shop-revenue-label">Revenu total</span>
-          <strong class="sd__shop-revenue-value">{{ formatPrice(supplierStore.dashboard.revenue) }} FCFA</strong>
+          <strong class="sd__shop-revenue-value"
+            >{{ formatPrice(supplierStore.dashboard.revenue) }} FCFA</strong
+          >
         </div>
       </div>
 
-      
       <div class="sd__kpis">
         <div class="sd__kpi reveal reveal--d2">
           <span class="sd__kpi-icon sd__kpi-icon--blue">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m7.5 4.27 9 5.15" />
+              <path
+                d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+              />
+              <path d="m3.3 7 8.7 5 8.7-5" />
+              <path d="M12 22V12" />
+            </svg>
           </span>
           <div class="sd__kpi-content">
             <strong>{{ supplierStore.dashboard.products.total }}</strong>
@@ -178,7 +201,20 @@ function statusClass(status: string) {
         </div>
         <div class="sd__kpi reveal reveal--d3">
           <span class="sd__kpi-icon sd__kpi-icon--warning">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+              <path d="M12 9v4" />
+              <path d="M12 17h.01" />
+            </svg>
           </span>
           <div class="sd__kpi-content">
             <strong>{{ supplierStore.dashboard.products.lowStock.length }}</strong>
@@ -187,7 +223,19 @@ function statusClass(status: string) {
         </div>
         <div class="sd__kpi reveal reveal--d4">
           <span class="sd__kpi-icon sd__kpi-icon--success">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" x2="12" y1="2" y2="22" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
           </span>
           <div class="sd__kpi-content">
             <strong>{{ formatPrice(supplierStore.dashboard.revenue) }}<small> FCFA</small></strong>
@@ -196,7 +244,19 @@ function statusClass(status: string) {
         </div>
         <div class="sd__kpi reveal reveal--d5">
           <span class="sd__kpi-icon sd__kpi-icon--danger">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+              <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+            </svg>
           </span>
           <div class="sd__kpi-content">
             <strong>{{ supplierStore.dashboard.notifications.unread }}</strong>
@@ -205,21 +265,32 @@ function statusClass(status: string) {
         </div>
       </div>
 
-      
       <div class="sd__grid">
-        
         <section class="sd__card reveal reveal--d5">
           <div class="sd__card-head">
             <h4 class="sd__card-title">
-              <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd"/></svg>
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
               Produits en alerte stock
             </h4>
             <RouterLink class="sd__card-more" :to="{ name: 'Supplier Products' }">Gérer</RouterLink>
           </div>
           <ul v-if="supplierStore.dashboard.products.lowStock.length" class="sd__alert-list">
-            <li v-for="product in supplierStore.dashboard.products.lowStock" :key="product.id" class="sd__alert-item">
+            <li
+              v-for="product in supplierStore.dashboard.products.lowStock"
+              :key="product.id"
+              class="sd__alert-item"
+            >
               <span class="sd__alert-name">{{ product.name }}</span>
-              <span class="sd__alert-stock" :class="product.stock === 0 ? 'sd__alert-stock--out' : 'sd__alert-stock--low'">
+              <span
+                class="sd__alert-stock"
+                :class="product.stock === 0 ? 'sd__alert-stock--out' : 'sd__alert-stock--low'"
+              >
                 {{ product.stock }} en stock
               </span>
             </li>
@@ -227,14 +298,24 @@ function statusClass(status: string) {
           <p v-else class="sd__empty-text">Tout est approvisionné !</p>
         </section>
 
-        
         <section class="sd__card reveal reveal--d6">
           <h4 class="sd__card-title">
-            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M10 2a6 6 0 0 0-6 6c0 1.887-.454 3.665-1.257 5.234a.75.75 0 0 0 .515 1.076 32.91 32.91 0 0 0 3.256.508 3.5 3.5 0 0 0 6.972 0 32.903 32.903 0 0 0 3.256-.508.75.75 0 0 0 .515-1.076A11.448 11.448 0 0 1 16 8a6 6 0 0 0-6-6ZM8.05 14.943a33.54 33.54 0 0 0 3.9 0 2 2 0 0 1-3.9 0Z" clip-rule="evenodd"/></svg>
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M10 2a6 6 0 0 0-6 6c0 1.887-.454 3.665-1.257 5.234a.75.75 0 0 0 .515 1.076 32.91 32.91 0 0 0 3.256.508 3.5 3.5 0 0 0 6.972 0 32.903 32.903 0 0 0 3.256-.508.75.75 0 0 0 .515-1.076A11.448 11.448 0 0 1 16 8a6 6 0 0 0-6-6ZM8.05 14.943a33.54 33.54 0 0 0 3.9 0 2 2 0 0 1-3.9 0Z"
+                clip-rule="evenodd"
+              />
+            </svg>
             Notifications récentes
           </h4>
           <ul v-if="supplierStore.dashboard.notifications.recent.length" class="sd__notif-list">
-            <li v-for="notif in supplierStore.dashboard.notifications.recent" :key="notif.id" class="sd__notif-item" :class="{ 'sd__notif-item--unread': !notif.read }">
+            <li
+              v-for="notif in supplierStore.dashboard.notifications.recent"
+              :key="notif.id"
+              class="sd__notif-item"
+              :class="{ 'sd__notif-item--unread': !notif.read }"
+            >
               <span v-if="!notif.read" class="sd__notif-dot" />
               <div class="sd__notif-body">
                 <strong class="sd__notif-title">{{ notif.title }}</strong>
@@ -247,10 +328,15 @@ function statusClass(status: string) {
         </section>
       </div>
 
-      
       <section class="sd__card reveal reveal--d6">
         <h4 class="sd__card-title">
-          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M1 3.25A2.25 2.25 0 0 1 3.25 1h13.5A2.25 2.25 0 0 1 19 3.25v4.486a2.25 2.25 0 0 1-.659 1.591L11.56 13.03a2.25 2.25 0 0 1-3.12 0L1.659 9.286A2.25 2.25 0 0 1 1 7.736V3.25Zm2.25-.75a.75.75 0 0 0-.75.75v4.486l.218.164a.75.75 0 0 0 .664 0l7.705-5.78a.75.75 0 0 0 .224-.536V3.25a.75.75 0 0 0-.75-.75H3.25Z" clip-rule="evenodd"/></svg>
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M1 3.25A2.25 2.25 0 0 1 3.25 1h13.5A2.25 2.25 0 0 1 19 3.25v4.486a2.25 2.25 0 0 1-.659 1.591L11.56 13.03a2.25 2.25 0 0 1-3.12 0L1.659 9.286A2.25 2.25 0 0 1 1 7.736V3.25Zm2.25-.75a.75.75 0 0 0-.75.75v4.486l.218.164a.75.75 0 0 0 .664 0l7.705-5.78a.75.75 0 0 0 .224-.536V3.25a.75.75 0 0 0-.75-.75H3.25Z"
+              clip-rule="evenodd"
+            />
+          </svg>
           Commandes par statut
         </h4>
         <div class="sd__status-grid">
@@ -263,15 +349,24 @@ function statusClass(status: string) {
             {{ statusLabel(status) }}
             <span class="sd__status-count">{{ count }}</span>
           </span>
-          <span v-if="!Object.keys(supplierStore.dashboard.ordersByStatus).length" class="sd__empty-text">Aucune commande.</span>
+          <span
+            v-if="!Object.keys(supplierStore.dashboard.ordersByStatus).length"
+            class="sd__empty-text"
+            >Aucune commande.</span
+          >
         </div>
       </section>
 
-      
       <section class="sd__card reveal reveal--d7">
         <div class="sd__card-head">
           <h4 class="sd__card-title">
-            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M1 3.25A2.25 2.25 0 0 1 3.25 1h13.5A2.25 2.25 0 0 1 19 3.25v4.486a2.25 2.25 0 0 1-.659 1.591L11.56 13.03a2.25 2.25 0 0 1-3.12 0L1.659 9.286A2.25 2.25 0 0 1 1 7.736V3.25Zm2.25-.75a.75.75 0 0 0-.75.75v4.486l.218.164a.75.75 0 0 0 .664 0l7.705-5.78a.75.75 0 0 0 .224-.536V3.25a.75.75 0 0 0-.75-.75H3.25ZM2.25 7v5.677a.75.75 0 0 0 .75.75h13.5a.75.75 0 0 0 .75-.75V7H2.25Z" clip-rule="evenodd"/></svg>
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M1 3.25A2.25 2.25 0 0 1 3.25 1h13.5A2.25 2.25 0 0 1 19 3.25v4.486a2.25 2.25 0 0 1-.659 1.591L11.56 13.03a2.25 2.25 0 0 1-3.12 0L1.659 9.286A2.25 2.25 0 0 1 1 7.736V3.25Zm2.25-.75a.75.75 0 0 0-.75.75v4.486l.218.164a.75.75 0 0 0 .664 0l7.705-5.78a.75.75 0 0 0 .224-.536V3.25a.75.75 0 0 0-.75-.75H3.25ZM2.25 7v5.677a.75.75 0 0 0 .75.75h13.5a.75.75 0 0 0 .75-.75V7H2.25Z"
+                clip-rule="evenodd"
+              />
+            </svg>
             Commandes récentes
           </h4>
           <RouterLink class="sd__card-more" :to="{ name: 'Supplier Orders' }">Tout voir</RouterLink>
@@ -333,7 +428,9 @@ function statusClass(status: string) {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .sd__empty {

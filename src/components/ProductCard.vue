@@ -7,7 +7,10 @@ defineProps<{ product: Product }>();
 </script>
 <template>
   <article class="product-card">
-    <RouterLink class="product-card__top" :to="{ name: 'Product Details', params: { id: product.id } }">
+    <RouterLink
+      class="product-card__top"
+      :to="{ name: 'Product Details', params: { id: product.id } }"
+    >
       <img
         v-if="product.imageUrl"
         class="product-card__image"
@@ -19,7 +22,10 @@ defineProps<{ product: Product }>();
     </RouterLink>
 
     <div class="product-card__body">
-      <RouterLink class="product-card__name" :to="{ name: 'Product Details', params: { id: product.id } }">
+      <RouterLink
+        class="product-card__name"
+        :to="{ name: 'Product Details', params: { id: product.id } }"
+      >
         {{ product.name }}
       </RouterLink>
       <p class="product-card__desc">{{ product.description }}</p>

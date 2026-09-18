@@ -22,10 +22,12 @@ window.addEventListener('auth:expired', () => {
 
 window.addEventListener('auth:refreshed', (event) => {
   const store = useAuthStore(pinia);
-  const { accessToken, refreshToken } = (event as CustomEvent<{
-    accessToken: string;
-    refreshToken: string;
-  }>).detail;
+  const { accessToken, refreshToken } = (
+    event as CustomEvent<{
+      accessToken: string;
+      refreshToken: string;
+    }>
+  ).detail;
   store.accessToken = accessToken;
   store.refreshToken = refreshToken;
 });

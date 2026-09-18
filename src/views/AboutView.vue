@@ -26,25 +26,27 @@ const stats = [
 
 <template>
   <div class="about">
-    
     <section class="about-hero">
       <div class="about-hero__glow" aria-hidden="true"></div>
-      <h1 class="about-hero__title reveal">
-        A propos de <span class="grad-text">Mini Shop</span>
-      </h1>
+      <h1 class="about-hero__title reveal">A propos de <span class="grad-text">Mini Shop</span></h1>
       <p class="about-hero__subtitle reveal reveal--d1">
         Nous construisons une expérience d'achat en ligne simple, fiable et accessible à tous.
       </p>
     </section>
 
-    
     <section class="about-story">
       <div class="about-story__content reveal">
         <span class="about-story__label">
           <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M12 8l-3 5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="14" cy="6" r="1" fill="currentColor"/>
+            <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" stroke="currentColor" stroke-width="1.5" />
+            <path
+              d="M12 8l-3 5h3"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle cx="14" cy="6" r="1" fill="currentColor" />
           </svg>
           Notre histoire
         </span>
@@ -61,21 +63,47 @@ const stats = [
       </div>
     </section>
 
-    
     <section class="about-values">
       <h2 class="reveal">Nos valeurs</h2>
       <div class="about-values__grid">
-        <div v-for="(val, idx) in values" :key="val.title" class="value-card reveal" :class="`reveal--d${idx + 1}`">
+        <div
+          v-for="(val, idx) in values"
+          :key="val.title"
+          class="value-card reveal"
+          :class="`reveal--d${idx + 1}`"
+        >
           <span class="value-card__icon" aria-hidden="true">
             <svg v-if="val.title === 'Qualité'" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3l2.2 5.1 5.5.5-4.2 3.7 1.3 5.4L12 15l-4.8 2.7 1.3-5.4-4.2-3.7 5.5-.5L12 3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M12 3l2.2 5.1 5.5.5-4.2 3.7 1.3 5.4L12 15l-4.8 2.7 1.3-5.4-4.2-3.7 5.5-.5L12 3z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
             <svg v-else-if="val.title === 'Confiance'" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M9 12l2 2 4-4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
             <svg v-else viewBox="0 0 24 24" fill="none">
-              <path d="M12 21s-7-4.4-7-10a4.5 4.5 0 018-2.8A4.5 4.5 0 0119 11c0 5.6-7 10-7 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path
+                d="M12 21s-7-4.4-7-10a4.5 4.5 0 018-2.8A4.5 4.5 0 0119 11c0 5.6-7 10-7 10z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
             </svg>
           </span>
           <h3 class="value-card__title">{{ val.title }}</h3>
@@ -84,11 +112,15 @@ const stats = [
       </div>
     </section>
 
-    
     <section class="about-stats">
       <h2 class="reveal">Mini Shop en chiffres</h2>
       <div class="about-stats__grid">
-        <div v-for="(stat, idx) in stats" :key="stat.label" class="stat-card reveal" :class="`reveal--d${idx + 1}`">
+        <div
+          v-for="(stat, idx) in stats"
+          :key="stat.label"
+          class="stat-card reveal"
+          :class="`reveal--d${idx + 1}`"
+        >
           <strong class="stat-card__value">{{ stat.value }}</strong>
           <span class="stat-card__label">{{ stat.label }}</span>
           <span class="stat-card__bar" aria-hidden="true"></span>
@@ -96,7 +128,6 @@ const stats = [
       </div>
     </section>
 
-    
     <section class="about-cta reveal">
       <div class="about-cta__shine" aria-hidden="true"></div>
       <div class="about-cta__blob" aria-hidden="true"></div>
@@ -105,7 +136,13 @@ const stats = [
       <RouterLink class="about-cta__btn" :to="{ name: 'Product List' }">
         Voir les produits
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M5 10h10M11 6l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path
+            d="M5 10h10M11 6l4 4-4 4"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </RouterLink>
     </section>
@@ -113,7 +150,6 @@ const stats = [
 </template>
 
 <style scoped>
-
 .about-hero {
   position: relative;
   text-align: center;

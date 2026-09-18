@@ -31,10 +31,7 @@ export const useOrderStore = defineStore('orders', () => {
     }
   }
 
-  async function updateOrder(
-    id: string,
-    data: { status?: OrderStatus; trackingNumber?: string },
-  ) {
+  async function updateOrder(id: string, data: { status?: OrderStatus; trackingNumber?: string }) {
     try {
       const response = await http.patch<Order>(ENDPOINTS.orders.update(id), data);
 

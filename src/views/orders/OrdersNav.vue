@@ -57,7 +57,9 @@ function select(tab: 'cart' | 'orders') {
         stroke-linejoin="round"
         aria-hidden="true"
       >
-        <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+        <path
+          d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+        />
         <path d="M3.3 7.23 12 12l8.7-4.77" />
         <path d="M12 22V12" />
       </svg>
@@ -67,7 +69,6 @@ function select(tab: 'cart' | 'orders') {
 </template>
 
 <style scoped>
-
 .order-nav {
   display: inline-flex;
   gap: 0.35rem;

@@ -47,11 +47,14 @@ export const useUserStore = defineStore('users', () => {
       users.value?.items.push(response.data);
       toast.success('Utilisateur créé');
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de créer l\'utilisateur');
+      handleApiError(error, toast, "Impossible de créer l'utilisateur");
     }
   }
 
-  async function updateUser(id: string, data: { email?: string; password?: string; fullName?: string }) {
+  async function updateUser(
+    id: string,
+    data: { email?: string; password?: string; fullName?: string },
+  ) {
     try {
       const response = await http.patch<User>(ENDPOINTS.users.update(id), data);
 
@@ -85,7 +88,7 @@ export const useUserStore = defineStore('users', () => {
 
       toast.success('Utilisateur supprimé');
     } catch (error) {
-      handleApiError(error, toast, 'Impossible de supprimer l\'utilisateur');
+      handleApiError(error, toast, "Impossible de supprimer l'utilisateur");
     }
   }
 

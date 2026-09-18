@@ -61,14 +61,12 @@ async function cancelOrder(orderId: string) {
 
   const ok = await paymentStore.cancelPayment(paymentId);
   if (ok) {
-    
     await syncAfterCancel();
   }
 }
 </script>
 <template>
   <div class="orders">
-    
     <header class="orders__header reveal">
       <span class="orders__logo" aria-hidden="true">
         <svg
@@ -81,7 +79,9 @@ async function cancelOrder(orderId: string) {
           stroke-linecap="round"
           stroke-linejoin="round"
         >
-          <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+          <path
+            d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+          />
           <path d="M3.3 7.23 12 12l8.7-4.77" />
           <path d="M12 22V12" />
         </svg>
@@ -93,7 +93,6 @@ async function cancelOrder(orderId: string) {
       </div>
     </header>
 
-    
     <div v-if="orders.length === 0" class="orders__empty">
       <span class="orders__empty-icon" aria-hidden="true">
         <svg
@@ -113,7 +112,6 @@ async function cancelOrder(orderId: string) {
       <strong>Aucune commande</strong>
     </div>
 
-    
     <div v-for="order in orders" :key="order.id" class="order">
       <div class="order__main">
         <div class="order__row">
@@ -134,10 +132,7 @@ async function cancelOrder(orderId: string) {
             Commande #{{ order.id }}
           </span>
 
-          <span
-            class="order__status"
-            :class="`order__status--${order.status}`"
-          >
+          <span class="order__status" :class="`order__status--${order.status}`">
             <span class="order__dot" aria-hidden="true" />
             {{ statusLabel(order.status) }}
           </span>
@@ -154,7 +149,9 @@ async function cancelOrder(orderId: string) {
               stroke-linejoin="round"
               aria-hidden="true"
             >
-              <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+              <path
+                d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+              />
               <path d="M3.3 7.23 12 12l8.7-4.77" />
               <path d="M12 22V12" />
             </svg>
@@ -226,7 +223,6 @@ async function cancelOrder(orderId: string) {
 </template>
 
 <style scoped>
-
 .orders {
   display: flex;
   flex-direction: column;

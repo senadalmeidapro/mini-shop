@@ -1,12 +1,7 @@
 export type Role = 'user' | 'admin' | 'supplier';
 
 export type OrderStatus =
-  | 'pending'
-  | 'confirmed'
-  | 'shipped'
-  | 'delivered'
-  | 'cancelled'
-  | 'completed';
+  'pending' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled' | 'completed';
 
 export type PaymentStatus = 'pending' | 'succeeded' | 'failed' | 'cancelled';
 

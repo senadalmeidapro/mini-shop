@@ -96,7 +96,7 @@ export const usePaymentStore = defineStore('payments', () => {
       toast.success('Paiement annulé');
       return true;
     } catch (error) {
-      handleApiError(error, toast, 'Impossible d\'annuler le paiement');
+      handleApiError(error, toast, "Impossible d'annuler le paiement");
       return false;
     }
   }

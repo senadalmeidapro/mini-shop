@@ -22,29 +22,29 @@ function handleSubmit() {
 
 <template>
   <div class="contact">
-    
     <section class="contact-hero">
       <div class="contact-hero__glow" aria-hidden="true"></div>
-      <h1 class="contact-hero__title reveal">
-        Nous <span class="grad-text">contacter</span>
-      </h1>
+      <h1 class="contact-hero__title reveal">Nous <span class="grad-text">contacter</span></h1>
       <p class="contact-hero__subtitle reveal reveal--d1">
         Une question, une suggestion ou un problème ? Notre équipe vous répond dans les meilleurs
         délais.
       </p>
     </section>
 
-    
     <section class="contact-body">
-      
       <aside class="contact-info reveal">
         <h2>Coordonnées</h2>
 
         <div class="contact-info__item">
           <span class="contact-info__icon" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none">
-              <path d="M10 18s-6-4.7-6-9a6 6 0 1112 0c0 4.3-6 9-6 9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              <circle cx="10" cy="9" r="2.2" stroke="currentColor" stroke-width="1.5"/>
+              <path
+                d="M10 18s-6-4.7-6-9a6 6 0 1112 0c0 4.3-6 9-6 9z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <circle cx="10" cy="9" r="2.2" stroke="currentColor" stroke-width="1.5" />
             </svg>
           </span>
           <div class="contact-info__text">
@@ -56,8 +56,22 @@ function handleSubmit() {
         <div class="contact-info__item">
           <span class="contact-info__icon" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none">
-              <rect x="2.5" y="4.5" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M3 6l7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect
+                x="2.5"
+                y="4.5"
+                width="15"
+                height="11"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M3 6l7 5 7-5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </span>
           <div class="contact-info__text">
@@ -69,7 +83,13 @@ function handleSubmit() {
         <div class="contact-info__item">
           <span class="contact-info__icon" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none">
-              <path d="M4 3h3l1.5 4L6.5 8.5a10 10 0 005 5L13 12l4 1.5v3a1.5 1.5 0 01-1.6 1.5A14 14 0 012.5 4.6 1.5 1.5 0 014 3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M4 3h3l1.5 4L6.5 8.5a10 10 0 005 5L13 12l4 1.5v3a1.5 1.5 0 01-1.6 1.5A14 14 0 012.5 4.6 1.5 1.5 0 014 3z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </span>
           <div class="contact-info__text">
@@ -81,8 +101,13 @@ function handleSubmit() {
         <div class="contact-info__item">
           <span class="contact-info__icon" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none">
-              <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5" />
+              <path
+                d="M10 5.5V10l3 2"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
             </svg>
           </span>
           <div class="contact-info__text">
@@ -92,7 +117,6 @@ function handleSubmit() {
         </div>
       </aside>
 
-      
       <form class="contact-form reveal reveal--d1" @submit.prevent="handleSubmit">
         <div class="contact-form__row">
           <div class="contact-form__field">
@@ -136,8 +160,13 @@ function handleSubmit() {
         <button type="submit" class="contact-form__submit">
           Envoyer le message
           <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M3 10l13-5-3 12-3-5-5-2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M10 12l6-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path
+              d="M3 10l13-5-3 12-3-5-5-2z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linejoin="round"
+            />
+            <path d="M10 12l6-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
           </svg>
         </button>
       </form>
@@ -146,7 +175,6 @@ function handleSubmit() {
 </template>
 
 <style scoped>
-
 .contact-hero {
   position: relative;
   text-align: center;

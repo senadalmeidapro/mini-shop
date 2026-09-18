@@ -38,7 +38,6 @@ async function pay() {
     });
 
     if (ok) {
-      
       await syncAfterCheckout();
     }
   } finally {
@@ -48,7 +47,6 @@ async function pay() {
 </script>
 <template>
   <div class="cart">
-    
     <header class="cart__header reveal">
       <span class="cart__logo" aria-hidden="true">
         <svg
@@ -77,7 +75,6 @@ async function pay() {
       <span v-if="items.length" class="cart__chip">{{ cartStore.itemCount }}</span>
     </header>
 
-    
     <div v-if="items.length === 0" class="cart__empty">
       <span class="cart__empty-icon" aria-hidden="true">
         <svg
@@ -92,13 +89,14 @@ async function pay() {
         >
           <circle cx="8" cy="21" r="1" />
           <circle cx="19" cy="21" r="1" />
-          <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+          <path
+            d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+          />
         </svg>
       </span>
       <strong>Votre panier est vide</strong>
     </div>
 
-    
     <div v-for="item in items" :key="item.id" class="cart-item">
       <span class="cart-item__media" aria-hidden="true">
         <svg
@@ -181,7 +179,6 @@ async function pay() {
       </div>
     </div>
 
-    
     <div v-if="items.length > 0" class="cart-footer">
       <div class="cart-footer__total">
         <span class="cart-footer__label">Total</span>
@@ -228,7 +225,6 @@ async function pay() {
 </template>
 
 <style scoped>
-
 .cart {
   display: flex;
   flex-direction: column;

@@ -52,8 +52,20 @@ async function handleSubmit() {
         <input id="password" v-model="form.password" type="password" required />
         <RouterLink class="reset-password-request__link" :to="{ name: 'ResetPasswordRequest' }">
           Mot de passe oublié ?
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </RouterLink>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </RouterLink>
       </div>
 
       <button class="login__submit reveal reveal--d5" type="submit" :disabled="loading">
@@ -66,7 +78,19 @@ async function handleSubmit() {
       Pas encore de compte ?
       <RouterLink class="login__link" :to="{ name: 'Register' }">
         Créer un compte
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m9 18 6-6-6-6" />
+        </svg>
       </RouterLink>
     </p>
   </div>
@@ -167,7 +191,9 @@ async function handleSubmit() {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .login__switch {
@@ -187,7 +213,7 @@ async function handleSubmit() {
   transition: color var(--duration-fast);
 }
 
-.reset-password-request__link{
+.reset-password-request__link {
   display: inline-flex;
   align-items: left;
   gap: 0.2rem;
@@ -207,8 +233,7 @@ async function handleSubmit() {
   color: var(--color-primary-hover);
 }
 
-.login__link:hover svg
-.reset-password-request__link:hover svg {
+.login__link:hover svg .reset-password-request__link:hover svg {
   transform: translateX(3px);
 }
 </style>

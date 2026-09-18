@@ -21,7 +21,7 @@ function processQueue(error: unknown) {
 
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    config.withCredentials = true; 
+    config.withCredentials = true;
 
     const token = localStorage.getItem(TOKEN_STORAGE_KEYS.ACCESS);
     if (token) {
@@ -69,11 +69,7 @@ apiClient.interceptors.response.use(
         const response = await axios.post<{
           accessToken: string;
           refreshToken: string;
-        }>(
-          `${API_CONFIG.baseURL}/auth/refresh`,
-          { refreshToken },
-          { withCredentials: true },
-        );
+        }>(`${API_CONFIG.baseURL}/auth/refresh`, { refreshToken }, { withCredentials: true });
 
         const { accessToken, refreshToken: newRefreshToken } = response.data;
 
