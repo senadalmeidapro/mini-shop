@@ -9,12 +9,6 @@ import { RouterLink, RouterView } from 'vue-router';
           <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
             <rect width="32" height="32" rx="8" fill="#176b52" />
             <path d="M9 16.5L14 21.5L23 12.5" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <defs>
-              <linearGradient id="adminGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#42b883"/>
-                <stop offset="1" stop-color="#22c6a6"/>
-              </linearGradient>
-            </defs>
           </svg>
         </span>
         <div class="admin__brand-text">
@@ -74,7 +68,7 @@ import { RouterLink, RouterView } from 'vue-router';
 .admin__header {
   margin-bottom: 2rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border-hover);
 }
 
 .admin__brand {

@@ -537,10 +537,7 @@ onMounted(async () => {
   display: block;
   font-size: 1.05rem;
   font-weight: 800;
-  background: linear-gradient(120deg, var(--c-blue), var(--c-green));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-primary);
 }
 
 .sp__card-actions {

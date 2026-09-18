@@ -21,6 +21,17 @@ export const usePaymentStore = defineStore('payments', () => {
     }
   }
 
+  async function getMyPayments() {
+    try {
+      const response = await http.get<Paginate<Payment>>(ENDPOINTS.payments.me, {
+        params: { page: 1, limit: 100 },
+      });
+      payments.value = response.data.items;
+    } catch (error) {
+      logApiError(error, 'Impossible de charger vos paiements');
+    }
+  }
+
   async function getPayment(id: string) {
     try {
       const response = await http.get<Payment>(ENDPOINTS.payments.detail(id));
@@ -94,6 +105,7 @@ export const usePaymentStore = defineStore('payments', () => {
     payments,
     payment,
     getPayments,
+    getMyPayments,
     getPayment,
     createPayment,
     updatePayment,

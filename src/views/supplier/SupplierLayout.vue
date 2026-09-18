@@ -24,12 +24,6 @@ onMounted(() => {
             <path d="M12 10V8.5C12 7.67157 12.6716 7 13.5 7H18.5C19.3284 7 20 7.67157 20 8.5V10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" />
             <path d="M8 16H24" stroke="#fff" stroke-width="1.8" />
             <path d="M12 20H14" stroke="#fff" stroke-width="1.8" stroke-linecap="round" />
-            <defs>
-              <linearGradient id="supplierGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#5380f7" />
-                <stop offset="1" stop-color="#42b883" />
-              </linearGradient>
-            </defs>
           </svg>
         </span>
         <div class="supplier__brand-text">

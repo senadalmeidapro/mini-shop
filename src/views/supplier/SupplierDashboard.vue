@@ -498,7 +498,7 @@ function statusClass(status: string) {
   height: 3rem;
   flex-shrink: 0;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--c-blue), var(--c-teal));
+  background: var(--color-primary);
   color: #fff;
   font-weight: 800;
   font-size: 1.2rem;
@@ -554,10 +554,7 @@ function statusClass(status: string) {
 .sd__shop-revenue-value {
   font-size: 1.2rem;
   font-weight: 800;
-  background: linear-gradient(120deg, var(--c-blue), var(--c-green));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-primary);
 }
 
 /* ══════════════════ KPIs ══════════════════ */

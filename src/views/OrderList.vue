@@ -1,15 +1,16 @@
 ﻿<script setup lang="ts">
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 import { useOrderStore } from '@/stores/orderStore';
 import { usePaymentStore } from '@/stores/paymentStore';
-import { API_CONFIG } from '@/api/config';
 import { ENDPOINTS } from '@/api';
+import { http } from '@/api/http';
 import { syncAfterCancel } from '@/utils/sync';
 
 const orderStore = useOrderStore();
 const paymentStore = usePaymentStore();
 
 const orders = computed(() => orderStore.orders);
+const downloadingOrderId = ref<string | null>(null);
 
 const paymentByOrder = computed(() => {
   const map = new Map<string, string>();
@@ -31,12 +32,27 @@ function statusLabel(status: string) {
   return map[status] ?? status;
 }
 
-function invoiceUrl(orderId: string) {
-  return `${API_CONFIG.baseURL}${ENDPOINTS.orders.invoice(orderId)}`;
+async function downloadInvoice(orderId: string) {
+  downloadingOrderId.value = orderId;
+  try {
+    const response = await http.get<Blob>(ENDPOINTS.orders.invoice(orderId), {
+      responseType: 'blob',
+    });
+    const url = URL.createObjectURL(response.data);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `facture-${orderId}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  } finally {
+    downloadingOrderId.value = null;
+  }
 }
 
 onMounted(async () => {
-  await Promise.all([orderStore.getOrders(), paymentStore.getPayments()]);
+  await Promise.all([orderStore.getOrders(), paymentStore.getMyPayments()]);
 });
 
 async function cancelOrder(orderId: string) {
@@ -163,11 +179,11 @@ async function cancelOrder(orderId: string) {
       </div>
 
       <div class="order__actions">
-        <a
-          :href="invoiceUrl(order.id)"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
           class="order__invoice"
+          :disabled="downloadingOrderId === order.id"
+          @click="downloadInvoice(order.id)"
         >
           <svg
             viewBox="0 0 24 24"
@@ -183,8 +199,8 @@ async function cancelOrder(orderId: string) {
             <path d="M12 11v6" />
             <path d="m8 14 4 4 4-4" />
           </svg>
-          Facture PDF
-        </a>
+          {{ downloadingOrderId === order.id ? 'Téléchargement…' : 'Facture PDF' }}
+        </button>
         <button
           v-if="order.status === 'pending'"
           class="order__cancel"
@@ -449,6 +465,12 @@ async function cancelOrder(orderId: string) {
   color: var(--color-primary);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
+}
+
+.order__invoice:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .order__cancel {

@@ -32,7 +32,7 @@ export async function syncAfterCheckout() {
     useCartStore().getMyCart(),
     refreshCatalog(),
     useOrderStore().getOrders(),
-    usePaymentStore().getPayments(),
+    usePaymentStore().getMyPayments(),
     useNotificationStore().refreshUnreadCount(),
   ]);
 }
@@ -41,7 +41,7 @@ export async function syncAfterCheckout() {
 export async function syncAfterCancel() {
   await Promise.all([
     useOrderStore().getOrders(),
-    usePaymentStore().getPayments(),
+    usePaymentStore().getMyPayments(),
     refreshCatalog(),
   ]);
 }

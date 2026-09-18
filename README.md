@@ -153,3 +153,42 @@ Comptes seed : `admin@minishop.com` (admin) et `johndoe@minishop.com` — mot de
 - **Rate limiter** : clé `IP:method:path`, fœnetre glissante nettoyée toutes les 60 s (aucune dépendance externe).
 - **Colonnes DB en snake_case** (`order_id`, `shop_id`, …) : les requêtes raw (`orderItems`, dashboards) les utilisent telles quelles ; les entités TypeORM mappent les propriétés camelCase.
 - **Aucune mise en place de CI/CD** pour l'instant ; aucune procédure de commit n'a été définie (aucun commit effectué par l'assistant).
+
+---
+
+## 7. Évolutions envisagées (roadmap)
+
+Suggestions d'ajouts, classées par domaine d'impact.
+
+### 7.1 Catalogue & achat
+- Recherche plein texte + filtres (catégorie, prix, note, boutique, tri).
+- Favoris / liste de souhaits.
+- Multi-produits + quantités au checkout (aujourd'hui : commande = panier complet).
+- Fiches produit enrichies : variantes, promotions, certificats de garantie.
+
+### 7.2 Fournisseur
+- Graphique de ventes par mois + statistiques boutique (CA, top produits).
+- Export CSV des produits et des ventes.
+- Logo + image de couverture de boutique, URL personnalisée.
+- Multi-boutiques par compte (éventuelle limite par abonnement).
+
+### 7.3 Client / commandes
+- Suivi de livraison avec étapes visuelles + numéro de tracking.
+- Réservation de panier (temps limité avant paiement).
+- Évaluations produit avec photos et réponses des vendeurs.
+- Reçu de paiement séparé de la facture ; option « racheter un produit ».
+
+### 7.4 Administration
+- Tableau de bord avancé : CA total, tendances, top boutiques/produits, graphiques.
+- Codes promo / remises par produit ou boutique.
+- Modération des avis et gestion des litiges.
+- Statistiques géographiques des commandes.
+
+### 7.5 Plateforme / technique
+- Notifications temps réel (WebSocket / Socket.io) au lieu du polling.
+- Paiement réel en ligne (Mobile Money / carte) au lieu du flux simulé.
+- SEO : rendu côté serveur (Nuxt) + sitemap.
+- E-mails transactionnels en français et facture au monogramme de la plateforme.
+- Sécurité : 2FA, journal d'activité admin, audit trails.
+
+**Priorité suggérée** : recherche + filtres, statistiques fournisseur, codes promo, paiement réel.

@@ -65,6 +65,7 @@ export const ENDPOINTS = {
   },
   payments: {
     list: '/payments',
+    me: '/payments/me',
     create: (cartId: string) => `/payments/${cartId}`,
     detail: (id: string) => `/payments/${id}`,
     update: (id: string) => `/payments/${id}`,
