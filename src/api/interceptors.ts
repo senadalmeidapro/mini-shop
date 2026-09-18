@@ -5,7 +5,6 @@ import { API_CONFIG, TOKEN_STORAGE_KEYS } from './config';
 import { parseApiError, UnauthorizedError, NetworkError } from './errors';
 import type { ApiErrorResponse } from './types';
 
-// State for refresh queue
 let isRefreshing = false;
 let failedQueue: Array<{
   resolve: () => void;
@@ -22,9 +21,8 @@ function processQueue(error: unknown) {
 
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    config.withCredentials = true; // IMPORTANT for cross-origin if needed
+    config.withCredentials = true; 
 
-    // Attach JWT access token if available
     const token = localStorage.getItem(TOKEN_STORAGE_KEYS.ACCESS);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -48,7 +46,6 @@ apiClient.interceptors.response.use(
 
     const { status, data } = error.response;
 
-    // Les requètes d'authentification ne déclenchent jamais un refresh
     const isAuthRequest = originalRequest.url?.includes('/auth/');
 
     if (status === 401 && !originalRequest._retry && !isAuthRequest) {
@@ -69,7 +66,6 @@ apiClient.interceptors.response.use(
           throw new Error('No refresh token found');
         }
 
-        // Call backend refresh endpoint with body token
         const response = await axios.post<{
           accessToken: string;
           refreshToken: string;
@@ -81,11 +77,9 @@ apiClient.interceptors.response.use(
 
         const { accessToken, refreshToken: newRefreshToken } = response.data;
 
-        // Save new tokens
         localStorage.setItem(TOKEN_STORAGE_KEYS.ACCESS, accessToken);
         localStorage.setItem(TOKEN_STORAGE_KEYS.REFRESH, newRefreshToken);
 
-        // Synchronise l'état réactif du store de session
         window.dispatchEvent(
           new CustomEvent('auth:refreshed', {
             detail: { accessToken, refreshToken: newRefreshToken },
@@ -97,11 +91,9 @@ apiClient.interceptors.response.use(
       } catch (refreshError) {
         processQueue(refreshError);
 
-        // Clear tokens on failure so user is prompted to login again
         localStorage.removeItem(TOKEN_STORAGE_KEYS.ACCESS);
         localStorage.removeItem(TOKEN_STORAGE_KEYS.REFRESH);
 
-        // Force redirect to login page
         window.dispatchEvent(new Event('auth:expired'));
 
         return Promise.reject(new UnauthorizedError('Session expirée'));

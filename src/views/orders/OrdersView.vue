@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import CartList from './CartList.vue';
 import OrderList from './OrderList.vue';
-import OrderNav from './OrderNav.vue';
+import OrdersNav from './OrdersNav.vue';
 
 type Tab = 'cart' | 'orders';
 
@@ -10,7 +10,7 @@ const tab = ref<Tab>('cart');
 </script>
 <template>
   <div class="orders-layout">
-    <!-- ═══════════════ EN-TÊTE ═══════════════ -->
+    
     <header class="orders-layout__header reveal">
       <div class="orders-layout__glow" aria-hidden="true" />
 
@@ -41,10 +41,10 @@ const tab = ref<Tab>('cart');
       </div>
     </header>
 
-    <!-- ═══════════════ NAVIGATION ═══════════════ -->
-    <OrderNav v-model:tab="tab" />
+    
+    <OrdersNav v-model:tab="tab" />
 
-    <!-- ═══════════════ CONTENU ═══════════════ -->
+    
     <div class="orders-container reveal reveal--d1">
       <KeepAlive>
         <component :is="tab === 'cart' ? CartList : OrderList" />
@@ -54,16 +54,13 @@ const tab = ref<Tab>('cart');
 </template>
 
 <style scoped>
-/* ==========================================================================
-   LAYOUT PANIER / COMMANDES
-   ========================================================================== */
+
 .orders-layout {
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
 }
 
-/* ══════════════════ EN-TÊTE ══════════════════ */
 .orders-layout__header {
   position: relative;
   isolation: isolate;
@@ -123,7 +120,6 @@ const tab = ref<Tab>('cart');
   color: var(--color-text-soft);
 }
 
-/* ══════════════════ CONTENU ══════════════════ */
 .orders-container {
   padding: 1.5rem;
   background: var(--color-background-soft);
@@ -132,7 +128,6 @@ const tab = ref<Tab>('cart');
   box-shadow: var(--shadow-sm);
 }
 
-/* ══════════════════ RESPONSIVE ══════════════════ */
 @media (max-width: 560px) {
   .orders-layout__header {
     padding: 1.5rem 1.25rem;

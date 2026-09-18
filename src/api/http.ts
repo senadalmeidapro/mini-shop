@@ -1,10 +1,6 @@
-/**
- * http.ts
- * Wrapper typé autour d'Axios avec interceptors déjà attachés.
- * Utilise toujours ce module plutôt qu'apiClient directement.
- */
+
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
-// Import with side-effects: registers interceptors
+
 import './interceptors';
 import apiClient from './client';
 

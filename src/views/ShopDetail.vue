@@ -73,7 +73,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-/* ── Header bannière ──────────────────────────────────────── */
+
 .shop-detail__header {
   position: relative;
   padding: 5rem 1.5rem 3.5rem;
@@ -118,7 +118,6 @@ onMounted(async () => {
   z-index: 1;
 }
 
-/* ── Avatar pastille ──────────────────────────────────────── */
 .shop-detail__avatar {
   width: 72px;
   height: 72px;
@@ -149,7 +148,6 @@ onMounted(async () => {
   line-height: 1.7;
 }
 
-/* ── Meta pills ───────────────────────────────────────────── */
 .shop-detail__meta {
   display: flex;
   justify-content: center;
@@ -181,7 +179,6 @@ onMounted(async () => {
   flex-shrink: 0;
 }
 
-/* ── Products section ─────────────────────────────────────── */
 .shop-detail__products {
   padding-top: 1.5rem;
 }
@@ -199,7 +196,6 @@ onMounted(async () => {
   gap: 1.25rem;
 }
 
-/* ── Empty & Loading ──────────────────────────────────────── */
 .shop-detail__empty {
   display: flex;
   flex-direction: column;
@@ -241,7 +237,6 @@ onMounted(async () => {
   to { transform: rotate(360deg); }
 }
 
-/* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .shop-detail__header {
     padding: 4rem 1rem 2.5rem;

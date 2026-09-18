@@ -109,19 +109,19 @@ onMounted(async () => {
       <p class="so__sub">Suivez et gérez l'avancement des commandes</p>
     </div>
 
-    <!-- ── Spinner ──────────────────────────────────────── -->
+    
     <p v-if="loading" class="so__state">
       <span class="so__spinner" />
       Chargement…
     </p>
 
-    <!-- ── Empty ────────────────────────────────────────── -->
+    
     <p v-else-if="!orders.length" class="so__state so__state--empty">
       <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
       Aucune commande pour le moment.
     </p>
 
-    <!-- ── Tableau ───────────────────────────────────────── -->
+    
     <div v-else class="so__table-wrap reveal reveal--d1">
       <table class="so__table">
         <thead>
@@ -156,7 +156,7 @@ onMounted(async () => {
             </td>
             <td>
               <div v-if="order.status !== 'cancelled' && order.status !== 'completed'" class="so__actions">
-                <!-- Tracking number input si shipped step -->
+                
                 <input
                   v-if="order.status === 'confirmed'"
                   v-model="trackingInputs[order.id]"
@@ -195,7 +195,6 @@ onMounted(async () => {
   gap: 1.5rem;
 }
 
-/* ══════════════════ HEADER ══════════════════ */
 .so__header h2 {
   font-size: 1.6rem;
   font-weight: 800;
@@ -208,7 +207,6 @@ onMounted(async () => {
   color: var(--color-text-soft);
 }
 
-/* ══════════════════ STATE ══════════════════ */
 .so__state {
   display: flex;
   align-items: center;
@@ -238,7 +236,6 @@ onMounted(async () => {
   }
 }
 
-/* ══════════════════ TABLEAU ══════════════════ */
 .so__table-wrap {
   overflow-x: auto;
 }
@@ -319,7 +316,6 @@ onMounted(async () => {
   white-space: nowrap;
 }
 
-/* ══════════════════ BADGE STATUT ══════════════════ */
 .so__badge {
   display: inline-flex;
   padding: 0.22rem 0.7rem;
@@ -353,7 +349,6 @@ onMounted(async () => {
   color: var(--color-danger);
 }
 
-/* ══════════════════ ACTIONS ══════════════════ */
 .so__actions {
   display: flex;
   align-items: center;

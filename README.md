@@ -23,6 +23,29 @@ TypeScript/
 | `mini-shop-api` | NestJS 12, TypeORM, PostgreSQL, JWT, PDFKit, Nodemailer | Contrat API, sécurité, métier |
 | `mini-shop` | Vue 3, Vite 8, TypeScript, Pinia, Vue Router, Vitest | Interface utilisateur |
 
+### 1.1 Arborescence du front (`mini-shop/src`)
+
+```
+src/
+├── api/          → couche HTTP (http, client, interceptors, endpoints, config, types, errors)
+├── assets/       → styles globaux (base.css, main.css) + logo
+├── components/   → composants réutilisables (AppHeader, AppFooter, ProductCard)
+├── layouts/      → gabarits de page (Main, Auth, Admin, Supplier)
+├── router/       → routes (index.ts) + gardes d'accès (guards.ts)
+├── stores/       → stores Pinia (auth, cart, supplier, payments, …)
+├── types/        → types partagés
+├── utils/        → helpers (sync, libellés de rôles)
+└── views/        → pages
+    ├── HomeView, ProductList, ProductDetail, ShopList, ShopDetail, AboutView, ContactView
+    ├── auth/     → authentification (login, register, reset, vérification)
+    ├── account/  → profil, notifications
+    ├── orders/   → panier + commandes (OrdersView, CartList, OrderList, OrdersNav)
+    ├── admin/    → espace administrateur
+    └── supplier/ → espace fournisseur
+```
+
+Documentation d'API complète (non importée par le code) : `docs/api-endpoints.ts` en racine de dépôt.
+
 ---
 
 ## 2. Rôles et accès
@@ -56,9 +79,9 @@ Accès contrôlés par des gardes globaux : `JwtAuthGuard` (tout requiert un JWT
 
 ### 2.2 Accès frontend
 
-- `/admin/*` : réservé à l'admin (`requiresAdmin` dans `src/router/index.ts`).
+- `/admin/*` : réservé à l'admin (`requiresAdmin`, garde centrale dans `src/router/guards.ts`).
 - `/supplier/*` : accessible à tout utilisateur connecté ; les onglets **Produits** et **Commandes** exigent une boutique (`requiresSupplier`), redirigent sinon vers le dashboard.
-- L'en-tête (`HeaderVue.vue`) : lien **Admin** admin-only, lien **Fournisseur** visible pour tous les connectés (point d'entrée vers la création de boutique).
+- L'en-tête (`src/components/AppHeader.vue`) : lien **Admin** admin-only, lien **Fournisseur** visible pour tous les connectés (point d'entrée vers la création de boutique).
 - `SupplierDashboard` : un utilisateur sans boutique y voit un formulaire de création (nom + slug auto-généré + description) qui le fait passer `supplier`.
 
 ---

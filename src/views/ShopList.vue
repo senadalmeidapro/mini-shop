@@ -79,7 +79,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-/* ── Hero ─────────────────────────────────────────────────── */
+
 .shop-list__hero {
   position: relative;
   text-align: center;
@@ -116,14 +116,12 @@ onMounted(async () => {
   line-height: 1.7;
 }
 
-/* ── Grid ─────────────────────────────────────────────────── */
 .shop-list__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
-/* ── Card ─────────────────────────────────────────────────── */
 .shop-card {
   position: relative;
   display: flex;
@@ -152,7 +150,6 @@ onMounted(async () => {
   outline-offset: var(--ring-offset);
 }
 
-/* ── Badge pastille dégradée ─────────────────────────────── */
 .shop-card__badge {
   flex-shrink: 0;
   width: 48px;
@@ -169,7 +166,6 @@ onMounted(async () => {
   box-shadow: var(--shadow-sm);
 }
 
-/* ── Contenu ─────────────────────────────────────────────── */
 .shop-card__content {
   flex: 1;
   min-width: 0;
@@ -199,7 +195,6 @@ onMounted(async () => {
   margin-bottom: 0.6rem;
 }
 
-/* ── Meta ─────────────────────────────────────────────────── */
 .shop-card__meta {
   display: flex;
   align-items: center;
@@ -248,7 +243,6 @@ onMounted(async () => {
   transform: translateX(3px);
 }
 
-/* ── Shine sweep ──────────────────────────────────────────── */
 .shop-card__shine {
   position: absolute;
   inset: 0;
@@ -268,7 +262,6 @@ onMounted(async () => {
   animation: none;
 }
 
-/* ── Empty state ──────────────────────────────────────────── */
 .shop-list__empty {
   display: flex;
   flex-direction: column;
@@ -286,7 +279,6 @@ onMounted(async () => {
   color: var(--color-border-hover);
 }
 
-/* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .shop-list__grid {
     grid-template-columns: 1fr;

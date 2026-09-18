@@ -52,7 +52,6 @@ export class NetworkError extends ApiError {
   }
 }
 
-// ─── Factory ───────────────────────────────────────────────────────────────────
 export function parseApiError(payload: ApiErrorResponse): ApiError {
   const { statusCode, message } = payload;
 
@@ -71,7 +70,6 @@ export function parseApiError(payload: ApiErrorResponse): ApiError {
   }
 }
 
-// ─── Store error handler ──────────────────────────────────────────────────────
 export function handleApiError(error: unknown, toast: ToastInterface, fallback: string) {
   if (error instanceof UnauthorizedError) {
     toast.error('Session expirée, veuillez vous reconnecter');
@@ -92,7 +90,6 @@ export function handleApiError(error: unknown, toast: ToastInterface, fallback: 
   console.error(fallback, error);
 }
 
-// ─── Silent error logger (lectures / polling) ────────────────────────────────
 export function logApiError(error: unknown, context: string) {
   console.error(context, error);
 }

@@ -35,7 +35,7 @@ onMounted(async () => {
 </script>
 <template>
   <div class="product-list">
-    <!-- ═══════════════ HERO ═══════════════ -->
+    
     <section class="product-list__hero reveal">
       <span class="product-list__badge">Catalogue</span>
 
@@ -72,7 +72,7 @@ onMounted(async () => {
       </div>
     </section>
 
-    <!-- ═══════════════ FILTRES ═══════════════ -->
+    
     <div class="product-list__toolbar reveal reveal--d1">
       <label class="product-list__field">
         <svg
@@ -132,7 +132,7 @@ onMounted(async () => {
       </label>
     </div>
 
-    <!-- ═══════════════ GRILLE PRODUITS ═══════════════ -->
+    
     <div v-if="filteredProducts.length" class="product-list__grid">
       <div
         v-for="(product, index) in filteredProducts"
@@ -181,16 +181,13 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-/* ==========================================================================
-   LISTE DES PRODUITS
-   ========================================================================== */
+
 .product-list {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-/* ══════════════════ HERO ══════════════════ */
 .product-list__hero {
   position: relative;
   isolation: isolate;
@@ -273,7 +270,6 @@ onMounted(async () => {
   color: var(--color-primary);
 }
 
-/* ══════════════════ FILTRES ══════════════════ */
 .product-list__toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -356,7 +352,6 @@ onMounted(async () => {
   pointer-events: none;
 }
 
-/* ══════════════════ GRILLE ══════════════════ */
 .product-list__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -372,7 +367,6 @@ onMounted(async () => {
   height: 100%;
 }
 
-/* ══════════════════ ÉTAT VIDE ══════════════════ */
 .product-list__empty {
   display: flex;
   flex-direction: column;
@@ -409,7 +403,6 @@ onMounted(async () => {
   color: var(--color-text-soft);
 }
 
-/* ══════════════════ RESPONSIVE ══════════════════ */
 @media (max-width: 640px) {
   .product-list__hero {
     padding: 1.75rem 1.25rem;

@@ -60,7 +60,6 @@ defineProps<{ product: Product }>();
   box-shadow: var(--shadow-glow);
 }
 
-/* ── Image zone ────────────────────────────────────────────── */
 .product-card__top {
   position: relative;
   display: block;
@@ -123,7 +122,6 @@ defineProps<{ product: Product }>();
   transform: translateX(-50%) translateY(0);
 }
 
-/* ── Body ──────────────────────────────────────────────────── */
 .product-card__body {
   flex: 1;
   display: flex;

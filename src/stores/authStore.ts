@@ -58,7 +58,6 @@ export const useAuthStore = defineStore('auth', () => {
       localStorage.setItem(TOKEN_STORAGE_KEYS.REFRESH, data.refreshToken);
       user.value = data.user;
 
-      // Charge le panier actif et les notifications de cet utilisateur
       await syncOnLogin();
 
       toast.success('Connexion réussie');
@@ -126,7 +125,6 @@ async function logout() {
     localStorage.removeItem(TOKEN_STORAGE_KEYS.REFRESH);
     resetUserData();
 
-    // Sur une page publique : session nettoyée sans interrompre la navigation
     if (!requiresAuth) {
       return;
     }

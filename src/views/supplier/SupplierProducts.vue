@@ -114,7 +114,7 @@ onMounted(async () => {
       </button>
     </div>
 
-    <!-- ── Formulaire ───────────────────────────────────── -->
+    
     <form
       v-if="showForm"
       class="sp__form reveal reveal--d1"
@@ -163,22 +163,22 @@ onMounted(async () => {
       </div>
     </form>
 
-    <!-- ── Spinner ──────────────────────────────────────── -->
+    
     <p v-if="supplierStore.productsLoading" class="sp__state">
       <span class="sp__spinner" />
       Chargement…
     </p>
 
-    <!-- ── Empty ────────────────────────────────────────── -->
+    
     <p v-else-if="!products.length && !showForm" class="sp__state sp__state--empty">
       <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
       Aucun produit. Commencez par en ajouter un !
     </p>
 
-    <!-- ── Liste produits ────────────────────────────────── -->
+    
     <div v-else class="sp__grid">
       <div v-for="(product, i) in products" :key="product.id" class="sp__card reveal" :class="`reveal--d${(i % 6) + 1}`">
-        <!-- Image -->
+        
         <div class="sp__card-img">
           <img
             v-if="product.imageUrl"
@@ -190,7 +190,7 @@ onMounted(async () => {
           </span>
         </div>
 
-        <!-- Contenu -->
+        
         <div class="sp__card-body">
           <div class="sp__card-top">
             <span class="sp__card-cat">{{ categoryName(product.categoryId) }}</span>
@@ -206,7 +206,7 @@ onMounted(async () => {
           <strong class="sp__card-price">{{ formatPrice(product.price) }} FCFA</strong>
         </div>
 
-        <!-- Actions -->
+        
         <div class="sp__card-actions">
           <button class="sp__action sp__action--edit" title="Modifier" @click="startEdit(product)">
             <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path d="M2.695 14.763l-1.262 3.154a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.885L17.5 5.5a2.121 2.121 0 0 0-3-3L3.58 13.42a4 4 0 0 0-.885 1.343Z"/></svg>
@@ -216,7 +216,7 @@ onMounted(async () => {
           </button>
         </div>
 
-        <!-- Confirm delete inline -->
+        
         <div v-if="deleteId === product.id" class="sp__confirm">
           <p>Supprimer « {{ product.name }} » ?</p>
           <div class="sp__confirm-btns">
@@ -236,7 +236,6 @@ onMounted(async () => {
   gap: 1.5rem;
 }
 
-/* ══════════════════ HEADER ══════════════════ */
 .sp__header {
   display: flex;
   justify-content: space-between;
@@ -278,7 +277,6 @@ onMounted(async () => {
   box-shadow: 0 14px 30px var(--color-primary-glow);
 }
 
-/* ══════════════════ FORMULAIRE ══════════════════ */
 .sp__form {
   padding: 1.5rem;
   background: var(--color-background-soft);
@@ -344,7 +342,6 @@ onMounted(async () => {
   margin-top: 1.1rem;
 }
 
-/* ══════════════════ BUTTONS ══════════════════ */
 .sp__btn {
   display: inline-flex;
   align-items: center;
@@ -382,7 +379,6 @@ onMounted(async () => {
   background: var(--color-danger-hover);
 }
 
-/* ══════════════════ STATE / SPINNER ══════════════════ */
 .sp__state {
   display: flex;
   align-items: center;
@@ -412,14 +408,12 @@ onMounted(async () => {
   }
 }
 
-/* ══════════════════ GRILLE ══════════════════ */
 .sp__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.25rem;
 }
 
-/* ══════════════════ CARTE PRODUIT ══════════════════ */
 .sp__card {
   position: relative;
   background: var(--color-background-soft);
@@ -581,7 +575,6 @@ onMounted(async () => {
   color: var(--color-danger);
 }
 
-/* ══════════════════ CONFIRM DELETE ══════════════════ */
 .sp__confirm {
   position: absolute;
   inset: 0;

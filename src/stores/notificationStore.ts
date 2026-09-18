@@ -28,7 +28,7 @@ export const useNotificationStore = defineStore('notifications', () => {
       const response = await http.get<number>(ENDPOINTS.notifications.unreadCount);
       unreadCount.value = response.data;
     } catch {
-      // polling silencieux
+      
     }
   }
 

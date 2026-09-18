@@ -25,7 +25,6 @@ const publicLinks = [
   { label: 'Contact', to: { name: 'Contact' } },
 ];
 
-// Rafraîchissement silencieux des compteurs (notifications + panier)
 function refreshCounters() {
   if (!authStore.accessToken) return;
   void notificationStore.refreshUnreadCount();
@@ -179,7 +178,6 @@ async function handleLogout() {
   border-bottom: 1px solid var(--color-border);
 }
 
-/* ── Brand ─────────────────────────────────────────────────── */
 .nav__brand {
   display: inline-flex;
   align-items: center;
@@ -215,7 +213,6 @@ async function handleLogout() {
   color: var(--color-primary);
 }
 
-/* ── Liens ─────────────────────────────────────────────────── */
 .nav__links {
   display: flex;
   gap: 1.35rem;
@@ -255,7 +252,6 @@ async function handleLogout() {
   transform: scaleX(1);
 }
 
-/* ── Droite ────────────────────────────────────────────────── */
 .nav__right {
   display: flex;
   align-items: center;
@@ -363,7 +359,6 @@ async function handleLogout() {
   color: var(--color-danger);
 }
 
-/* ── Burger (mobile) ───────────────────────────────────────── */
 .nav__burger {
   display: none;
   align-items: center;

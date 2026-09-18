@@ -19,7 +19,7 @@ async function loadProduct(id: string) {
 async function addProduct() {
   const ok = await cartStore.addItem(route.params.id as string, quantity.value);
   if (ok) {
-    // Le stock réservé a changé côté serveur : on rafraîchit la fiche + le catalogue
+    
     await syncAfterCartChange();
   }
 }
@@ -40,7 +40,7 @@ watch(
 
 <template>
   <div v-if="productStore.product" class="detail">
-    <!-- ═══════════════ VISUEL PRODUIT ═══════════════ -->
+    
     <div class="detail__visual reveal">
       <div
         class="detail__media"
@@ -87,7 +87,7 @@ watch(
       <div class="detail__blob" aria-hidden="true" />
     </div>
 
-    <!-- ═══════════════ INFOS PRODUIT ═══════════════ -->
+    
     <div class="detail__content reveal reveal--d1">
       <span class="detail__eyebrow">Détail produit</span>
       <h1 class="detail__title">{{ productStore.product.name }}</h1>
@@ -133,7 +133,7 @@ watch(
     </div>
   </div>
 
-  <!-- ═══════════════ CHARGEMENT ═══════════════ -->
+  
   <div v-else class="detail__loading">
     <span class="detail__spinner" aria-hidden="true" />
     <span>Chargement...</span>
@@ -141,9 +141,7 @@ watch(
 </template>
 
 <style scoped>
-/* ==========================================================================
-   DÉTAIL PRODUIT
-   ========================================================================== */
+
 .detail {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
@@ -153,7 +151,6 @@ watch(
   margin: 0 auto;
 }
 
-/* ══════════════════ VISUEL ══════════════════ */
 .detail__visual {
   position: relative;
 }
@@ -262,7 +259,6 @@ watch(
   filter: blur(36px);
 }
 
-/* ══════════════════ CONTENU ══════════════════ */
 .detail__content {
   display: flex;
   flex-direction: column;
@@ -322,7 +318,6 @@ watch(
   color: var(--color-text);
 }
 
-/* ══════════════════ ACHAT ══════════════════ */
 .detail__buy {
   display: flex;
   align-items: center;
@@ -395,7 +390,6 @@ watch(
   transform: translateY(0);
 }
 
-/* ══════════════════ CHARGEMENT ══════════════════ */
 .detail__loading {
   display: flex;
   align-items: center;
@@ -421,7 +415,6 @@ watch(
   }
 }
 
-/* ══════════════════ RESPONSIVE ══════════════════ */
 @media (max-width: 860px) {
   .detail {
     grid-template-columns: 1fr;

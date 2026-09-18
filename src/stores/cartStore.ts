@@ -26,7 +26,6 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  // Charge le panier actif de l'utilisateur connecté (aucun panier = panier vide)
   async function getMyCart() {
     try {
       const response = await http.get<Cart | null>(ENDPOINTS.cart.mine);

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import HeaderVue from '@/components/HeaderVue.vue';
-import FooterVue from '@/components/FooterVue.vue';
+import AppHeader from '@/components/AppHeader.vue';
+import AppFooter from '@/components/AppFooter.vue';
 </script>
 <template>
   <div class="layout">
-    <HeaderVue />
+    <AppHeader />
 
     <main class="layout__main">
       <RouterView v-slot="{ Component }">
@@ -15,7 +15,7 @@ import FooterVue from '@/components/FooterVue.vue';
       </RouterView>
     </main>
 
-    <FooterVue />
+    <AppFooter />
   </div>
 </template>
 
@@ -34,7 +34,6 @@ import FooterVue from '@/components/FooterVue.vue';
   padding: 2rem 1.5rem;
 }
 
-/* ── Transition de page ─────────────────────────────────────── */
 .page-enter-active,
 .page-leave-active {
   transition:

@@ -48,7 +48,7 @@ async function addToCart(product: Product) {
       await syncAfterCartChange();
     }
   } catch {
-    // intercpteur gère 401/403
+    
   } finally {
     cartLoading.value[product.id] = false;
   }
@@ -57,13 +57,9 @@ async function addToCart(product: Product) {
 
 <template>
   <div class="home">
-    <!-- ═══════════════ HERO ═══════════════ -->
+    
     <section class="hero" :class="{ 'hero--loading': productsLoading }">
-      <!-- <div class="hero__bg" aria-hidden="true">
-        <span class="hero__blob hero__blob--1" />
-        <span class="hero__blob hero__blob--2" />
-        <span class="hero__blob hero__blob--3" />
-      </div> -->
+      
 
       <div class="hero__content">
         <span class="hero__badge reveal">Nouveau</span>
@@ -113,7 +109,7 @@ async function addToCart(product: Product) {
       </div>
     </section>
 
-    <!-- ═══════════════ FEATURES ═══════════════ -->
+    
     <section class="features reveal">
       <div class="features__grid">
         <div class="features__card reveal reveal--d1">
@@ -155,7 +151,7 @@ async function addToCart(product: Product) {
       </div>
     </section>
 
-    <!-- ═══════════════ PRODUITS ═══════════════ -->
+    
     <section class="section">
       <div class="section__header reveal">
         <h2 class="section__title">Découvrez nos produits</h2>
@@ -242,7 +238,7 @@ async function addToCart(product: Product) {
       </p>
     </section>
 
-    <!-- ═══════════════ CTA ═══════════════ -->
+    
     <section class="cta reveal">
       <div class="cta__bg" aria-hidden="true" />
       <h2 class="cta__title">Prêt à commencer&nbsp;?</h2>
@@ -257,18 +253,13 @@ async function addToCart(product: Product) {
 </template>
 
 <style scoped>
-/* ==========================================================================
-   HOME
-   ========================================================================== */
+
 .home {
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
 }
 
-/* ==========================================================================
-   HERO
-   ========================================================================== */
 .hero {
   position: relative;
   min-height: 400px;
@@ -436,9 +427,6 @@ async function addToCart(product: Product) {
   background: var(--color-border);
 }
 
-/* ==========================================================================
-   FEATURES
-   ========================================================================== */
 .features__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -493,9 +481,6 @@ async function addToCart(product: Product) {
   line-height: 1.6;
 }
 
-/* ==========================================================================
-   SECTION / HEADER
-   ========================================================================== */
 .section {
   display: flex;
   flex-direction: column;
@@ -530,9 +515,6 @@ async function addToCart(product: Product) {
   gap: 0.55rem;
 }
 
-/* ==========================================================================
-   GRID & CARDS
-   ========================================================================== */
 .home__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -552,7 +534,6 @@ async function addToCart(product: Product) {
   }
 }
 
-/* ── Product card ──────────────────────────────────────────── */
 .product-card {
   display: flex;
   flex-direction: column;
@@ -723,7 +704,6 @@ async function addToCart(product: Product) {
   opacity: 0.65;
 }
 
-/* ── Skeleton ──────────────────────────────────────────────── */
 .product-card--skeleton {
   pointer-events: none;
 }
@@ -764,9 +744,6 @@ async function addToCart(product: Product) {
   }
 }
 
-/* ==========================================================================
-   CTA
-   ========================================================================== */
 .cta {
   position: relative;
   display: flex;
@@ -826,9 +803,6 @@ async function addToCart(product: Product) {
   box-shadow: 0 18px 42px var(--color-primary-glow);
 }
 
-/* ==========================================================================
-   EMPTY / UTILS
-   ========================================================================== */
 .home__empty {
   margin-top: 1rem;
   color: var(--color-text-soft);

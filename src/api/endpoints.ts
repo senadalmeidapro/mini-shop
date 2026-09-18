@@ -1,8 +1,4 @@
-/**
- * endpoints.ts
- * Source unique de vérité pour tous les chemins d'API.
- * Doit refléter exactement les routes implémentées côté backend (mini-shop-api).
- */
+
 export const ENDPOINTS = {
   app: {
     getHello: '/',

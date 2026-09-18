@@ -16,12 +16,10 @@ app.use(pinia);
 app.use(router);
 app.use(Toast);
 
-// Quand la session expire (refresh KO), on force le retour au login
 window.addEventListener('auth:expired', () => {
   useAuthStore(pinia).forceLogout();
 });
 
-// Quand le token est rafraîchi avec succès, on synchronise le store
 window.addEventListener('auth:refreshed', (event) => {
   const store = useAuthStore(pinia);
   const { accessToken, refreshToken } = (event as CustomEvent<{

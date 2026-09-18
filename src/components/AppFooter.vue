@@ -142,7 +142,6 @@ const accountLinks = [
   }
 }
 
-/* ── Brand ─────────────────────────────────────────────────── */
 .footer__logo {
   display: inline-flex;
   align-items: center;
@@ -207,7 +206,6 @@ const accountLinks = [
   transform: translateY(-3px);
 }
 
-/* ── Colonnes ──────────────────────────────────────────────── */
 .footer__col {
   display: flex;
   flex-direction: column;
@@ -252,7 +250,6 @@ const accountLinks = [
   opacity: 1;
 }
 
-/* ── Newsletter ────────────────────────────────────────────── */
 .footer__newsletter-note {
   font-size: 0.86rem;
   color: var(--color-text-soft);
@@ -307,7 +304,6 @@ const accountLinks = [
   box-shadow: 0 10px 24px var(--color-primary-glow);
 }
 
-/* ── Bas de page ───────────────────────────────────────────── */
 .footer__bottom {
   border-top: 1px solid var(--color-border);
   padding: 1.1rem 1.5rem;

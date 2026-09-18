@@ -26,7 +26,7 @@ const stats = [
 
 <template>
   <div class="about">
-    <!-- ── Hero ──────────────────────────────────────────── -->
+    
     <section class="about-hero">
       <div class="about-hero__glow" aria-hidden="true"></div>
       <h1 class="about-hero__title reveal">
@@ -37,7 +37,7 @@ const stats = [
       </p>
     </section>
 
-    <!-- ── Histoire ──────────────────────────────────────── -->
+    
     <section class="about-story">
       <div class="about-story__content reveal">
         <span class="about-story__label">
@@ -61,7 +61,7 @@ const stats = [
       </div>
     </section>
 
-    <!-- ── Valeurs ───────────────────────────────────────── -->
+    
     <section class="about-values">
       <h2 class="reveal">Nos valeurs</h2>
       <div class="about-values__grid">
@@ -84,7 +84,7 @@ const stats = [
       </div>
     </section>
 
-    <!-- ── Chiffres ──────────────────────────────────────── -->
+    
     <section class="about-stats">
       <h2 class="reveal">Mini Shop en chiffres</h2>
       <div class="about-stats__grid">
@@ -96,7 +96,7 @@ const stats = [
       </div>
     </section>
 
-    <!-- ── CTA ───────────────────────────────────────────── -->
+    
     <section class="about-cta reveal">
       <div class="about-cta__shine" aria-hidden="true"></div>
       <div class="about-cta__blob" aria-hidden="true"></div>
@@ -113,7 +113,7 @@ const stats = [
 </template>
 
 <style scoped>
-/* ── Hero ──────────────────────────────────────────────── */
+
 .about-hero {
   position: relative;
   text-align: center;
@@ -151,7 +151,6 @@ const stats = [
   line-height: 1.7;
 }
 
-/* ── Story ─────────────────────────────────────────────── */
 .about-story {
   padding: 3rem 1rem;
   border-top: 1px solid var(--color-border);
@@ -200,7 +199,6 @@ const stats = [
   margin-bottom: 0;
 }
 
-/* ── Values ────────────────────────────────────────────── */
 .about-values {
   padding: 3.5rem 1rem 0;
 }
@@ -268,7 +266,6 @@ const stats = [
   line-height: 1.6;
 }
 
-/* ── Stats ─────────────────────────────────────────────── */
 .about-stats {
   padding: 3.5rem 1rem 0;
 }
@@ -340,7 +337,6 @@ const stats = [
   transform: scaleX(1);
 }
 
-/* ── CTA ───────────────────────────────────────────────── */
 .about-cta {
   position: relative;
   overflow: hidden;
@@ -428,7 +424,6 @@ const stats = [
   transform: translateX(4px);
 }
 
-/* ── Responsive ────────────────────────────────────────── */
 @media (max-width: 600px) {
   .about-values__grid {
     grid-template-columns: 1fr;

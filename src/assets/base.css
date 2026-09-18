@@ -1,11 +1,7 @@
-/* ==========================================================================
-   Design tokens - Mini Shop
-   Palette: brand green (#42b883), neutrals, semantic status colors.
-   Source unique de la charte du front (production grade).
-   ========================================================================== */
+
 
 :root {
-  /* ── Brand / palette de base ─────────────────────────────── */
+  
   --c-green: #176b52;
   --c-green-dark: #125540;
   --c-green-strong: #0f4938;
@@ -14,52 +10,42 @@
   --c-gold: #a16207;
   --c-blue: #3567a8;
 
-  /* ── Blancs & gris (light mode) ──────────────────────────── */
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8fafc;
   --vt-c-white-mute: #f1f5f9;
 
-  /* ── Noirs & gris (dark mode) ────────────────────────────── */
   --vt-c-black: #13161b;
   --vt-c-black-soft: #1c2127;
   --vt-c-black-mute: #262d35;
 
   --vt-c-indigo: #0f172a;
 
-  /* ── Séparateurs ─────────────────────────────────────────── */
   --vt-c-divider-light-1: rgba(22, 40, 32, 0.14);
   --vt-c-divider-light-2: rgba(22, 40, 32, 0.08);
   --vt-c-divider-dark-1: rgba(255, 255, 255, 0.14);
   --vt-c-divider-dark-2: rgba(255, 255, 255, 0.08);
 
-  /* ── Texte ───────────────────────────────────────────────── */
   --vt-c-text-light-1: var(--vt-c-indigo);
   --vt-c-text-light-2: #64748b;
   --vt-c-text-dark-1: #f2f5f4;
   --vt-c-text-dark-2: rgba(242, 245, 244, 0.68);
 }
 
-/* ==========================================================================
-   Variables sémantiques (light mode)
-   ========================================================================== */
 :root {
-  /* Surfaces */
+  
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
   --color-surface: var(--vt-c-white-soft);
   --color-surface-hover: var(--vt-c-white-mute);
 
-  /* Bordures */
   --color-border: var(--vt-c-divider-light-2);
   --color-border-hover: var(--vt-c-divider-light-1);
 
-  /* Texte */
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
   --color-text-soft: var(--vt-c-text-light-2);
 
-  /* Accent (boutons primaires, liens, focus, prix) */
   --color-primary: var(--c-green);
   --color-primary-hover: var(--c-green-dark);
   --color-primary-contrast: #ffffff;
@@ -67,19 +53,16 @@
   --color-primary-glow: rgba(23, 107, 82, 0.14);
   --color-focus: rgba(23, 107, 82, 0.28);
 
-  /* Dégradés de marque */
   --gradient-brand: var(--c-green);
   --gradient-brand-strong: var(--c-green-dark);
   --gradient-hero: none;
   --gradient-text: var(--c-green);
 
-  /* Alerte / destruction */
   --color-danger: var(--c-red);
   --color-danger-hover: #c92a2a;
   --color-danger-contrast: #ffffff;
   --color-danger-soft: rgba(224, 48, 48, 0.1);
 
-  /* Statuts (badges) */
   --color-warning-bg: #fff3cd;
   --color-warning-text: #8a6204;
   --color-success-bg: #d7f0e3;
@@ -87,7 +70,6 @@
   --color-error-bg: #fbe0e0;
   --color-error-text: #7f1d1d;
 
-  /* Forme & ombres */
   --radius-xs: 3px;
   --radius-sm: 5px;
   --radius-md: 8px;
@@ -102,11 +84,9 @@
   --shadow-xl: 0 16px 36px rgba(15, 23, 42, 0.12);
   --shadow-glow: var(--shadow-md);
 
-  /* Focus */
   --ring-width: 3px;
   --ring-offset: 2px;
 
-  /* Motion */
   --duration-fast: 0.12s;
   --duration: 0.18s;
   --duration-slow: 0.28s;
@@ -116,9 +96,6 @@
   --section-gap: 80px;
 }
 
-/* ==========================================================================
-   Variables sémantiques (dark mode)
-   ========================================================================== */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
@@ -152,9 +129,6 @@
   }
 }
 
-/* ==========================================================================
-   Reset & base
-   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -196,13 +170,11 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Focus visible (accessibilité) ─────────────────────────── */
 :focus-visible {
   outline: var(--ring-width) solid var(--color-focus);
   outline-offset: var(--ring-offset);
 }
 
-/* ── Scrolling doux sur l'ensemble du document ─────────────── */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-border-hover) transparent;
@@ -230,7 +202,6 @@ body {
   border: 3px solid transparent;
 }
 
-/* ── Réduction des animations (accessibilité) ──────────────── */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -22,7 +22,7 @@ function handleSubmit() {
 
 <template>
   <div class="contact">
-    <!-- ── Hero ──────────────────────────────────────────── -->
+    
     <section class="contact-hero">
       <div class="contact-hero__glow" aria-hidden="true"></div>
       <h1 class="contact-hero__title reveal">
@@ -34,9 +34,9 @@ function handleSubmit() {
       </p>
     </section>
 
-    <!-- ── Contenu ───────────────────────────────────────── -->
+    
     <section class="contact-body">
-      <!-- Infos -->
+      
       <aside class="contact-info reveal">
         <h2>Coordonnées</h2>
 
@@ -92,7 +92,7 @@ function handleSubmit() {
         </div>
       </aside>
 
-      <!-- Formulaire -->
+      
       <form class="contact-form reveal reveal--d1" @submit.prevent="handleSubmit">
         <div class="contact-form__row">
           <div class="contact-form__field">
@@ -146,7 +146,7 @@ function handleSubmit() {
 </template>
 
 <style scoped>
-/* ── Hero ──────────────────────────────────────────────── */
+
 .contact-hero {
   position: relative;
   text-align: center;
@@ -184,7 +184,6 @@ function handleSubmit() {
   line-height: 1.7;
 }
 
-/* ── Body ──────────────────────────────────────────────── */
 .contact-body {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -198,7 +197,6 @@ function handleSubmit() {
   }
 }
 
-/* ── Infos ─────────────────────────────────────────────── */
 .contact-info h2 {
   font-size: 1.3rem;
   font-weight: 700;
@@ -295,7 +293,6 @@ function handleSubmit() {
   transform-origin: left;
 }
 
-/* ── Form ──────────────────────────────────────────────── */
 .contact-form {
   display: flex;
   flex-direction: column;

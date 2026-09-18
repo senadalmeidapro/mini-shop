@@ -85,7 +85,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-/* ── Header ───────────────────────────────────────────────── */
+
 .notifications__header {
   display: flex;
   align-items: center;
@@ -121,7 +121,6 @@ onMounted(async () => {
   border-radius: var(--radius-pill);
 }
 
-/* ── Bouton tout lire ─────────────────────────────────────── */
 .notifications__read-all {
   display: inline-flex;
   align-items: center;
@@ -153,14 +152,12 @@ onMounted(async () => {
   transform: translateY(-2px);
 }
 
-/* ── Liste ────────────────────────────────────────────────── */
 .notifications__list {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 }
 
-/* ── Item ─────────────────────────────────────────────────── */
 .notification {
   position: relative;
   display: flex;
@@ -188,7 +185,6 @@ onMounted(async () => {
   outline-offset: var(--ring-offset);
 }
 
-/* ── Point non-lu pulsant ─────────────────────────────────── */
 .notification__dot {
   position: absolute;
   top: 1.25rem;
@@ -204,7 +200,6 @@ onMounted(async () => {
   animation: pulse-dot 2s var(--ease-out) infinite;
 }
 
-/* ── Badge pastille ───────────────────────────────────────── */
 .notification__badge {
   flex-shrink: 0;
   width: 44px;
@@ -227,7 +222,6 @@ onMounted(async () => {
   box-shadow: var(--shadow-glow);
 }
 
-/* ── Corps ────────────────────────────────────────────────── */
 .notification__body {
   flex: 1;
   min-width: 0;
@@ -261,7 +255,6 @@ onMounted(async () => {
   line-height: 1.6;
 }
 
-/* ── Actions ──────────────────────────────────────────────── */
 .notification__actions {
   margin-top: 0.7rem;
 }
@@ -287,7 +280,6 @@ onMounted(async () => {
   transform: translateY(-1px);
 }
 
-/* ── Fond non-lu ──────────────────────────────────────────── */
 .notification--unread {
   border-color: var(--color-primary-soft);
   background: var(--color-primary-soft);
@@ -301,7 +293,6 @@ onMounted(async () => {
   border-color: var(--color-primary-glow);
 }
 
-/* ── Empty state ──────────────────────────────────────────── */
 .notifications__empty {
   display: flex;
   flex-direction: column;
@@ -319,7 +310,6 @@ onMounted(async () => {
   color: var(--color-border-hover);
 }
 
-/* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .notification {
     padding: 1rem;

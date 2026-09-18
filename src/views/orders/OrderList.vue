@@ -61,14 +61,14 @@ async function cancelOrder(orderId: string) {
 
   const ok = await paymentStore.cancelPayment(paymentId);
   if (ok) {
-    // Le stock des produits est recrédité : on resynchronise tout
+    
     await syncAfterCancel();
   }
 }
 </script>
 <template>
   <div class="orders">
-    <!-- ═══════════════ EN-TÊTE ═══════════════ -->
+    
     <header class="orders__header reveal">
       <span class="orders__logo" aria-hidden="true">
         <svg
@@ -93,7 +93,7 @@ async function cancelOrder(orderId: string) {
       </div>
     </header>
 
-    <!-- ═══════════════ AUCUNE COMMANDE ═══════════════ -->
+    
     <div v-if="orders.length === 0" class="orders__empty">
       <span class="orders__empty-icon" aria-hidden="true">
         <svg
@@ -113,7 +113,7 @@ async function cancelOrder(orderId: string) {
       <strong>Aucune commande</strong>
     </div>
 
-    <!-- ═══════════════ LISTE COMMANDES ═══════════════ -->
+    
     <div v-for="order in orders" :key="order.id" class="order">
       <div class="order__main">
         <div class="order__row">
@@ -226,16 +226,13 @@ async function cancelOrder(orderId: string) {
 </template>
 
 <style scoped>
-/* ==========================================================================
-   LISTE DES COMMANDES
-   ========================================================================== */
+
 .orders {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
 }
 
-/* ══════════════════ EN-TÊTE ══════════════════ */
 .orders__header {
   display: flex;
   align-items: center;
@@ -277,7 +274,6 @@ async function cancelOrder(orderId: string) {
   color: var(--color-text-soft);
 }
 
-/* ══════════════════ ÉTAT VIDE ══════════════════ */
 .orders__empty {
   display: flex;
   flex-direction: column;
@@ -310,7 +306,6 @@ async function cancelOrder(orderId: string) {
   animation: none;
 }
 
-/* ══════════════════ COMMANDE ══════════════════ */
 .order {
   display: flex;
   align-items: center;
@@ -427,7 +422,6 @@ async function cancelOrder(orderId: string) {
   height: 15px;
 }
 
-/* ══════════════════ ACTIONS ══════════════════ */
 .order__actions {
   display: flex;
   align-items: center;
@@ -502,7 +496,6 @@ async function cancelOrder(orderId: string) {
   transform: translateY(-1px);
 }
 
-/* ══════════════════ RESPONSIVE ══════════════════ */
 @media (max-width: 640px) {
   .order {
     flex-direction: column;

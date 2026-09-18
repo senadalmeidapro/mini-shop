@@ -38,7 +38,7 @@ async function pay() {
     });
 
     if (ok) {
-      // Le panier est vidé côté serveur : on synchronise stock, commandes, paiements
+      
       await syncAfterCheckout();
     }
   } finally {
@@ -48,7 +48,7 @@ async function pay() {
 </script>
 <template>
   <div class="cart">
-    <!-- ═══════════════ EN-TÊTE ═══════════════ -->
+    
     <header class="cart__header reveal">
       <span class="cart__logo" aria-hidden="true">
         <svg
@@ -77,7 +77,7 @@ async function pay() {
       <span v-if="items.length" class="cart__chip">{{ cartStore.itemCount }}</span>
     </header>
 
-    <!-- ═══════════════ PANIER VIDE ═══════════════ -->
+    
     <div v-if="items.length === 0" class="cart__empty">
       <span class="cart__empty-icon" aria-hidden="true">
         <svg
@@ -98,7 +98,7 @@ async function pay() {
       <strong>Votre panier est vide</strong>
     </div>
 
-    <!-- ═══════════════ ARTICLES ═══════════════ -->
+    
     <div v-for="item in items" :key="item.id" class="cart-item">
       <span class="cart-item__media" aria-hidden="true">
         <svg
@@ -181,7 +181,7 @@ async function pay() {
       </div>
     </div>
 
-    <!-- ═══════════════ RÉCAPITULATIF ═══════════════ -->
+    
     <div v-if="items.length > 0" class="cart-footer">
       <div class="cart-footer__total">
         <span class="cart-footer__label">Total</span>
@@ -228,16 +228,13 @@ async function pay() {
 </template>
 
 <style scoped>
-/* ==========================================================================
-   PANIER
-   ========================================================================== */
+
 .cart {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* ══════════════════ EN-TÊTE ══════════════════ */
 .cart__header {
   display: flex;
   align-items: center;
@@ -295,7 +292,6 @@ async function pay() {
   box-shadow: var(--shadow-sm);
 }
 
-/* ══════════════════ ÉTAT VIDE ══════════════════ */
 .cart__empty {
   display: flex;
   flex-direction: column;
@@ -328,7 +324,6 @@ async function pay() {
   animation: none;
 }
 
-/* ══════════════════ ARTICLE ══════════════════ */
 .cart-item {
   display: flex;
   align-items: center;
@@ -489,7 +484,6 @@ async function pay() {
   transform: translateY(-1px);
 }
 
-/* ══════════════════ RÉCAPITULATIF ══════════════════ */
 .cart-footer {
   display: flex;
   align-items: center;
@@ -597,7 +591,6 @@ async function pay() {
   cursor: not-allowed;
 }
 
-/* ══════════════════ RESPONSIVE ══════════════════ */
 @media (max-width: 700px) {
   .cart-item {
     flex-wrap: wrap;

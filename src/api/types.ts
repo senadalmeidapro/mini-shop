@@ -1,7 +1,6 @@
-// ─── HTTP Methods ──────────────────────────────────────────────────────────────
+
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
-// ─── Generic API Response envelope ────────────────────────────────────────────
 export interface ApiResponse<T = unknown> {
   data: T;
   message?: string;
@@ -14,7 +13,6 @@ export interface ApiErrorResponse {
   statusCode: number;
 }
 
-// Dans @/api/types.ts, remplace PaginatedResponse par :
 export interface PaginatedResponse<T> {
   items: T[];
   page: number;
@@ -32,13 +30,11 @@ export interface PaginationMeta {
   hasPreviousPage: boolean;
 }
 
-// ─── Request options ───────────────────────────────────────────────────────────
 export interface RequestOptions {
   withAuth?: boolean;
   signal?: AbortSignal;
 }
 
-// ─── Token pair ────────────────────────────────────────────────────────────────
 export interface TokenPair {
   accessToken: string;
   refreshToken: string;

@@ -95,12 +95,12 @@ function statusClass(status: string) {
 </script>
 <template>
   <div class="sd">
-    <!-- ═══════════════ LOADER ═══════════════ -->
+    
     <div v-if="supplierStore.loading" class="sd__loader">
       <span class="sd__spinner" />
     </div>
 
-    <!-- ═══════════════ PAS DE BOUTIQUE ═══════════════ -->
+    
     <div
       v-else-if="!supplierStore.hasShop"
       class="sd__empty"
@@ -137,14 +137,14 @@ function statusClass(status: string) {
       </RouterLink>
     </div>
 
-    <!-- ═══════════════ DASHBOARD ═══════════════ -->
+    
     <template v-else-if="supplierStore.dashboard">
       <div class="sd__header reveal">
         <h2>Tableau de bord</h2>
         <p class="sd__sub">Vue d'ensemble de votre boutique</p>
       </div>
 
-      <!-- ── Bannière boutique ─────────────────────────── -->
+      
       <div class="sd__shop reveal reveal--d1">
         <span class="sd__shop-avatar" aria-hidden="true">
           {{ supplierStore.dashboard.shop.name.charAt(0).toUpperCase() }}
@@ -165,7 +165,7 @@ function statusClass(status: string) {
         </div>
       </div>
 
-      <!-- ── KPIs ────────────────────────────────────── -->
+      
       <div class="sd__kpis">
         <div class="sd__kpi reveal reveal--d2">
           <span class="sd__kpi-icon sd__kpi-icon--blue">
@@ -205,9 +205,9 @@ function statusClass(status: string) {
         </div>
       </div>
 
-      <!-- ── Deux colonnes ──────────────────────────────── -->
+      
       <div class="sd__grid">
-        <!-- Produits en alerte -->
+        
         <section class="sd__card reveal reveal--d5">
           <div class="sd__card-head">
             <h4 class="sd__card-title">
@@ -227,7 +227,7 @@ function statusClass(status: string) {
           <p v-else class="sd__empty-text">Tout est approvisionné !</p>
         </section>
 
-        <!-- Notifications récentes -->
+        
         <section class="sd__card reveal reveal--d6">
           <h4 class="sd__card-title">
             <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M10 2a6 6 0 0 0-6 6c0 1.887-.454 3.665-1.257 5.234a.75.75 0 0 0 .515 1.076 32.91 32.91 0 0 0 3.256.508 3.5 3.5 0 0 0 6.972 0 32.903 32.903 0 0 0 3.256-.508.75.75 0 0 0 .515-1.076A11.448 11.448 0 0 1 16 8a6 6 0 0 0-6-6ZM8.05 14.943a33.54 33.54 0 0 0 3.9 0 2 2 0 0 1-3.9 0Z" clip-rule="evenodd"/></svg>
@@ -247,7 +247,7 @@ function statusClass(status: string) {
         </section>
       </div>
 
-      <!-- ── Répartition des commandes ──────────────────── -->
+      
       <section class="sd__card reveal reveal--d6">
         <h4 class="sd__card-title">
           <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M1 3.25A2.25 2.25 0 0 1 3.25 1h13.5A2.25 2.25 0 0 1 19 3.25v4.486a2.25 2.25 0 0 1-.659 1.591L11.56 13.03a2.25 2.25 0 0 1-3.12 0L1.659 9.286A2.25 2.25 0 0 1 1 7.736V3.25Zm2.25-.75a.75.75 0 0 0-.75.75v4.486l.218.164a.75.75 0 0 0 .664 0l7.705-5.78a.75.75 0 0 0 .224-.536V3.25a.75.75 0 0 0-.75-.75H3.25Z" clip-rule="evenodd"/></svg>
@@ -267,7 +267,7 @@ function statusClass(status: string) {
         </div>
       </section>
 
-      <!-- ── Commandes récentes ─────────────────────────── -->
+      
       <section class="sd__card reveal reveal--d7">
         <div class="sd__card-head">
           <h4 class="sd__card-title">
@@ -317,7 +317,6 @@ function statusClass(status: string) {
   gap: 1.5rem;
 }
 
-/* ══════════════════ LOADER / EMPTY ══════════════════ */
 .sd__loader {
   display: flex;
   justify-content: center;
@@ -464,7 +463,6 @@ function statusClass(status: string) {
   text-decoration: underline;
 }
 
-/* ══════════════════ HEADER ══════════════════ */
 .sd__header h2 {
   font-size: 1.6rem;
   font-weight: 800;
@@ -477,7 +475,6 @@ function statusClass(status: string) {
   color: var(--color-text-soft);
 }
 
-/* ══════════════════ BANNIÈRE BOUTIQUE ══════════════════ */
 .sd__shop {
   display: flex;
   align-items: center;
@@ -557,7 +554,6 @@ function statusClass(status: string) {
   color: var(--color-primary);
 }
 
-/* ══════════════════ KPIs ══════════════════ */
 .sd__kpis {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -649,7 +645,6 @@ function statusClass(status: string) {
   color: var(--color-text-soft);
 }
 
-/* ══════════════════ GRILLE 2 COLONNES ══════════════════ */
 .sd__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -662,7 +657,6 @@ function statusClass(status: string) {
   }
 }
 
-/* ══════════════════ CARTE GÉNÉRIQUE ══════════════════ */
 .sd__card {
   padding: 1.4rem 1.5rem;
   background: var(--color-background-soft);
@@ -712,7 +706,6 @@ function statusClass(status: string) {
   color: var(--color-text-soft);
 }
 
-/* ══════════════════ ALERTES STOCK ══════════════════ */
 .sd__alert-list {
   display: flex;
   flex-direction: column;
@@ -760,7 +753,6 @@ function statusClass(status: string) {
   color: var(--color-danger);
 }
 
-/* ══════════════════ NOTIFICATIONS ══════════════════ */
 .sd__notif-list {
   display: flex;
   flex-direction: column;
@@ -824,7 +816,6 @@ function statusClass(status: string) {
   white-space: nowrap;
 }
 
-/* ══════════════════ STATUS CHIPS ══════════════════ */
 .sd__status-grid {
   display: flex;
   flex-wrap: wrap;
@@ -886,7 +877,6 @@ function statusClass(status: string) {
   border-color: var(--color-danger-soft);
 }
 
-/* ══════════════════ TABLEAU ══════════════════ */
 .sd__table-wrap {
   overflow-x: auto;
 }

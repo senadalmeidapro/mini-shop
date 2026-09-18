@@ -8,9 +8,6 @@
   background: var(--color-primary-soft);
 }
 
-/* ==========================================================================
-   Layout utilitaire
-   ========================================================================== */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -18,9 +15,6 @@
   padding-inline: 1.5rem;
 }
 
-/* ==========================================================================
-   Keyframes d'entrée & décor
-   ========================================================================== */
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -83,9 +77,6 @@
   }
 }
 
-/* ==========================================================================
-   Utilitaires d'apparition (staggerant)
-   ========================================================================== */
 .reveal {
   opacity: 0;
   animation: fade-up var(--duration-slow) var(--ease-out) forwards;
@@ -126,14 +117,10 @@
   }
 }
 
-/* ==========================================================================
-   Texte en dégradé
-   ========================================================================== */
 .grad-text {
   color: var(--color-heading);
 }
 
-/* Shared product surfaces: restrained motion and neutral elevation. */
 button,
 a {
   -webkit-tap-highlight-color: transparent;
@@ -156,7 +143,6 @@ a {
   }
 }
 
-/* Product-wide visual language for every view and reusable component. */
 [class*="__shine"],
 [class*="__blob"],
 [class*="__glow"],
@@ -200,13 +186,11 @@ a {
   border-color: var(--color-border-hover) !important;
 }
 
-/* Keep data-heavy screens quiet: rows should react through color only. */
 tr:hover {
   transform: none !important;
   box-shadow: none !important;
 }
 
-/* Forms: clear labels, predictable controls and accessible focus states. */
 form input:not([type='file']):not([type='checkbox']):not([type='radio']),
 form select,
 form textarea,
@@ -328,7 +312,6 @@ button[class*="__action"] {
   font-size: 0.76rem;
 }
 
-/* CRUD tables: stronger headers, quieter rows, and usable overflow on mobile. */
 [class*="__table-wrap"] {
   overflow-x: auto;
   border: 1px solid var(--color-border);
@@ -380,7 +363,6 @@ table[class*="__table"] tbody tr:hover {
   gap: 0.4rem;
 }
 
-/* CRUD editing panels are visually separated from the data list. */
 .users__form,
 .products__form,
 .categories__form,
@@ -484,7 +466,6 @@ table[class*="__table"] tbody tr:hover {
   }
 }
 
-/* Tablet and phone ergonomics. */
 @media (max-width: 900px) {
   .container,
   .admin,
@@ -687,7 +668,6 @@ table[class*="__table"] tbody tr:hover {
   }
 }
 
-/* Decorative effects are intentionally quiet in the application shell. */
 .hero__blob,
 .auth-layout__blob,
 .shop-detail__blob,

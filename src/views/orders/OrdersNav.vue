@@ -67,9 +67,7 @@ function select(tab: 'cart' | 'orders') {
 </template>
 
 <style scoped>
-/* ==========================================================================
-   NAVIGATION PANIER / COMMANDES
-   ========================================================================== */
+
 .order-nav {
   display: inline-flex;
   gap: 0.35rem;
@@ -141,7 +139,6 @@ function select(tab: 'cart' | 'orders') {
   color: var(--color-primary);
 }
 
-/* ══════════════════ RESPONSIVE ══════════════════ */
 @media (max-width: 480px) {
   .order-nav {
     display: flex;

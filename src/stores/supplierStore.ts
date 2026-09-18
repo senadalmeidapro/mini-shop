@@ -13,7 +13,6 @@ export const useSupplierStore = defineStore('supplier', () => {
   const hasShop = ref(false);
   const isLoaded = ref(false);
 
-  // ── Boutique ────────────────────────────────────────────
   async function checkMyShop() {
     isLoaded.value = true;
     try {
@@ -41,7 +40,6 @@ export const useSupplierStore = defineStore('supplier', () => {
     }
   }
 
-  // ── Produits de ma boutique ─────────────────────────────
   async function getMyProducts() {
     productsLoading.value = true;
     try {
